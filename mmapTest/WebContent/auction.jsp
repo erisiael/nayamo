@@ -106,26 +106,27 @@ $(document).ready(function(){
 			<table>
 				<tr>
 					<th>SKA_L_NO</th>
-					<th>SKA_NO</th>
-					<th>OKS_NO</th>
 					<th>COMT</th>
+					<th>OKS_NO</th>
+					<th>SKA_NO</th>
 					<th>REGDATE</th>
 				</tr>
 				
 				 <s:iterator value = "skaList" status = "status">
 					 <tr>
 						<td>
+							<%-- <s:property value = "pagenavi.totalRecordsCount"/> --%>
 							<s:property value = "pagenavi.totalRecordsCount-pagenavi.startRecord-#status.index" />
 						</td>
 						<td class = "board_title">
 							<s:url id = "readurl" value = "../board/readBoard.action">
-							<s:param name = "skaList.SKA_no" value = "%{skaList.SKA_no}"/>
+							<s:param name = "comt" value = "%{comt}"/>
 							</s:url>
-							<s:a href = "%{readurl}"><s:property value = "skaList.SKA_no"/></s:a>
+							<s:a href = "%{readurl}"><s:property value = "comt"/></s:a>
 						</td>
-						<td><s:property value = "skaList.OKS_no"/></td>
-						<td><s:property value = "skaList.comt"/></td>
-						<td><s:property value = "skaList.regdate"/></td>
+						<td><s:property value = "OKS_no"/></td>
+						<td><s:property value = "SKA_no"/></td>
+						<td><s:property value = "regdate"/></td>
 					</tr> 
 				</s:iterator>
 				

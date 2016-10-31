@@ -71,7 +71,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		OKS_DAO dao = new OKS_DAO();
 		
 		int total = dao.getTotal(searchField, searchText);//전체 글수 구하기
-		
 		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
 		skaList = dao.listBoard(searchField, searchText, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
 		//현재 페이지에 해당하는 글 목록 읽기
@@ -182,6 +181,38 @@ public class StrutsAction extends ActionSupport implements SessionAware
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getCurrentPage() {
+		return currentPage;
+	}
+
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public String getSearchField() {
+		return searchField;
+	}
+
+	public void setSearchField(String searchField) {
+		this.searchField = searchField;
+	}
+
+	public String getSearchText() {
+		return searchText;
+	}
+
+	public void setSearchText(String searchText) {
+		this.searchText = searchText;
+	}
+
+	public PageNavigator getPagenavi() {
+		return pagenavi;
+	}
+
+	public void setPagenavi(PageNavigator pagenavi) {
+		this.pagenavi = pagenavi;
 	}
 
 	public String getPass() {
