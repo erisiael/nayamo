@@ -10,14 +10,8 @@
 	var selectednode = null;
 	
 	var node = [
-	            {text : "1번타자", child : [1,2,3], values: 50},
-	            {text : "2번타자", parent : 0, child : [4], values: 30},
-	            {text : "3번타자", parent : 0, child : [5], values: 70},
-	            {text : "4번타자", parent : 0, child : [6], values: 80},
-	            {text : "5번타자", parent : 1, child : [7], values: 80},
-	            {text : "6번타자", parent : 2, values: 90},
-	            {text : "7번타자", parent : 3, values: 90},
-	            {text : "8번타자",  parent : 4, values: 100}
+	            //{text : "1번타자", parent : 1, child : [1,2,3], values: 50}
+	            {text : "더미데이터", values : 100}
 	];
 	var links = [];
 	
@@ -213,14 +207,12 @@
 		reDraw();
 	}
 	
-	function editData() {
+	function editData(text, values) {
 		if (!isSelected()) {
 			return;
 		}
-		if (arguments.length != 0) {
-			var text = arguments[0];
-		}
 		selectednode.text = text;
+		selectednode.values = values;
 		selectednode = undefined;
 			
 		reDraw();

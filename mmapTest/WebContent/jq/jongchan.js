@@ -43,7 +43,7 @@ var saved;
 	}); // each end
 	return mapclone; 
 }*/
-var mapdialog = $('<div class=div-dialog><input type=text><br><img class=btn-update src=assets/images/pencil.png title=입력></img>&nbsp;<img class=btn-close src=assets/images/close-cross.png title=닫기></img></div>');
+var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalue></span><input type=range><br><img class=btn-update src=assets/images/pencil.png title=입력></img>&nbsp;<img class=btn-close src=assets/images/close-cross.png title=닫기></img></div>');
 var dialogclosebtn = mapdialog.children().filter('img.btn-close');
 var modal = $("div.modal-div");
 
@@ -51,14 +51,23 @@ $('window').ready(function() {
 
 	$('div.div-dialogs').append(mapdialog);
 	mapdialog.draggable();
+	
+	var rangelistener = function() {
+		var values = mapdialog.children().filter('input[type=range]').val();
+		mapdialog.children().filter('span#rangevalue').text(values);
+	}
+	
+	mapdialog.children().filter('input[type=range]').on('change', rangelistener);
+	
 	dialogclosebtn.on('click', function() { // 닫기 버튼에 이벤트를 추가
 		//$(this).parent().css('display', 'none');
 		modal.css('display','none');
-		mapdialog.children().filter('input').val('');
+		mapdialog.children().filter('input[type=text]').val('');
 	});
 	mapdialog.children().filter('img.btn-update').on('click', function() { // 입력 버튼에 이벤트를 추가
-		var text = mapdialog.children().filter('input').val();
-		editData(text);
+		var text = mapdialog.children().filter('input[type=text]').val();
+		var values = mapdialog.children().filter('input[type=range]').val();
+		editData(text, values);
 		dialogclosebtn.trigger('click');
 	});
 	
@@ -139,6 +148,7 @@ $('window').ready(function() {
 		if (!isSelected()) {
 			return;
 		}
+		rangelistener();
 		$(mapdialog).css('display', 'block');
 		connectModal();
 	});
