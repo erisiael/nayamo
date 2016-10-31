@@ -1,5 +1,9 @@
 package vo;
 
+import java.util.ArrayList;
+
+import javax.websocket.Session;
+
 public class STR 
 {
 	private int STR_no;
@@ -13,8 +17,10 @@ public class STR
 	private String enter_code;
 	private String regdate;
 	
+	private ArrayList<Session> session_list = new ArrayList<>();
+	
 	public STR() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	
@@ -115,6 +121,12 @@ public class STR
 		this.regdate = regdate;
 	}
 
+	public ArrayList<Session> getSession_list() {
+		return session_list;
+	}
+	public void setSession_list(ArrayList<Session> session_list) {
+		this.session_list = session_list;
+	}
 
 	@Override
 	public String toString() {

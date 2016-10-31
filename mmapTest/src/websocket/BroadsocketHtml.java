@@ -16,6 +16,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import action.AjaxAction;
+import vo.STR;
 
 @ServerEndpoint("/exclude/broadcastingHtml")
 public class BroadsocketHtml{
@@ -23,6 +24,7 @@ public class BroadsocketHtml{
 	private static HashMap<String, String> allHtml = new HashMap<>();
 	private String roomName_web = null;
 	
+	private static HashMap<String, STR> test_map = new HashMap<>();
 	
 	
 	
@@ -40,6 +42,7 @@ public class BroadsocketHtml{
 			////////////////////////////////html
 			System.out.println(roomName_web + "          canvas");
 			allHtml.put(roomName_web, "html#haha"+str[1]);
+			System.out.println("체크 나는 새로 방을 만든다?");
 			System.out.println(allHtml.size()+"html?");
 			//ArrayList<Session> rom = AjaxAction.getRooms_html().get(roomName_web);//arrayList
 			System.out.println(rom);
@@ -107,7 +110,17 @@ public class BroadsocketHtml{
 		//html을 위한 해쉬멥에 세션넣기
 		//AjaxAction.getRooms_html().get(roomName_web).add(session);
 
+		// 세션을 vo에 집어넣기 테스트 시작
+		// 코드 이대로 쓰면 안되고 수정 필수
+		if (!test_map.containsKey("testkey")) {
+			test_map.put("testkey", new STR());
+		}
+		test_map.get("testkey").getSession_list().add(session);
+		System.out.println("맵 내부의 어레이" + test_map.get("testkey").getSession_list());
+		// 세션을 vo에 집어넣기 테스트 종료
 
+		
+		
 
 		try {
 			if(allHtml.get(roomName_web) != null){
