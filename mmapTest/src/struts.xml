@@ -23,8 +23,8 @@
         </action>
         
         
-         <action name = "board" class = "action.AjaxBoardAction" method = "board">
-        	<result type = "json"></result>
+         <action name = "Go_board" class = "action.StrutsAction" method = "Go_board">
+        	<result type = "success"></result>
         </action>
         
           <action name = "enter_test" class = "action.StrutsAction" method = "enter_test">

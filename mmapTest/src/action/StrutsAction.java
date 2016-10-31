@@ -8,6 +8,7 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.opensymphony.xwork2.ActionSupport;
 
 import dao.OKS_DAO;
+import properties.PageNavigator;
 import vo.OKS;
 import vo.SKA_LIST;
 
@@ -23,6 +24,12 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	
 	private boolean dupChk = false;
 	private List<SKA_LIST> skaList;
+	
+	private int currentPage = 1;
+	private String searchField; // boardlist에서 검색 value 받아오는 변수
+	private String searchText;
+	
+	private PageNavigator pagenavi;
 	
 	public String enter_test() throws Exception
 	{
@@ -53,6 +60,22 @@ public class StrutsAction extends ActionSupport implements SessionAware
 			return SUCCESS;
 		}
 		return INPUT;
+	}
+	
+	public String Go_board() throws Exception // 메인에서 버튼 눌러서 auction.jsp로 이동
+	{
+		//user.properties에서 지정한 페이징 관련 상수들 읽기
+		int countPerPage = Integer.parseInt(getText("board.countperpage"));
+		int pagePerGroup = Integer.parseInt(getText("board.pagepergroup"));
+		
+		OKS_DAO dao = new OKS_DAO();
+		
+		int total = dao.getTotal(searchField, searchText);//전체 글수 구하기
+		
+		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
+		skaList = dao.listBoard(searchField, searchText, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		//현재 페이지에 해당하는 글 목록 읽기
+		return SUCCESS;
 	}
 	
 	public String board() throws Exception // SKA_LIST에 저장되어 있는 모든 경매 목록을 불러오는 함수

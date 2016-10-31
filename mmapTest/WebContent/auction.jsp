@@ -1,21 +1,19 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix = "s" uri = "/struts-tags"%>    
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <script src = "assets/script/jquery-3.1.1.min.js"></script> 
 <link rel="stylesheet" href="assets/css/style.css" type = "text/css"> 
-
-
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-
-<script>
+<%-- <script>
 
 $(document).ready(function()
 {
-	$.ajaxSettings.traditional = true;
+	/* $.ajaxSettings.traditional = true; */
 	var output = '';
 	$.ajax({
 		url : 'board',
@@ -44,7 +42,27 @@ $(document).ready(function()
 	});
 });
 
+</script> --%>
+
+<script language = "javascript">
+function ListChk()
+{
+	if(document.getElementById("sText").value.length > 0)
+	{
+		document.getElementById("ListForm").action = 'boardList.action';
+		document.getElementById("ListForm").submit();
+		return false;
+	}
+	alert('검색 내용을 입력하라');
+}
+
+$(document).ready(function(){
+	
+})
 </script>
+
+
+
 
 </head>
 <body>
@@ -76,10 +94,11 @@ $(document).ready(function()
             <li><a href="myPage.html">Mypage</a></li>
             <li class="active"><a href="auction.html">Auction</a></li>
             <li><a href="#">etc</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="contact.html">Contact</a></Mli>
         </ul>
         <div class="clear"></div>
     </div>
+       
        
        <div id="contents"><!--내용-->
 			<h1>고객문의 게시판sipal<span></span></h1><!-- 내용제목 -->
@@ -92,7 +111,50 @@ $(document).ready(function()
 					<th>COMT</th>
 					<th>REGDATE</th>
 				</tr>
+				
+				 <s:iterator value = "skaList" status = "status">
+					 <tr>
+						<td>
+							<s:property value = "pagenavi.totalRecordsCount-pagenavi.startRecord-#status.index" />
+						</td>
+						<td class = "board_title">
+							<s:url id = "readurl" value = "../board/readBoard.action">
+							<s:param name = "skaList.SKA_no" value = "%{skaList.SKA_no}"/>
+							</s:url>
+							<s:a href = "%{readurl}"><s:property value = "skaList.SKA_no"/></s:a>
+						</td>
+						<td><s:property value = "skaList.OKS_no"/></td>
+						<td><s:property value = "skaList.comt"/></td>
+						<td><s:property value = "skaList.regdate"/></td>
+					</tr> 
+				</s:iterator>
+				
 			</table>
+			
+			<p class="paging">
+				<a href = "#" onclick = "document.getElementById('page').value='<s:property value = "pagenavi.currentPage-1"/>';document.getElementById('ListForm').submit();">&lt</a>
+				<s:iterator begin = "pagenavi.startPageGroup" end = "pagenavi.endPageGroup" var = "count">
+				<a href = "#" 
+					<s:if test = "#count==pagenavi.currentPage">class = "select"</s:if>
+					onclick = "document.getElementById('page').value='<s:property value = "count"/>';
+					document.getElementById('ListForm').submit();">
+					<s:property value = "count"/></a>
+				</s:iterator>
+				<a href = "#" onclick = "document.getElementById('page').value='<s:property value = "pagenavi.currentPage+1"/>';document.getElementById('ListForm').submit();">&gt</a>
+				<a href = "../board/boardwriteInitial.action" class = "btn_write">글쓰기</a>
+			</p>
+			
+			<p class="board_search">
+			<form id = "ListForm" method = "post">
+				<s:select name = "searchField" list = "#{'all':'전체', 'SKA_no':'생각 번호', 'OKS_no':'고객 번호', 'comt':'내용'}"/>
+					<input type = "hidden" name = "currentPage" value = "1" id = "page">
+				<s:textfield id = "sText" name = "searchText"/><a href = "javascript:ListChk()">검색</a>
+			</form>
+			</p>
+			
+			
+			
+			
 			
 		</div>
 
@@ -133,6 +195,9 @@ $(document).ready(function()
         <div class="clear"></div>
     <div class="copy">� 2012 All rights reserved. Designed by <a href="http://w3layouts.com">W3Layouts</a> Powered by <a href="http://bigw3.com">Bigw3</a></div>
 </div>
+
+
+
 
 
 

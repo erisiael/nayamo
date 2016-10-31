@@ -34,4 +34,36 @@
 		select * from OKS where email = #{email}
 	</select>
 	
+	<select id = "getTotal" parameterType = "Map" resultType = "int">
+		select count(*) from SKA_LIST
+	 	<if test = "searchField == 'SKA_no'">
+			where SKA_no like '%' || #{searchText} || '%'
+		</if>
+		<if test = "searchField == 'comt'">
+			where comt like '%' || #{searchText} || '%'
+		</if>
+		<if test = "searchField == 'OKS_no'">
+			where OKS_no like '%' || #{searchText} || '%'
+		</if> 
+	</select>
+	
+	<select id = "listBoard" parameterType = "Map" resultType = "SKA_LIST">
+		select * from SKA_LIST
+		
+		<if test = "searchField != 'all'">
+		<where>
+			<if test = "searchField == 'SKA_no'">
+				SKA_no like '%' || #{searchText} || '%'
+			</if>
+			<if test = "searchField == 'comt'">
+				comt like '%' || #{searchText} || '%'
+			</if>
+			<if test = "searchField == 'OKS_no'">
+				OKS_no like '%' || #{custid} || '%'
+			</if>
+		</where>
+		</if>
+		order by SKA_L_NO desc
+	</select>	
+	
 </mapper>

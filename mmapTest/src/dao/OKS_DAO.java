@@ -1,7 +1,10 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import vo.OKS;
 import vo.SKA_LIST;
@@ -54,4 +57,48 @@ public class OKS_DAO
 		return result;
 	}
 	/*김동현 작업 끝*/
+
+	public int getTotal(String searchField, String searchText)
+	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		int totalRecordCount = 0;
+		Map<String, String> map = new HashMap<String, String>();
+
+		map.put("searchField", searchField);
+		map.put("searchText", searchText);
+
+		try {
+			totalRecordCount = sqlSession.selectOne("mapper.OKS_mapper.getTotal", map);
+			// sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null)
+				sqlSession.close();
+		}
+		return totalRecordCount;
+	}
+	
+	 public List<SKA_LIST> listBoard(String searchField, String searchText, int startRecord, int countPerPage)
+	   {
+		  SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+	      List<SKA_LIST> boardlist = null;
+	      
+	      //쿼리로 전달할 parameter들
+	      Map<String, String> map = new HashMap<String, String>();
+	      map.put("searchField", searchField);
+	      map.put("searchText", searchText);
+	      
+	      //결과 레코드 중 읽을 위치와 개수
+	      RowBounds bound = new RowBounds(startRecord, countPerPage);
+	      
+	      boardlist = sqlSession.selectList("mapper.OKS_mapper.listBoard", map, bound);
+	      //sqlSession.commit();
+	      if(sqlSession != null)
+	      {
+	    	  sqlSession.close();
+	      }
+	        
+	      return boardlist;
+	   }
 }
