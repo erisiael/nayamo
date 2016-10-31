@@ -293,6 +293,13 @@ article a:hover{
 	margin-top:50px;
 	float:left;
 }
+.content_update{
+	width:575px;
+	/* border-right:1px solid #d8d5b5; */
+	padding:0 30px;
+	margin-top:50px;
+	float:left;
+}
 .content h1{
 	font-size:24px;
 	color:#928f6e;
