@@ -103,6 +103,7 @@ public class BroadsocketHtml{
 		//같은 세션이 들어가면 헤쉬맵을 두개 만들필요가 없을듯?????????????
 		//메시지를 위한 해쉬맵에 세션넣기
 		AjaxAction.getRooms().get(roomName_web).add(session);//session 해당 방에 넣기
+		System.out.println("객체 확인"+AjaxAction.getRooms().get(roomName_web));
 		//html을 위한 해쉬멥에 세션넣기
 		//AjaxAction.getRooms_html().get(roomName_web).add(session);
 

@@ -5,6 +5,10 @@ public class STR
 	private int STR_no;
 	private String OKS_email;
 	private String name;
+	//////////////////////seokgi
+	private String keyword;
+	private String category;
+	////////////////////////////
 	private String savepath;
 	private String enter_code;
 	private String regdate;
@@ -13,6 +17,7 @@ public class STR
 		// TODO Auto-generated constructor stub
 	}
 
+	
 	public STR(int sTR_no, String oKS_email, String name, String savepath, String enter_code, String regdate) {
 		super();
 		STR_no = sTR_no;
@@ -22,6 +27,45 @@ public class STR
 		this.enter_code = enter_code;
 		this.regdate = regdate;
 	}
+	
+	
+	
+	
+	///seokgi
+
+	public STR(int sTR_no, String oKS_email, String name, String keyword, String category, String savepath,
+			String enter_code, String regdate) {
+		super();
+		STR_no = sTR_no;
+		OKS_email = oKS_email;
+		this.name = name;
+		this.keyword = keyword;
+		this.category = category;
+		this.savepath = savepath;
+		this.enter_code = enter_code;
+		this.regdate = regdate;
+	}
+///////////////////////////////////////////
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+
+	public String getCategory() {
+		return category;
+	}
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
 
 	public int getSTR_no() {
 		return STR_no;
@@ -71,9 +115,21 @@ public class STR
 		this.regdate = regdate;
 	}
 
+
 	@Override
+	public String toString() {
+		return "STR [STR_no=" + STR_no + ", OKS_email=" + OKS_email + ", name=" + name + ", keyword=" + keyword
+				+ ", category=" + category + ", savepath=" + savepath + ", enter_code=" + enter_code + ", regdate="
+				+ regdate + "]";
+	}
+
+	/*@Override
 	public String toString() {
 		return "STR [STR_no=" + STR_no + ", OKS_email=" + OKS_email + ", name=" + name + ", savepath=" + savepath
 				+ ", enter_code=" + enter_code + ", regdate=" + regdate + "]";
-	}
+	}*/
+	
+
+	
+	
 }

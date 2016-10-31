@@ -8,20 +8,23 @@ import javax.websocket.Session;
 import com.opensymphony.xwork2.ActionSupport;
 
 import vo.Ajaxuser;
+import vo.STR;
 
 public class AjaxAction extends ActionSupport {
 
 	private Ajaxuser ajaxuser;
 	private String canvas;
 	private static String saved;
+	private STR str;
+	
 	/////////////////������		
 	
 	//ä���� ���� ���̸� -- ������
 		private static String roomName;
 		private String temp_roomName;
 		////////////////////////////////////////////////////////test�� ��
-		private static ArrayList<Session> sessionList1 = new ArrayList<>();
-		private static ArrayList<Session> sessionList2 = new ArrayList<>();
+		private ArrayList<Session> sessionList1 = new ArrayList<>();
+		private ArrayList<Session> sessionList2 = new ArrayList<>();
 		//private static ArrayList<Session> sessionListHtml1 = new ArrayList<>();
 		//private static ArrayList<Session> sessionListHtml2 = new ArrayList<>();
 		/////////////////////////////////////////////////////////////////////
@@ -76,6 +79,26 @@ public class AjaxAction extends ActionSupport {
 		AjaxAction.saved = saved;
 	}
 	
+	public STR getStr() {
+		return str;
+	}
+	public void setStr(STR str) {
+		this.str = str;
+	}
+	
+	
+	
+	
+	
+/////////////////////////	
+	
+	
+	
+	
+	
+	
+	
+	
 	public String save() throws Exception {
 		setSaved(getCanvas());
 		return SUCCESS;
@@ -84,7 +107,6 @@ public class AjaxAction extends ActionSupport {
 		setCanvas(getSaved());
 		return SUCCESS;
 	}
-	
 	public String checkRoom(){
 		////////////////////test ���� DAO���� ��������ȴ�
 		/*ArrayList<Session> t1 = new ArrayList<>();
@@ -108,7 +130,12 @@ public class AjaxAction extends ActionSupport {
 		}
 		return SUCCESS;
 	}
-	
+	//방만들기
+	public String newRoom(){
+		rooms.put(str.getName(),new ArrayList<Session>());
+		
+		return SUCCESS;
+	}
 	
 	
 	

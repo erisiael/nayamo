@@ -120,7 +120,7 @@ $('window').ready(function() {
 			url : 'save.action',
 			dataType: 'json',
 			data : {'canvas' : JSON.stringify(node)},
-			success : function(data) {
+			success  function(data) {
 				console.log(data);
 			}
 		});*/

@@ -92,6 +92,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             class="close" title="Close Modal">&times;</span> 
 			<div class="modal-dialog">
 			      <div class="modal-content">
+			      <form action="newRoom" method = "post">
 			        <div class="modal-header">
 			          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
 			          <h3 class="modal-title">새로 만들기</h3>
@@ -108,15 +109,15 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			            </thead> -->
 			            <tbody>
 			              <tr><td>Title</td>
-			                <td><input type="text" id="title" class="form-control"></td>
+			                <td><input type="text" name = "name" id="title" class="form-control"></td>
 			                <!-- <td class="text-right">45001</td> -->
 			              </tr>
 			              <tr><td>Keyword</td>
-			                <td><input type="text" id="keyword" class="form-control"></td>
+			                <td><input type="text" name ="keyword" id="keyword" class="form-control"></td>
 			                <!-- <td class="text-right">76455</td> -->
 			              </tr>
 			              <tr><td>Category</td>
-								<td><select class="form-control">
+								<td><select name = "category" class="form-control">
 										<option>1</option>
 										<option>2</option>
 										<option>3</option>
@@ -128,11 +129,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 			            </tbody>
 			          </table>
 			          <div class="form-group">
-			            <input type="button" class="btn btn-success btn-sm pull-right" value="생성">
+			          <!-- button submit :seokgi -->
+			            <input type="submit" class="btn btn-success btn-sm pull-right" value="생성">
 			            <div class="clearfix"></div>
 			          </div>
 					</div>
-							
+					</form>
 			      </div><!-- /.modal-content -->
 			    </div><!-- /.modal-dialog -->
 			  </div><!-- /.modal -->

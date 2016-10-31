@@ -100,6 +100,10 @@
         	<result name="error">test.html</result>
         	<result>testtest.html</result>
         </action>
+        <!-- 윤석기 방만들기 -->
+       <!--  <action name="newRoom" class ="action.AjaxAction" method="newRoom">
+        	<result>넘어갈 페이지</result>
+        </action> -->
         
     </package>
 
