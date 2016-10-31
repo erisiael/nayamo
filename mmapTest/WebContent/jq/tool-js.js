@@ -1,8 +1,12 @@
 /**
  * 
  */
-	var w = 900;
-	var h = 600;
+	//var w = 900;
+	//var h = 600;
+	var w = window.outerWidth;
+	var h = window.outerHeight;
+	console.log(w);
+	console.log(h);
 	
 	var zoomrate = [1/8, 8];
 	
@@ -195,7 +199,7 @@
 			return;
 		}
 		node.push({
-			"text" : text, "parent" : node.indexOf(selectednode), "values" : 100
+			"text" : text, "parent" : node.indexOf(selectednode), "x" : (selectednode.x + 150), "y" : (selectednode.y + 150), "values" : 100
 		});
 		if (selectednode.child != undefined) {
 			selectednode.child.push(node.length-1); 
@@ -216,6 +220,10 @@
 		selectednode = undefined;
 			
 		reDraw();
+	}
+	
+	function getNode() {
+		return selectednode;
 	}
 	
 	function deleteData() {

@@ -81,18 +81,23 @@ svg {
 	background-image: url("../images/monun1.jpg");
 }
 circle {
-	fill : red;
+	fill : rgba(0,255,0,0.7);
+	opacity: 0.9;
+	stroke-dasharray : "10,3";
+    stroke : rgb(0,0,0);
 }
 .dragging {
 	fill : yellow;
 }
 .selected {
-	fill : blue;
+	fill : rgba(0,0,255,0.8);
 }
 line {
 	stroke : black;
 	stroke-width : 1;
+	shape-rendering: crispEdges;
+	opacity: 0.1;
 }
 text {
-	fill : aqua;
+	fill : black;
 }

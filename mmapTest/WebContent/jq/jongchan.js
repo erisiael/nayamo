@@ -57,6 +57,8 @@ $('window').ready(function() {
 		mapdialog.children().filter('span#rangevalue').text(values);
 	}
 	
+	mapdialog.children().filter('input[type=range]').attr('min', '10');
+	mapdialog.children().filter('input[type=range]').attr('max', '200');
 	mapdialog.children().filter('input[type=range]').on('change', rangelistener);
 	
 	dialogclosebtn.on('click', function() { // 닫기 버튼에 이벤트를 추가
@@ -149,6 +151,7 @@ $('window').ready(function() {
 			return;
 		}
 		rangelistener();
+		mapdialog.children().filter('input[type=text]').val(getNode().text);
 		$(mapdialog).css('display', 'block');
 		connectModal();
 	});
