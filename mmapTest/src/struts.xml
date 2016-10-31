@@ -91,8 +91,8 @@
         </action>
         
         <action name = "emailChk" class = "action.StrutsAction" method = "emailChk">
-        	<result>duplicatePop.jsp</result>
         	<result name = "input">duplicatePop.jsp</result>
+        	<result>duplicatePop.jsp</result>
         </action>
         
         <!-- 방에 들어갈 때 체크 -->
