@@ -3,7 +3,7 @@
  */
 //웹소켓
 //var webSocketMessage = new WebSocket('ws://localhost:8888/MagisterTest/exclude/broadcastingMessage');
-var webSocketHtml = new WebSocket('ws://localhost:8888/MagisterTest/exclude/broadcastingHtml');
+var webSocketHtml = new WebSocket('ws://localhost:8888/mmapTest/exclude/broadcastingHtml');
 
 /*webSocketMessage.onerror = function(event) {
 	onError(event)
