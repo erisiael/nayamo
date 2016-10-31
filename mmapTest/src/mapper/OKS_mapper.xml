@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.OKS_mapper">
+
+	<select id = "selectOne" resultType = "OKS" parameterType = "OKS">
+		select * from OKS 
+		<where>
+			<choose>
+				<when test = "email != null and pass != null">
+					email = #{email} and pass = #{pass}
+				</when>
+			</choose>
+		</where>
+	</select>
+	
+	<select id = "chkDuplication" resultType = "OKS" parameterType = "String">
+		select * from OKS where email = #{email}
+	</select>
+	
+	<select id = "selectAllBoardList" resultType = "SKA_LIST">
+		select * from SKA_LIST order by SKA_L_NO desc
+	</select>
+	
+	<insert id = "insertOKS" parameterType = "OKS">
+		insert into OKS (OKS_no, email, pass, nick) values (OKS_SEQ.nextval, #{email}, #{pass}, #{nick})
+	</insert>
+	
+	<update id="oks_update" parameterType="OKS">
+		update OKS set OKS_no = #{OKS_no}, email = #{email}, pass = #{pass}, nick = #{nick}, point = #{point}, regdate = #{regdate}
+	</update>
+	
+	<select id="oks_find" parameterType="String" resultType="OKS">
+		select * from OKS where email = #{email}
+	</select>
+	
+</mapper>

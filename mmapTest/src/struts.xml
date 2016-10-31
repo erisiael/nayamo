@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- <constant name="struts.action.excludePattern" value="^ws://.+$"/> -->
+	<constant name="struts.action.excludePattern" value="/exclude/.*?"/>
+	
+	<package name="default" namespace="/" extends="struts-default, json-default">    
+        <default-action-ref name="index"/>
+       
+        <action name = "index">
+        	<result>index.html</result>
+        </action>
+        
+       <!--  <action name="save" class="action.AjaxAction" method="save">
+        	<result type="json"></result>
+        </action> -->
+        
+        <action name="load" class="action.AjaxAction" method="load">
+        	<result type="json"></result>
+        </action>
+        
+        
+         <action name = "board" class = "action.AjaxBoardAction" method = "board">
+        	<result type = "json"></result>
+        </action>
+        
+          <action name = "enter_test" class = "action.StrutsAction" method = "enter_test">
+        	<result name = "success">testtest.html</result>
+        </action>
+         
+        <action name = "OKS_Login" class = "action.StrutsAction" method = "OKS_Login">
+        	<!-- <result name = "success">tool.jsp</result>
+        	<result name = "error">index.jsp</result> -->
+        	<result name="success">home.html</result>
+        	<result name="error">index.html</result>
+        </action>
+        <!-- 윤석기 작업 -->
+        <action name="room" class ="action.AjaxAction" method = "checkRoom">
+        	<result name="error">test.html</result>
+        	<result>testtest.html</result>
+        </action>
+        
+        <!-- 김동현 작업 시작-->
+        <action name="myPage" class="action.StrutsAction" method="OKS_myPage">
+        	<result>myPage.html</result>
+        </action>
+        
+        <action name="OKS_updateForm" class="action.StrutsAction" method="OKS_updateForm">
+        	<result>OKS_updateForm.jsp</result>
+        </action>
+        
+        <action name="OKS_update" class="action.StrutsAction" method="OKS_update">
+        	<result>home.html</result>
+        </action>
+        
+        <action name="OKS_findForm">
+        	<result>OKS_findForm.jsp</result>
+        </action>
+        
+        <action name="OKS_find" class="action.StrutsAction" method="OKS_find">
+        	<result>index.html</result>
+        </action>
+        
+        <action name="OKS_logout" class="action.StrutsAction" method="OKS_logout">
+        	<result>index.html</result>
+        </action>
+        <!-- 김동현 작업 끝 -->
+        
+        <!-- 빽 -->
+        <action name = "enter_test" class = "action.StrutsAction" method = "enter_test">
+        	<result name = "success">testtest.html</result>
+        </action> 
+        
+        <action name = "register" class = "action.StrutsAction" method = "register">
+        	<result name = "success">index.html</result>
+        </action>
+        
+        <action name = "emailDuplicate" class = "action.StrutsAction" method = "emailDuplicate">
+        	<result>duplicatePop.jsp</result>
+        </action>
+        
+        <action name = "emailChk" class = "action.StrutsAction" method = "emailChk">
+        	<result>duplicatePop.jsp</result>
+        	<result name = "input">duplicatePop.jsp</result>
+        </action>
+        
+        <!-- 방에 들어갈 때 체크 -->
+        <action name="room" class ="action.AjaxAction" method = "checkRoom">
+        	<result name="error">test.html</result>
+        	<result>testtest.html</result>
+        </action>
+        
+    </package>
+
+</struts>
