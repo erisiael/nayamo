@@ -24,9 +24,7 @@ div.nav {
 	position: fixed;
 	top: 100px;
 	left: 200px;
-	width: 100%;
-	height: 250px;
-	/* background-color: rgba(255, 255, 255, 0.0); */
+	background-color: black;
 	margin : 0px;
 }
 footer {
