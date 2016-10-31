@@ -4,10 +4,10 @@
 }
 .container-chat {
 	position: fixed;
-	top: 200px;
-	right: 100px;
-	width: 20%;
-	height: 80%;
+	top: 100px;
+	right: -70%;
+	background-color: aqua;
+	
 }
 .chat-window .panel{
     margin-bottom: 0px;

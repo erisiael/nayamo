@@ -58,6 +58,5 @@ $(document).ready(function() {
 			$("#btn-chat").trigger("click");
 		}
 	});
-	$(".container-chat").draggable();
 
 });
