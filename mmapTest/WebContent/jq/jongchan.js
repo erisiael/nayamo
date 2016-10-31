@@ -43,7 +43,7 @@ var saved;
 	}); // each end
 	return mapclone; 
 }*/
-var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalue></span><input type=range><br><img class=btn-update src=assets/images/pencil.png title=입력></img>&nbsp;<img class=btn-close src=assets/images/close-cross.png title=닫기></img></div>');
+var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalue></span><input type=range><br><img class=btn-update id=btn-update title=입력></img>&nbsp;<img class=btn-close id=btn-close title=닫기></img></div>');
 var dialogclosebtn = mapdialog.children().filter('img.btn-close');
 var modal = $("div.modal-div");
 
