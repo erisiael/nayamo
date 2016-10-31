@@ -103,23 +103,6 @@ div.modal
    background-color: #53A3CD;
    border-color: #53A3CD;
 }
-.btn-register {
-   background-color: #59B2E0;
-   outline: none;
-   color: #fff;
-   font-size: 14px;
-   height: auto;
-   font-weight: normal;
-   padding: 14px 0;
-   text-transform: uppercase;
-   border-color: #59B2E6; 
-}
-.btn-register:hover,
-.btn-register:focus {
-   color: #fff;
-   background-color: #53A3CD;
-   border-color: #53A3CD;
-}
 .forgot-password {
    text-decoration: underline;
    color: #888;
