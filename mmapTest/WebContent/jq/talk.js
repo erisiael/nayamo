@@ -20,9 +20,6 @@ webSocketHtml.onerror = function(event) {
 };*/
 webSocketHtml.onopen = function(event) {
 	onOpen("message");
-	var divide = event.data;
-	var div_array = divide.split('#haha');
-	entercode = div_array[2];
 };
 
 
@@ -43,6 +40,7 @@ webSocketHtml.onmessage = function(event) {
 		node = JSON.parse(div_array[1]);
 		reDraw();
 	}
+	entercode = div_array[2];
 };
 
 /*function onHtml(event){
