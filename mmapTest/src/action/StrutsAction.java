@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import dao.OKS_DAO;
 import properties.PageNavigator;
+import properties.RandomNumberGenerator;
 import vo.OKS;
 import vo.SKA_LIST;
 import vo.STR;
@@ -23,36 +24,44 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	private OKS oks;
 	private Map<String, Object> session;
 	private boolean l_chk = true;
-	
+
 	private String email;
 	private String pass;
 	private String nick;
-	
+
 	private boolean dupChk = false;
 	private List<SKA_LIST> skaList;
-	
+
 	private String Board_List_Form;
-	
+
 	private int currentPage = 1;
 	private String searchField; // boardlist에서 검색 value 받아오는 변수
 	private String searchText;
-	
+
 	private PageNavigator pagenavi;
-	
+
 	////윤석기
 	private STR str;
 	static String roomName_web = null;
-	
-	
+	private static String email_socket;
+	private static int i = 0;//메시지에 회원수
 	////
-	
-	
-	
+
+
+
+	public static String getEmail_socket() {
+		return email_socket;
+	}
+
+	public static void setEmail_socket(String email_socket) {
+		StrutsAction.email_socket = email_socket;
+	}
+
 	public String enter_test() throws Exception
 	{
 		return SUCCESS;
 	}
-	
+
 	public String OKS_Login() throws Exception
 	{
 		OKS tmp = null;
@@ -66,7 +75,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		session.put("l_chk", false);
 		return ERROR;		
 	}
-	
+
 	/*빽 시작*/
 	public String register() throws Exception // 회원 가입 함수
 	{
@@ -78,25 +87,25 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		}
 		return INPUT;
 	}
-	
-	
-	
-	
+
+
+
+
 	public String Go_board() throws Exception // 메인에서 버튼 눌러서 auction.jsp로 이동
 	{
 		//user.properties에서 지정한 페이징 관련 상수들 읽기
 		int countPerPage = Integer.parseInt(getText("board.countperpage"));
 		int pagePerGroup = Integer.parseInt(getText("board.pagepergroup"));
-		
+
 		OKS_DAO dao = new OKS_DAO();
-		
+
 		int total = dao.getTotal(searchField, searchText);//전체 글수 구하기
 		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
 		skaList = dao.listBoard(searchField, searchText, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
 		//현재 페이지에 해당하는 글 목록 읽기
 		return SUCCESS;
 	}
-	
+
 	public String Board_List_Form() throws Exception // 게시판의 세 가지 종류에 따른 게시판 목록을 불러온다  
 	{
 		oks = (OKS) session.get("OKS");
@@ -104,21 +113,21 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		int countPerPage = Integer.parseInt(getText("board.countperpage"));
 		int pagePerGroup = Integer.parseInt(getText("board.pagepergroup"));
 		OKS_DAO dao = new OKS_DAO();
-		
+
 		int total = dao.getTotal2(Board_List_Form, oks); //전체 글수 구하기
 		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
 		skaList = dao.listBoard2(Board_List_Form, oks, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
-		
+
 		return SUCCESS;
 	}
-	
+
 	public String board() throws Exception // SKA_LIST에 저장되어 있는 모든 경매 목록을 불러오는 함수
 	{
 		OKS_DAO dao = new OKS_DAO();
 		skaList = dao.selectAllBoardList();
 		return SUCCESS;
 	}
-	
+
 	public String emailChk() throws Exception
 	{
 		OKS_DAO dao = new OKS_DAO();
@@ -132,7 +141,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return INPUT;
 	}
 	/*빽 끝*/
-	
+
 	/*김동현 작업시작*/
 	//회원정보 수정작업을 위한 회원정보 찾기 (뷰단에 회원정보 뿌려줌)
 	public String OKS_updateForm() throws Exception{
@@ -154,13 +163,13 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		OKS noks = new OKS(oKS_no, oks.getEmail(), oks.getPass(), oks.getNick(), point, regdate);
 		OKS_DAO dao = new OKS_DAO();
 		int result = dao.OKS_update(noks);
-		
+
 		if(result>0){
 			return SUCCESS;
 		}
 		return ERROR;
 	}
-	
+
 	public String OKS_find() throws Exception{
 		String email = oks.getEmail();
 		OKS_DAO dao = new OKS_DAO();
@@ -171,7 +180,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		}
 		return ERROR;
 	}
-	
+
 	public String OKS_logout() throws Exception{
 		session.clear();
 		return SUCCESS;
@@ -183,8 +192,8 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
-	
-	
+
+
 	/* 
 	 * 윤석기 작업
 	 * */	
@@ -205,50 +214,91 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		/*rooms_html.put("123", sessionListHtml1);
 		rooms_html.put("234", sessionListHtml2);*/
 		//////////////////////
-		roomName_web=str.getName();
+		//엔터 코드만 가지고 들어오는 경우도 있음
+		/*
+		String code_guest = null;
+		code_guest = str.getEnter_code();
+
+		if(code_guest == null){
+			System.out.println("코드에 맞는 방이 없음");
+			return ERROR;
+		}
+		 */
+		
+		///put session for test
+		
+		//
+		
+		
+
+		roomName_web=str.getEnter_code();
+
 		STR check = null;
-		check = BroadsocketHtml.getRooms().get(str.getName());
+
+
+		check = BroadsocketHtml.getRooms().get(str.getEnter_code());
 		if(check == null){
 			System.out.println("방이름이 존재 하지 않음");
 			return ERROR;
 		}else{
-			
-			//시연용
-			if(str.getEnter_code().equals(BroadsocketHtml.getRooms().get(str.getName()).getEnter_code())){
+								//시연용
+								/*	if(str.getEnter_code().equals(BroadsocketHtml.getRooms().get(str.getName()).getEnter_code())){
+					
+														return SUCCESS;
+					
+													}
+													else{
+														return ERROR;
+													}
+								 */
+			//회원일 경우와 아닐경우
+			if(session.get("OKS") == null){
+				//회원이 아닐경우
+				System.out.println("회원이 아닐경우");
+				email_socket = "GUEST"+i;
+				i++;
+
+
+			}else{
+				//회원일 경우
+				OKS clerk= (OKS)session.get("OKS");
+				String name=clerk.getEmail();
 				
-				return SUCCESS;
-				
+				System.out.println(name+"회원일경우");
+				String[] div_email = name.split("@");
+				email_socket = div_email[0];
+				System.out.println(email_socket+"@@@@@@@@@@@action@");
 			}
-			else{
-				return ERROR;
-			}
-		
-		
+
+
+			return SUCCESS;
 		}
 	}
-	
+
 	//1
 	//방만들기
 	public String newRoom(){
 		//BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(),str.getName(),str.getKeyword(),str.getCategory()));
 		System.out.println("들어오냐?");
 		//test
-		
+		RandomNumberGenerator r = new RandomNumberGenerator(str.getOKS_email());
 		//////
-		
+		roomName_web = r.generateEntercode();
+		email_socket = str.getOKS_email();
+		String[]temp = email_socket.split("@");
+		email_socket = temp[0];
 		System.out.println(str.toString());
-		roomName_web = str.getName();
-		if(!BroadsocketHtml.getRooms().containsKey(str.getName())){
+		System.out.println(roomName_web);
+		//BroadsocketHtml.getAllClient().put(roomName_web,);
+		if(!BroadsocketHtml.getRooms().containsKey(roomName_web)){
 			//같은방 이름이 없을때
-			
+
 			//코드생성
-				//사용자의 이메일을 유니코드로 바꾸고 날짜 넣기
-				Random r = new Random();
-				float f = r.nextFloat();
-				//////
+			//사용자의 이메일을 유니코드로 바꾸고 날짜 넣기
 			//방에 넣기
 			//BroadsocketHtml.getRooms().put(str.getName(),new STR(((OKS)session.get("OKS")).getEmail(), str.getName(), str.getKeyword(), str.getCategory(),str.getEnter_code()));
-				BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(), str.getName(), str.getKeyword(), str.getCategory(),str.getEnter_code()));
+			BroadsocketHtml.getRooms().put(roomName_web,new STR(str.getOKS_email(), str.getName(), str.getKeyword(), str.getCategory(),roomName_web));
+
 		}else{
 			//같은 이름의 방이 있을떄
 			return ERROR;
@@ -256,24 +306,24 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return SUCCESS;
 	}
 
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 	////////////////////////////////////////////////////////
-	
-	
-	
+
+
+
 	public OKS getOks() {
 		return oks;
 	}
-	
+
 	public void setOks(OKS oks) {
 		this.oks = oks;
 	}
-	
+
 	public boolean isL_chk() {
 		return l_chk;
 	}
@@ -374,11 +424,12 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public static void setRoomName_web(String roomName_web) {
 		StrutsAction.roomName_web = roomName_web;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 }

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.websocket.OnClose;
@@ -25,7 +26,6 @@ public class BroadsocketHtml{
 	private static HashMap<String, String> allHtml = new HashMap<>();
 	private String roomName_web = null;
 
-
 	private static HashMap<String, STR> rooms = new HashMap<>();
 
 
@@ -39,7 +39,7 @@ public class BroadsocketHtml{
 			String[] str = canvas.split("#haha");
 			
 			System.out.println(rooms.size()+"       onMessage size");
-			ArrayList<Session> rom =rooms.get(roomName_web).getSession_list();//arrayList
+			HashMap<Session, String> rom =rooms.get(roomName_web).getSession_list();//arrayList
 			//ArrayList<Session> rom = AjaxAction.getRooms().get(roomName_web);//arrayList
 			if(str[0].equals("html")){
 				////////////////////////////////html
@@ -52,10 +52,11 @@ public class BroadsocketHtml{
 				synchronized (rom) {
 					// Iterate over the connected sessions
 					// and broadcast the received message
-					for (Session client : rom) { 
+					for (Entry<Session, String> client : rom.entrySet()) {
+						
 						System.out.println("들어오냐?");
 						System.out.println(str[1]);
-						client.getBasicRemote().sendText("html#haha"+str[1]);
+						client.getKey().getBasicRemote().sendText("html#haha"+str[1]+"#haha"+roomName_web);
 					}
 				}
 			}else if(str[0].equals("message")){//message일 경우
@@ -76,12 +77,12 @@ public class BroadsocketHtml{
 				synchronized (rom) {
 					// Iterate over the connected sessions
 					// and broadcast the received message
-					for (Session client : rom) {
+					for (Entry<Session, String> client : rom.entrySet()) {
 						//�����״� ���� ����
 
-						if (!client.equals(session)) {
+						if (!client.getKey().equals(session)) {
 							System.out.println(str[1]+"session equlals");
-							client.getBasicRemote().sendText("message#haha"+str[1]);
+							client.getKey().getBasicRemote().sendText("message#haha"+rooms.get(roomName_web).getSession_list().get(session)+"#haha"+str[1]);
 						}
 					}
 				}//synchronized
@@ -105,9 +106,9 @@ public class BroadsocketHtml{
 
 
 			//메시지를 위한 해쉬맵에 세션넣기
-			rooms.get(roomName_web).getSession_list().add(session);//session 해당 방에 넣기
-
-
+			rooms.get(roomName_web).getSession_list().put(session,StrutsAction.getEmail_socket());//session 해당 방에 넣기
+			System.out.println(rooms.get(roomName_web).getSession_list().get(session)+"@@@@@@@@@@@@@@@@@@@@@@@@@@@빠담");
+			System.out.println(StrutsAction.getEmail_socket()+"@@@@@");
 		System.out.println("객체 확인"+rooms.size());
 
 		//html을 위한 해쉬멥에 세션넣기
@@ -141,15 +142,8 @@ public class BroadsocketHtml{
 	public void onClose(Session session){
 		System.out.println(session+"종료!!");
 		// Remove session from the connected sessions set
-		ArrayList<Session> forClose = null;
 
-		//forClose = AjaxAction.getRooms().get(roomName_web);
-		//AjaxAction.getRooms().get(roomName_web).remove(session);
-		//방사람들이 다 나갔을 때 html지우기	
-		if(forClose.size() == 0){
-			allHtml.remove(roomName_web);
-		}
-
+		//나중에1!!!1
 	}
 
 	public static HashMap<String, STR> getRooms(){

@@ -12,6 +12,15 @@ public class OKS
 	public OKS() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+	public OKS(String email) {
+		super();
+		this.email = email;
+	}
+
+
 
 	public OKS(int oKS_no, String email, String pass, String nick, int point, String regdate) {
 		super();

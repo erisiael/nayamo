@@ -30,10 +30,10 @@ webSocketHtml.onmessage = function(event) {
 	
 	var divide = event.data;
 	var div_array = divide.split('#haha');
-	console.log(div_array[0])
+	console.log(div_array[0]+div_array[1]+div_array[2])
 	console.log("왜또" + divide);
 	if(div_array[0] == 'message'){
-		receiveMessage("상대 : " + div_array[1]);
+		receiveMessage(div_array[1]+" : " + div_array[2]);
 	}else if(div_array[0] == 'html'){
 		console.log(div_array[1]+":@@@@@onHtml");
 		node = JSON.parse(div_array[1]);

@@ -1,6 +1,7 @@
 package vo;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.websocket.Session;
 
@@ -17,11 +18,12 @@ public class STR
 	private String enter_code;
 	private String regdate;
 	
-	private ArrayList<Session> session_list = new ArrayList<>();
+	private HashMap<Session,String> session_list = new HashMap<>();
 	
 	public STR() {
 		
 	}
+	
 	
 	
 	
@@ -135,10 +137,10 @@ public class STR
 		this.regdate = regdate;
 	}
 
-	public ArrayList<Session> getSession_list() {
+	public HashMap<Session,String> getSession_list() {
 		return session_list;
 	}
-	public void setSession_list(ArrayList<Session> session_list) {
+	public void setSession_list(HashMap<Session,String> session_list) {
 		this.session_list = session_list;
 	}
 
