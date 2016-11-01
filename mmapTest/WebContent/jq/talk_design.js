@@ -32,13 +32,12 @@ $(document).ready(function() {
 	});
 	$(document).on('click', '#new_chat', function (e) {
 	    var size = $( ".chat-window:last-child" ).css("margin-left");
-	     size_total = parseInt(size) + 400;
+	    size_total = parseInt(size) + 400;
 	    alert(size_total);
 	    var clone = $( "#chat_window_1" ).clone().appendTo( ".container" );
 	    clone.css("margin-left", size_total);
 	});
 	$(document).on('click', '.icon_close', function (e) {
-	    //$(this).parent().parent().parent().parent().remove();
 	    $( "#chat_window_1" ).remove();
 	});
 	

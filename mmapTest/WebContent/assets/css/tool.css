@@ -20,7 +20,7 @@ body {
 	margin : 0px;
 }
 div.labelbar:HOVER {
-	background-color: red;
+	background-color: rgba(255,119,142,1);
 	cursor: move;
 }
 div.nav {
@@ -36,7 +36,7 @@ footer {
 	position: fixed;
 	bottom: 0px;
 	left: 0%;
-	background-color: green;
+	background-color: rgba(118,214,255,0.3);
 	margin : 0px;
 }
 div.div-dialog {
@@ -67,24 +67,29 @@ svg {
 	background-image: url("../images/monun1.jpg");
 }
 circle {
-	fill : rgba(0,255,0,0.7);
-	opacity: 0.9;
+	fill : rgba(118,214,255,0.7);
 	
 }
 circle.selected {
-	fill : rgba(0,0,255,0.8) !important;
+	fill : rgba(38,136,178,0.9) !important;
 	/*stroke : rgb(0,0,0);
 	stroke-width : 5; */
     /* stroke-dasharray : 20,10; */
 }
 circle.dragging {
-	fill : yellow !important;
+	fill : rgba(204,198,65,1) !important;
 }
 circle#circle-root {
-	fill : rgba(255,0,0,0.7);
-    stroke : rgb(0,0,0) !important;
+	fill : rgba(255,119,142,1);
+    stroke : rgba(204,198,65,0.5) !important;
     stroke-width : 10 !important;
     stroke-dasharray : 0 !important;
+}
+circle.selected-border {
+	fill : none;
+	stroke : red;
+	stroke-opacity : 0.5;
+	stroke-width : 10;
 }
 line {
 	stroke : black;
@@ -94,4 +99,7 @@ line {
 }
 text {
 	fill : black;
+	font-size : 20px;
+	font-family : 맑은 고딕;
+	font : bolder;
 }

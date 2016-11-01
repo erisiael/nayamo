@@ -15,7 +15,6 @@ public class RandomNumberGenerator {
 		String result = null;
 		
 		String email[] = OKS_email.split("@");
-		System.out.println(email[0]);
 		char encoded[] = new char[email[0].length()];
 		result = "";
 		
@@ -25,7 +24,6 @@ public class RandomNumberGenerator {
 			while (true) {
 				double math = Math.random() * (email[0].length());
 				if (random.contains((int) math)) {
-					System.out.println((int) math);
 				} else {
 					random.add((int) math);
 					break;

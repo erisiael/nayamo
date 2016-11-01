@@ -110,7 +110,7 @@ $('window').ready(function() {
 		leftnum += 5;
 		mapclone.css('top', top + 'px');
 		mapclone.css('left', left + 'px');*/
-		addData("테스트용");
+		addData("새로운 노드");
 	});
 	 
 	$('img#save').click(function() { // 저장 버튼의 이벤트
@@ -150,8 +150,9 @@ $('window').ready(function() {
 		if (!isSelected()) {
 			return;
 		}
-		rangelistener();
 		mapdialog.children().filter('input[type=text]').val(getNode().text);
+		mapdialog.children().filter('input[type=range]').val(getNode().values);
+		rangelistener();
 		$(mapdialog).css('display', 'block');
 		connectModal();
 	});
@@ -166,7 +167,7 @@ $('window').ready(function() {
 		if (selectednode.root == undefined) {
 			deleteData();
 		} else {
-			alert("뭔데!!");
+			alert("최상위 노드는 삭제할 수 없습니다.");
 		}
 	});
 	$('img#auction').click(function() {

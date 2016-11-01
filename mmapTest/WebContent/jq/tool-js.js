@@ -42,7 +42,7 @@
 							.data(node)
 							.enter()
 								.append("g")
-								.attr("transform", "translate(40,0)");
+								.attr("transform", "translate(0,0)");
 	
 	g = svg.selectAll("g");
 	
@@ -88,20 +88,16 @@
 			d3.select(this).classed("selected", true);
 			
 			d3.select(".selected-border").remove();
-			console.log(d);
-			d3.select(".selected").append("circle")
-	        .attr("class", "selected-border")
+			d3.select(this.parentNode).append("circle")
+	        .classed("selected-border", true)
 	        .attr("cx", function(d) { return d.x; })
 	        .attr("cy", function(d) { return d.y; })
-	        .attr("r", function(d) { return d.values + 50; })
-	        .style("fill", "none")
-	        .style("stroke", "red")
-	        .style("stroke-opacity", 1e-6)
-	        .style("stroke-width", 3)
+	        .attr("r", function(d) { return (d.values + 50); })
 	        	.transition()
 			        .duration(750)
 			        .attr("r", function(d) { return d.values; })
-			        .style("stroke-opacity", .5);
+			        .style("stroke-width", 0)
+			        .style("stroke-opacity", .2);
 			
 		}
 	}
@@ -134,8 +130,8 @@
 	function setXY() {
 		for (var i = 0; i < node.length; i++) {
 			if (node[i].x == undefined) {
-				node[i].x = w / 2;
-				node[i].y = h / 2;
+				node[i].x = w / 2 - (node[i].values / 2);
+				node[i].y = h / 2 - (node[i].values / 2);
 			}
 		}
 	}
