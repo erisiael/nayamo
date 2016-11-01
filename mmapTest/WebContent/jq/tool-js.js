@@ -15,7 +15,7 @@
 	
 	var node = [
 	            //{text : "1번타자", parent : 1, child : [1,2,3], values: 50}
-	            {text : "더미데이터", values : 100}
+	            {text : "루트 노드", root : true, values : 100}
 	];
 	var links = [];
 	
@@ -58,8 +58,8 @@
 										.style("pointer-events", "none");
 	
 	var text = g.append("text")
-			.attr("dx", function(d) { return d.x; })
-			.attr("dy", function(d) { return d.y; })
+			.attr("dx", function(d) { return (d.x - (d.values / 3)); })
+			.attr("dy", function(d) { return (d.y - (d.values / 4)); })
 			.text(function(d, i) { return d.text; });
 		  				
 	var drag = d3.behavior.drag()
@@ -93,17 +93,23 @@
 	}
 	
 	function dragstarted(d) {
-	  d3.event.sourceEvent.stopPropagation();
-	  d3.select(this).classed("dragging", true);
+		if (!d.root) {
+		  d3.event.sourceEvent.stopPropagation();
+		  d3.select(this).classed("dragging", true);
+		}
 	}
 
 	function dragged(d) {
-		d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
-		tick();
+		if (!d.root) {
+			d3.select(this).attr("cx", d.x = d3.event.x).attr("cy", d.y = d3.event.y);
+			tick();
+		}
 	}
 
 	function dragended(d) {
-	  d3.select(this).classed("dragging", false);
+		if (!d.root) {
+			d3.select(this).classed("dragging", false);
+		}
 	}
 	
 	
@@ -136,8 +142,8 @@
 	          .attr("cy", function(d) { return d.y; });
 
 		text
-				.attr("dx", function(d) { return d.x; })
-				.attr("dy", function(d) { return d.y; });
+				.attr("dx", function(d) { return (d.x - (d.values / 3)); })
+				.attr("dy", function(d) { return (d.y - (d.values / 4)); });
 		
         line 
             .attr('x1', function(d){ return d.source.x; }) 
@@ -182,8 +188,8 @@
 					    .size([w,h]);
 		
 		text = g.append("text")
-				.attr("dx", function(d) { return d.x; })
-				.attr("dy", function(d) { return d.y; })
+				.attr("dx", function(d) { return (d.x - (d.values / 3)); })
+				.attr("dy", function(d) { return (d.y - (d.values / 4)); })
 				.text(function(d, i) { return d.text; });
 		
 		force.on("tick", tick);
@@ -317,5 +323,4 @@
 		tick();
 	}
 	
-	console.log($("#main").html());
 	tick();

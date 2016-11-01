@@ -53,7 +53,8 @@ $(document).ready(function(){
 	buttons.push('#btn-update');
 	
 	var setButtons = function(index) {
-		$(buttons[index]).attr('src', filepath_leaves[index]);
+		$(buttons[index]).attr("src", filepath_leaves[index]);
+		$(buttons[index]).css("cursor", "pointer");
 		$(buttons[index]).on('mouseenter', function() {
 			changeSrc(this, filepath_enters[index]);
 		});

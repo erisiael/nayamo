@@ -58,7 +58,6 @@ function onMessage(event) {
 function onOpen(event) {
 	if(event == "message"){
 		$(document).ready(function() {
-			console.log(receiveMessage);
 			receiveMessage("연결 성공");
 		});
 	}

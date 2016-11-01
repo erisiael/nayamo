@@ -72,4 +72,13 @@ $(document).ready(function() {
 		}
 	});
 
+	$("div.labelbar").parent().draggable();
+	$("div.labelbar").parent().draggable("disable");
+	$("div.labelbar").on('mouseenter', function() {
+		$(this).parent().draggable("enable");
+	});
+	$("div.labelbar").on('mouseleave', function() {
+		$(this).parent().draggable("disable");
+	});
+	
 });
