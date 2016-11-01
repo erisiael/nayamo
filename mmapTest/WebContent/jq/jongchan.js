@@ -66,11 +66,21 @@ $('window').ready(function() {
 		modal.css('display','none');
 		mapdialog.children().filter('input[type=text]').val('');
 	});
+	mapdialog.children().filter('input[type=text]').on('keypress', function(event) {
+		if (event.which == 13) {
+			$(this).parent().children().filter("img.btn-update").trigger("click");
+		}
+	});
+
 	mapdialog.children().filter('img.btn-update').on('click', function() { // 입력 버튼에 이벤트를 추가
-		var text = mapdialog.children().filter('input[type=text]').val();
-		var values = mapdialog.children().filter('input[type=range]').val();
-		editData(text, values);
-		dialogclosebtn.trigger('click');
+		if (isRoot()) {
+			alert("최상위 노드는 수정할 수 없습니다");
+		} else {
+			var text = mapdialog.children().filter('input[type=text]').val();
+			var values = mapdialog.children().filter('input[type=range]').val();
+			editData(text, values);
+			dialogclosebtn.trigger('click');
+		}
 	});
 	
 	/**
@@ -173,6 +183,10 @@ $('window').ready(function() {
 	$('img#auction').click(function() {
 		alert("차후 구현 예정입니다");
 	});
+	$('img#adduser').click(function() {
+		
+	});
+
 	
 });
 

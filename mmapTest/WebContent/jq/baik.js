@@ -17,6 +17,8 @@ $(document).ready(function(){
 	var filepath_load_leave = "assets/images/open-folder-with-document1.png";
 	var filepath_auction_enter = "assets/images/businessman-talking-about-money2.png";
 	var filepath_auction_leave = "assets/images/businessman-talking-about-money1.png";
+	var filepath_adduser_enter = "assets/images/add-user2.png";
+	var filepath_adduser_leave = "assets/images/add-user1.png";
 	
 	var filepath_btnclose_enter = "assets/images/toxic-cross2.png";
 	var filepath_btnclose_leave = "assets/images/toxic-cross1.png";
@@ -34,6 +36,7 @@ $(document).ready(function(){
 	filepath_enters.push(filepath_save_enter);
 	filepath_enters.push(filepath_load_enter);
 	filepath_enters.push(filepath_auction_enter);
+	filepath_enters.push(filepath_adduser_enter);
 	filepath_enters.push(filepath_btnclose_enter);
 	filepath_enters.push(filepath_btnupdate_enter);
 	
@@ -44,6 +47,7 @@ $(document).ready(function(){
 	filepath_leaves.push(filepath_save_leave);
 	filepath_leaves.push(filepath_load_leave);
 	filepath_leaves.push(filepath_auction_leave);
+	filepath_leaves.push(filepath_adduser_leave);
 	filepath_leaves.push(filepath_btnclose_leave);
 	filepath_leaves.push(filepath_btnupdate_leave);
 	
@@ -54,6 +58,7 @@ $(document).ready(function(){
 	buttons.push('#save');
 	buttons.push('#load');
 	buttons.push('#auction');
+	buttons.push('#adduser');
 	buttons.push('#btn-close');
 	buttons.push('#btn-update');
 	

@@ -315,6 +315,10 @@
 		return result;
 	}
 	
+	function isRoot() {
+		return selectednode.root;
+	}
+	
 	function setViewpoint(node) {
 		var xy = [];
 		var t = undefined;

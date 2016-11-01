@@ -31,7 +31,7 @@ webSocketHtml.onmessage = function(event) {
 	var divide = event.data;
 	var div_array = divide.split('#haha');
 	console.log(div_array[0])
-	
+	console.log("왜또" + divide);
 	if(div_array[0] == 'message'){
 		receiveMessage("상대 : " + div_array[1]);
 	}else if(div_array[0] == 'html'){
