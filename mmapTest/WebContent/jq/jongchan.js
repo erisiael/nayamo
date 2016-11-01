@@ -159,6 +159,16 @@ $('window').ready(function() {
 	$('img#move').click(function() {
 		setViewpoint();
 	});
+	$('img#delete').click(function() {
+		if (!isSelected()) {
+			return;
+		}
+		if (selectednode.root == undefined) {
+			deleteData();
+		} else {
+			alert("뭔데!!");
+		}
+	});
 	$('img#auction').click(function() {
 		alert("차후 구현 예정입니다");
 	});

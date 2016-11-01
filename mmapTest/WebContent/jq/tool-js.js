@@ -236,6 +236,9 @@
 		if (!isSelected()) {
 			return;
 		}
+		if (selectednode.root) {
+			return;
+		}
 		var index = node.indexOf(selectednode);
 		var selected_child = undefined;
 		if (node[index].child != undefined) {
