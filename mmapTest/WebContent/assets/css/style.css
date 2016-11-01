@@ -674,7 +674,7 @@ table {width:100%;}
 
 p.paging {position:relative; padding:30px 0; text-align:center;}
 p.paging a {padding:10px; margin:0 3px; border:2px solid #eee; border-radius:20px;}
-p.paging a:hover, p.paging a.select {border:2px solid #e7121c; background:#e7121c; color:#fff; font-weight:700;}
+p.paging a:hover, p.paging a.select {border:2px solid #D9C8BE; background:#D9C8BE; color:#fff; font-weight:700;}
 p.paging a.btn_write {position:absolute; top:17px; right:5px; padding:10px 20px;}
 
 

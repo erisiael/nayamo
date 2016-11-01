@@ -56,9 +56,13 @@ function ListChk()
 	alert('검색 내용을 입력하라');
 }
 
-$(document).ready(function(){
-	
-})
+function Board_List_Form()
+{
+	document.getElementById('Board_List_Form').action = 'Board_List_Form.action';
+	document.getElementById('Board_List_Form').submit();
+	return false;
+}
+
 </script>
 
 
@@ -103,6 +107,11 @@ $(document).ready(function(){
        <div id="contents"><!--내용-->
 			<h1>고객문의 게시판sipal<span></span></h1><!-- 내용제목 -->
 			
+			<form id = "Board_List_Form" method = "post">
+				<s:select name = "Board_List_Form" list = "#{'all':'전체 경매 목록', 'SKA_no':'내가 참여한 경매', 'OKS_no':'내가 쓴 경매'}"/>
+				<a href = "javascript:Board_List_Form()" style="color: olive;">검색</a>
+			</form>
+						
 			<table>
 				<tr>
 					<th>SKA_L_NO</th>
@@ -147,15 +156,12 @@ $(document).ready(function(){
 			
 			<p class="board_search">
 			<form id = "ListForm" method = "post">
+				
 				<s:select name = "searchField" list = "#{'all':'전체', 'SKA_no':'생각 번호', 'OKS_no':'고객 번호', 'comt':'내용'}"/>
 					<input type = "hidden" name = "currentPage" value = "1" id = "page">
-				<s:textfield id = "sText" name = "searchText"/><a href = "javascript:ListChk()">검색</a>
+				<s:textfield id = "sText" name = "searchText"/><a href = "javascript:ListChk()" style="color: olive;">검색</a>
 			</form>
 			</p>
-			
-			
-			
-			
 			
 		</div>
 
@@ -196,11 +202,6 @@ $(document).ready(function(){
         <div class="clear"></div>
     <div class="copy">� 2012 All rights reserved. Designed by <a href="http://w3layouts.com">W3Layouts</a> Powered by <a href="http://bigw3.com">Bigw3</a></div>
 </div>
-
-
-
-
-
 
 </body>
 </html>

@@ -22,8 +22,9 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	private String pass;
 	private String nick;
 	
-	private boolean dupChk = false;
 	private List<SKA_LIST> skaList;
+	
+	private String Board_List_Form;
 	
 	private int currentPage = 1;
 	private String searchField; // boardlist에서 검색 value 받아오는 변수
@@ -62,6 +63,9 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return INPUT;
 	}
 	
+	
+	
+	
 	public String Go_board() throws Exception // 메인에서 버튼 눌러서 auction.jsp로 이동
 	{
 		//user.properties에서 지정한 페이징 관련 상수들 읽기
@@ -77,6 +81,21 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return SUCCESS;
 	}
 	
+	public String Board_List_Form() throws Exception // 게시판의 세 가지 종류에 따른 게시판 목록을 불러온다  
+	{
+		oks = (OKS) session.get("OKS");
+		//user.properties에서 지정한 페이징 관련 상수들 읽기
+		int countPerPage = Integer.parseInt(getText("board.countperpage"));
+		int pagePerGroup = Integer.parseInt(getText("board.pagepergroup"));
+		OKS_DAO dao = new OKS_DAO();
+		
+		int total = dao.getTotal2(Board_List_Form, oks); //전체 글수 구하기
+		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
+		skaList = dao.listBoard2(Board_List_Form, oks, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		
+		return SUCCESS;
+	}
+	
 	public String board() throws Exception // SKA_LIST에 저장되어 있는 모든 경매 목록을 불러오는 함수
 	{
 		OKS_DAO dao = new OKS_DAO();
@@ -84,23 +103,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return SUCCESS;
 	}
 	
-	public String emailDuplicate() throws Exception
-	{
-		return SUCCESS;
-	}
-	
-	public String emailChk() throws Exception
-	{
-		OKS_DAO dao = new OKS_DAO();
-		OKS tmp = dao.selectOne(oks.getEmail());
-		if(tmp != null)
-		{
-			session.put("email", tmp.getEmail());
-			return SUCCESS;
-		}
-		dupChk = true;
-		return INPUT;
-	}
 	/*빽 끝*/
 	
 	/*김동현 작업시작*/
@@ -231,14 +233,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		this.nick = nick;
 	}
 
-	public boolean isDupChk() {
-		return dupChk;
-	}
-
-	public void setDupChk(boolean dupChk) {
-		this.dupChk = dupChk;
-	}
-
 	public List<SKA_LIST> getSkaList() {
 		return skaList;
 	}
@@ -246,6 +240,16 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public void setSkaList(List<SKA_LIST> skaList) {
 		this.skaList = skaList;
 	}
+
+	public String getBoard_List_Form() {
+		return Board_List_Form;
+	}
+
+	public void setBoard_List_Form(String board_List_Form) {
+		Board_List_Form = board_List_Form;
+	}
+	
+	
 	
 	
 }

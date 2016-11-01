@@ -2,20 +2,28 @@ package action;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.websocket.Session;
 
+import org.apache.struts2.interceptor.SessionAware;
+
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.OKS_DAO;
 import vo.Ajaxuser;
+import vo.OKS;
 import vo.STR;
 
-public class AjaxAction extends ActionSupport {
+public class AjaxAction extends ActionSupport implements SessionAware{
 
 	private Ajaxuser ajaxuser;
 	private String canvas;
 	private static String saved;
 	private STR str;
+	private OKS oks;
+	private Map<String, Object> session;
+	private boolean dupChk = false; // 이메일 중복 함수를 위한 변수
 	
 	/////////////////������		
 	
@@ -85,12 +93,26 @@ public class AjaxAction extends ActionSupport {
 	public void setStr(STR str) {
 		this.str = str;
 	}
-	
-	
-	
+	public Map<String, Object> getSession() {
+		return session;
+	}
+	public OKS getOks() {
+		return oks;
+	}
+	public void setOks(OKS oks) {
+		this.oks = oks;
+	}
+	public boolean isDupChk() {
+		return dupChk;
+	}
+
+	public void setDupChk(boolean dupChk) {
+		this.dupChk = dupChk;
+	}
 	
 	
 /////////////////////////	
+	
 	
 	
 	
@@ -107,6 +129,20 @@ public class AjaxAction extends ActionSupport {
 		setCanvas(getSaved());
 		return SUCCESS;
 	}
+	
+	public String emailChk() throws Exception
+	{
+		OKS_DAO dao = new OKS_DAO();
+		OKS tmp = dao.selectOne(oks.getEmail());
+		if(tmp != null)
+		{
+			session.put("email", tmp.getEmail());
+			return SUCCESS;
+		}
+		dupChk = true;
+		return ERROR;
+	}
+	
 	public String checkRoom(){
 		////////////////////test ���� DAO���� ��������ȴ�
 		/*ArrayList<Session> t1 = new ArrayList<>();
@@ -143,6 +179,11 @@ public class AjaxAction extends ActionSupport {
 	public String execute() throws Exception {
 		System.out.println("canvas : " + canvas);
 		return SUCCESS;
+	}
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

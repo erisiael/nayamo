@@ -14,6 +14,8 @@
         	<result>index.html</result>
         </action>
         
+        <!-- ajax 액션 시작 -->
+        
        <!--  <action name="save" class="action.AjaxAction" method="save">
         	<result type="json"></result>
         </action> -->
@@ -22,12 +24,22 @@
         	<result type="json"></result>
         </action>
         
+        <action name = "emailChk" class = "action.AjaxAction" method = "emailChk">
+        	<result type = "json"></result>
+        </action>
+        
+        <!-- ajax 액션 끝 -->
+        
         
         
         
         <!-- 보드 관련 액션 시작 -->
          <action name = "Go_board" class = "action.StrutsAction" method = "Go_board">
         	<result name = "success">auction.jsp</result>
+         </action>
+         
+         <action name = "Board_List_Form" class = "action.StrutsAction" method = "Board_List_Form">
+			<result name = "success">auction.jsp</result>         
          </action>
          
 		<!-- 보드 관련 액션 끝 -->	   
@@ -84,15 +96,6 @@
         
         <action name = "register" class = "action.StrutsAction" method = "register">
         	<result name = "success">index.html</result>
-        </action>
-        
-        <action name = "emailDuplicate" class = "action.StrutsAction" method = "emailDuplicate">
-        	<result>duplicatePop.jsp</result>
-        </action>
-        
-        <action name = "emailChk" class = "action.StrutsAction" method = "emailChk">
-        	<result name = "input">duplicatePop.jsp</result>
-        	<result>duplicatePop.jsp</result>
         </action>
         
         <!-- 방에 들어갈 때 체크 -->
