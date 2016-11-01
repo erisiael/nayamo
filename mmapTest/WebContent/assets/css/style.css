@@ -297,11 +297,13 @@ article a:hover{
 	width:100%;
 	/* border-right:1px solid #d8d5b5; */
 	padding:0 30px;
-	margin-top:50px;
 	float:left;
 }
 .content_update li{
-	
+	margin: 14px;
+}
+.center p{
+	text-align: center;
 }
 .content h1{
 	font-size:24px;

@@ -4,10 +4,11 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
 <head>
-<meta charset="utf-8">
 <title>MindMap-Mind</title>
 <script type="text/javascript" src="jq/jquery-3.1.1.js"></script>
 <script src="assets/js/bootstrap.min.js"></script>
@@ -73,9 +74,11 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<li><label for="wr_name">nick</label><input type="text"
 									id="nick" name="oks.nick" class="login_write"
 									value="${oks.nick}" /></li>
-
+								<li class="center">							
+									<p><button type="submit" id="submit" class="btn btn-success" style="width: 100px; font-size: 15px;">수정</button>&nbsp;
+									<button type="reset" id="reset" class="btn btn-danger" style="width: 100px; font-size: 15px;">취소</button></p>
+								</li>
 							</ul>
-							<input type="submit" value="수정">
 						</form>
 					</div>
 				</div>
