@@ -5,6 +5,8 @@
 //var webSocketMessage = new WebSocket('ws://localhost:8888/MagisterTest/exclude/broadcastingMessage');
 var webSocketHtml = new WebSocket('ws://localhost:8888/mmapTest/exclude/broadcastingHtml');
 
+var entercode = "";
+
 /*webSocketMessage.onerror = function(event) {
 	onError(event)
 };*/
@@ -18,6 +20,9 @@ webSocketHtml.onerror = function(event) {
 };*/
 webSocketHtml.onopen = function(event) {
 	onOpen("message");
+	var divide = event.data;
+	var div_array = divide.split('#haha');
+	entercode = div_array[2];
 };
 
 
@@ -31,14 +36,12 @@ webSocketHtml.onmessage = function(event) {
 	var divide = event.data;
 	var div_array = divide.split('#haha');
 	console.log(div_array[0]+div_array[1]+div_array[2])
-	console.log("왜또" + divide);
 	if(div_array[0] == 'message'){
 		receiveMessage(div_array[1]+" : " + div_array[2]);
 	}else if(div_array[0] == 'html'){
 		console.log(div_array[1]+":@@@@@onHtml");
 		node = JSON.parse(div_array[1]);
 		reDraw();
-	
 	}
 };
 

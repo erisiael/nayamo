@@ -186,7 +186,7 @@ $('window').ready(function() {
 	});
 	$('img#adduser').click(function() {
 		connectModal(urldialog.parent().parent());
-		urldialog.children("span").text("로스트스타");
+		urldialog.children("span").text("Entercode : " + entercode);
 	});
 
 	
