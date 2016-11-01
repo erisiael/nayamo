@@ -47,7 +47,7 @@
    {
       if(document.getElementById('pw1').value == document.getElementById('pw2').value)
       {
-         document.getElementById('regForm').submit();
+         document.getElementById('register-form').submit();
          return true;
       }
       else
@@ -75,20 +75,24 @@ $(document).ready(function()
 			},
 			success : function(data)
 			{
-				$('#h5_id').text("이메일 사용 가능");
-				$('#emailDupChk').text('사용하기');
-				$('#emailDupChk').on('click', function(){
-					$('#email').attr('value', emaVal);
-					$('#closeBtn').trigger('click');
-				});
-			},// success
-			error : function(data)
-			{
-				$('#h5_id').text("중복된 이메일이 존재한다")
-			}
-		});
+				if(data.dupChk == false)
+				{
+					$('#h5_id').text("중복된 이메일이 존재한다");
+				}//if
+				else
+				{
+					$('#h5_id').text("이메일 사용 가능");
+					$('#emailDupChk').text('사용하기');
+					$('#emailDupChk').on('click', function()
+					{
+						$('#email').attr('value', emaVal);
+						$('#closeBtn').trigger('click');
+						$('#emailDupChk').text('검색');
+					});	
+				}//else
+			}// success
+		});//ajax
 	}
-	
 });   
    
 </script>
@@ -104,7 +108,7 @@ $(document).ready(function()
             </button>
             <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-               <li><a href="#head" class="active">Hello</a></li>
+               <li><a href="#head" class="active">Home</a></li>
                <li><a href="#about">About me</a></li>
                <li><a href="#themes">Themes</a></li>
                <li><a href="#contact">Get in touch</a></li>
@@ -130,7 +134,7 @@ $(document).ready(function()
 
                <form id="enter_test" method="post" action="enter_test">
                   <h3 class="tagline">
-                     sipal : <input type="text" id="move"><br>
+                      <input type="text" id="code" placeholder = "코드를 입력하세요"><a href="#" onclick = "document.getElementById('enter_test').submit()" class="btn btn-default btn-lg2">Submit</a><br>
                   </h3>
                </form>
 
@@ -445,7 +449,7 @@ $(document).ready(function()
 
          <div class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
-               <p class="lead">질문 있으면 나한테 연락해라</p>
+               <p class="lead"></p>
                <p>썅 연락하라고</p>
                <p>
                   <b>썅@gmail.com</b><br>

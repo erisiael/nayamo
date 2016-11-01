@@ -5,26 +5,18 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Map;
 
-import javax.websocket.Session;
 
-import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-import dao.OKS_DAO;
 import vo.Ajaxuser;
-import vo.OKS;
-import vo.STR;
 import websocket.BroadsocketHtml;
 
-public class AjaxAction extends ActionSupport implements SessionAware{
+public class AjaxAction extends ActionSupport {
 
 	private Ajaxuser ajaxuser;
 	private String canvas;
 	private static String saved;
-	private OKS oks;
-	private Map<String, Object> session;
-	private boolean dupChk = false; // 이메일 중복 함수를 위한 변수
 	
 
 	/////////////////������		
@@ -97,10 +89,6 @@ public class AjaxAction extends ActionSupport implements SessionAware{
 	}
 
 
-
-
-	
-
 	/////////////////////////	
 
 
@@ -119,18 +107,21 @@ public class AjaxAction extends ActionSupport implements SessionAware{
 		return SUCCESS;
 	}
 	
-	public String emailChk() throws Exception
+	/*public String emailChk() throws Exception
 	{
 		OKS_DAO dao = new OKS_DAO();
 		OKS tmp = dao.selectOne(oks.getEmail());
 		if(tmp != null)
 		{
 			session.put("email", tmp.getEmail());
-			return SUCCESS;
+			dupChk = false;
 		}
-		dupChk = true;
-		return ERROR;
-	}
+		else
+		{
+			dupChk = true;
+		}
+		return SUCCESS;
+	}*/
 	
 	
 
@@ -140,10 +131,6 @@ public class AjaxAction extends ActionSupport implements SessionAware{
 		System.out.println("canvas : " + canvas);
 		return SUCCESS;
 	}
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		// TODO Auto-generated method stub
-		
-	}
+	
 
 }

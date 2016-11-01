@@ -21,6 +21,12 @@ body {
 	font-weight: normal;
 }
 
+#move
+{
+	height: 70px;
+	width: 300px;
+	text-align: center;
+}
 
 /********************************************************/
 /*                    Navigation bar                    */
@@ -183,6 +189,10 @@ a:hover, a:active { color:#fff; text-decoration: underline; }
 }
 .btn-lg { 
 	padding:15px 60px;
+	font-size:inherit;
+}
+.btn-lg2 { 
+	padding:10px 30px;
 	font-size:inherit;
 }
 

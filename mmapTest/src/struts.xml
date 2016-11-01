@@ -11,7 +11,7 @@
         <default-action-ref name="index"/>
        
         <action name = "index">
-        	<result>index.html</result>
+        	<result>index.jsp</result>
         </action>
         
         <!-- ajax 액션 시작 -->
@@ -21,10 +21,10 @@
         </action> -->
         
         <action name="load" class="action.AjaxAction" method="load">
-        	<result type="json"></result>
+        	<result type = "json"></result>
         </action>
         
-        <action name = "emailChk" class = "action.AjaxAction" method = "emailChk">
+        <action name = "emailChk" class = "action.AjaxTempAction" method = "emailChk">
         	<result type = "json"></result>
         </action>
         
@@ -55,7 +55,7 @@
         	<!-- <result name = "success">tool.jsp</result>
         	<result name = "error">index.jsp</result> -->
         	<result name="success">home.html</result>
-        	<result name="error">index.html</result>
+        	<result name="error">index.jsp</result>
         </action>
         <!-- 윤석기 작업 -->
         <action name="checkRoom" class ="action.StrutsAction" method = "checkRoom">
@@ -85,11 +85,11 @@
         </action>
         
         <action name="OKS_find" class="action.StrutsAction" method="OKS_find">
-        	<result>index.html</result>
+        	<result>index.jsp</result>
         </action>
         
         <action name="OKS_logout" class="action.StrutsAction" method="OKS_logout">
-        	<result>index.html</result>
+        	<result>index.jsp</result>
         </action>
         <!-- 김동현 작업 끝 -->
         
@@ -99,7 +99,7 @@
         </action> 
         
         <action name = "register" class = "action.StrutsAction" method = "register">
-        	<result name = "success">index.html</result>
+        	<result name = "success">index.jsp</result>
         </action>
         
         <!-- 방에 들어갈 때 체크 -->

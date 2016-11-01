@@ -114,9 +114,18 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		int pagePerGroup = Integer.parseInt(getText("board.pagepergroup"));
 		OKS_DAO dao = new OKS_DAO();
 
-		int total = dao.getTotal2(Board_List_Form, oks); //전체 글수 구하기
-		pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
-		skaList = dao.listBoard2(Board_List_Form, oks, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		if(Board_List_Form.equals("all") || Board_List_Form.equals("OKS_no"))
+		{
+			int total = dao.getTotal2(Board_List_Form, oks); //전체 글수 구하기
+			pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
+			skaList = dao.listBoard2(Board_List_Form, oks, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		}
+		else // Board_List_Form값이 SKA_no가 넘어옴. 내가 참여한 경매 목록 불러오기
+		{
+			int total = dao.getTotal3(Board_List_Form, oks); //전체 글수 구하기
+			pagenavi = new PageNavigator(countPerPage, pagePerGroup, currentPage, total);//pagenavigator 객체 생성
+			skaList = dao.listBoard3(Board_List_Form, oks, pagenavi.getStartRecord(), pagenavi.getCountPerPage());
+		}
 
 		return SUCCESS;
 	}
@@ -142,7 +151,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	}
 	/*빽 끝*/
 
-	/*김동현 작업시작*/
+	/*김DH 작업시작*/
 	//회원정보 수정작업을 위한 회원정보 찾기 (뷰단에 회원정보 뿌려줌)
 	public String OKS_updateForm() throws Exception{
 		if(session.containsKey("OKS")){
@@ -186,7 +195,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return SUCCESS;
 	}
 	//
-	/*김동현 작업 끝*/
+	/*김DH 작업 끝*/
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
