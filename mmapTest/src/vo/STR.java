@@ -22,6 +22,11 @@ public class STR
 	public STR() {
 		
 	}
+	
+	
+	
+	
+	
 
 	
 	public STR(int sTR_no, String oKS_email, String name, String savepath, String enter_code, String regdate) {
@@ -39,10 +44,19 @@ public class STR
 	
 	///seokgi
 
-	public STR(int sTR_no, String oKS_email, String name, String keyword, String category, String savepath,
+	//OKS_email,name, keyword, category, enter_code
+	public STR(String oKS_email, String name, String keyword, String category, String enter_code) {
+		super();
+		OKS_email = oKS_email;
+		this.name = name;
+		this.keyword = keyword;
+		this.category = category;
+		this.enter_code = enter_code;
+	}
+	
+	public STR(String oKS_email, String name, String keyword, String category, String savepath,
 			String enter_code, String regdate) {
 		super();
-		STR_no = sTR_no;
 		OKS_email = oKS_email;
 		this.name = name;
 		this.keyword = keyword;

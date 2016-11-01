@@ -5,11 +5,24 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="room.action" method = "post">
-	<!-- 잇는 방을 찾기 -->
-		<input type ="text" name = "temp_roomName"><br/>
-		
+<!-- 방만들기 -->
+	<form action="newRoom" method = "post">
+			email<input type = "text" name = "str.OKS_email"></br>
+			name<input type = "text" name="str.name"></br>
+			keyword<input type = "text" name = "str.keyword"></br>
+			category<input type = "text" name = "str.category"></br>
+			enter_code<input type = "text" name = "str.enter_code"></br>
+			<input type = "submit">
+			
+			
+			
+	</form>
+	<!-- 방찾기 -->
+	<form action = "checkRoom" method = "post">
+		name<input type ="text" name = "str.name"><br/>
+		enter_code<input type ="text" name = "str.enter_code"><br/>
 		<input type = "submit" value = "submit">
+	
 	</form>
 
 </body>

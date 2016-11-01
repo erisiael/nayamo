@@ -1,7 +1,11 @@
 package action;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+
+import javax.websocket.Session;
 
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -11,6 +15,8 @@ import dao.OKS_DAO;
 import properties.PageNavigator;
 import vo.OKS;
 import vo.SKA_LIST;
+import vo.STR;
+import websocket.BroadsocketHtml;
 
 public class StrutsAction extends ActionSupport implements SessionAware
 {
@@ -22,6 +28,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	private String pass;
 	private String nick;
 	
+	private boolean dupChk = false;
 	private List<SKA_LIST> skaList;
 	
 	private String Board_List_Form;
@@ -31,6 +38,15 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	private String searchText;
 	
 	private PageNavigator pagenavi;
+	
+	////윤석기
+	private STR str;
+	static String roomName_web = null;
+	
+	
+	////
+	
+	
 	
 	public String enter_test() throws Exception
 	{
@@ -103,6 +119,18 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		return SUCCESS;
 	}
 	
+	public String emailChk() throws Exception
+	{
+		OKS_DAO dao = new OKS_DAO();
+		OKS tmp = dao.selectOne(oks.getEmail());
+		if(tmp != null)
+		{
+			session.put("email", tmp.getEmail());
+			return SUCCESS;
+		}
+		dupChk = true;
+		return INPUT;
+	}
 	/*빽 끝*/
 	
 	/*김동현 작업시작*/
@@ -155,6 +183,88 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
 	///////////////////////////////////////////////////////////////
+	
+	
+	/* 
+	 * 윤석기 작업
+	 * */	
+	//2
+	public String checkRoom(){
+		System.out.println("어디가 먼저?1111");
+		////////////////////test ���� DAO���� ��������ȴ�
+		/*ArrayList<Session> t1 = new ArrayList<>();
+		ArrayList<Session> t2 = new ArrayList<>();*/
+		//roomName = getTemp_roomName();//static���δ� ���� �޾ƿ��� ���ؼ� ����
+		//		roomName_html = getTemp_roomName()+" ";
+		//rooms.put("123", t1);
+		//rooms.put("234", t2);
+		//	rooms.put("123", sessionList1);
+		//	rooms.put("234", sessionList2);
+		//html�� �����ֱ� ���� ���� ��������� html�� ���� �浵 ���θ����
+		//
+		/*rooms_html.put("123", sessionListHtml1);
+		rooms_html.put("234", sessionListHtml2);*/
+		//////////////////////
+		roomName_web=str.getName();
+		STR check = null;
+		check = BroadsocketHtml.getRooms().get(str.getName());
+		if(check == null){
+			System.out.println("방이름이 존재 하지 않음");
+			return ERROR;
+		}else{
+			
+			//시연용
+			if(str.getEnter_code().equals(BroadsocketHtml.getRooms().get(str.getName()).getEnter_code())){
+				
+				return SUCCESS;
+				
+			}
+			else{
+				return ERROR;
+			}
+		
+		
+		}
+	}
+	
+	//1
+	//방만들기
+	public String newRoom(){
+		//BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(),str.getName(),str.getKeyword(),str.getCategory()));
+		System.out.println("들어오냐?");
+		//test
+		
+		//////
+		
+		System.out.println(str.toString());
+		roomName_web = str.getName();
+		if(!BroadsocketHtml.getRooms().containsKey(str.getName())){
+			//같은방 이름이 없을때
+			
+			//코드생성
+				//사용자의 이메일을 유니코드로 바꾸고 날짜 넣기
+				Random r = new Random();
+				float f = r.nextFloat();
+				//////
+			//방에 넣기
+			//BroadsocketHtml.getRooms().put(str.getName(),new STR(((OKS)session.get("OKS")).getEmail(), str.getName(), str.getKeyword(), str.getCategory(),str.getEnter_code()));
+				BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(), str.getName(), str.getKeyword(), str.getCategory(),str.getEnter_code()));
+		}else{
+			//같은 이름의 방이 있을떄
+			return ERROR;
+		}
+		return SUCCESS;
+	}
+
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////
+	
+	
 	
 	public OKS getOks() {
 		return oks;
@@ -248,6 +358,25 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public void setBoard_List_Form(String board_List_Form) {
 		Board_List_Form = board_List_Form;
 	}
+
+	public STR getStr() {
+		return str;
+	}
+
+	public void setStr(STR str) {
+		this.str = str;
+	}
+
+	public static String getRoomName_web() {
+		return roomName_web;
+	}
+
+	public static void setRoomName_web(String roomName_web) {
+		StrutsAction.roomName_web = roomName_web;
+	}
+	
+	
+	
 	
 	
 	
