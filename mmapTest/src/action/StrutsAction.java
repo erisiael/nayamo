@@ -57,11 +57,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		StrutsAction.email_socket = email_socket;
 	}
 
-	public String enter_test() throws Exception
-	{
-		return SUCCESS;
-	}
-
 	public String OKS_Login() throws Exception
 	{
 		OKS tmp = null;

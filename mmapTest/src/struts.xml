@@ -59,7 +59,7 @@
         </action>
         <!-- 윤석기 작업 -->
         <action name="checkRoom" class ="action.StrutsAction" method = "checkRoom">
-        	<result name="error">test.html</result>
+        	<result name="error">index.jsp</result>
         	<result>testtest.html</result>
         </action>
         
@@ -94,10 +94,6 @@
         <!-- 김동현 작업 끝 -->
         
         <!-- 빽 -->
-        <action name = "enter_test" class = "action.StrutsAction" method = "enter_test">
-        	<result name = "success">testtest.html</result>
-        </action> 
-        
         <action name = "register" class = "action.StrutsAction" method = "register">
         	<result name = "success">index.jsp</result>
         </action>

@@ -132,9 +132,9 @@ $(document).ready(function()
 
                <!-- Short introductory (optional) -->
 
-               <form id="enter_test" method="post" action="enter_test">
+               <form id="enter_test" method="post" action="checkRoom">
                   <h3 class="tagline">
-                     Enter Code : <input type="text" id="move">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
+                     Enter Code : <input type="text" id="move" name = "str.enter_code">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
                   </h3>
                </form>
 
