@@ -47,10 +47,12 @@ var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalu
 var dialogclosebtn = mapdialog.children().filter('img.btn-close');
 var modal = $("div.modal-div");
 
+var urldialog = $('<div class=div-urldialog><span></span></div>');
+
 $('window').ready(function() {
 
 	$('div.div-dialogs').append(mapdialog);
-	mapdialog.draggable();
+	$('div.div-urldialogs').append(urldialog);
 	
 	var rangelistener = function() {
 		var values = mapdialog.children().filter('input[type=range]').val();
@@ -163,8 +165,7 @@ $('window').ready(function() {
 		mapdialog.children().filter('input[type=text]').val(getNode().text);
 		mapdialog.children().filter('input[type=range]').val(getNode().values);
 		rangelistener();
-		$(mapdialog).css('display', 'block');
-		connectModal();
+		connectModal($(mapdialog).parent().parent());
 	});
 	
 	$('img#move').click(function() {
@@ -184,23 +185,23 @@ $('window').ready(function() {
 		alert("차후 구현 예정입니다");
 	});
 	$('img#adduser').click(function() {
-		
+		connectModal(urldialog.parent().parent());
+		urldialog.children("span").text("로스트스타");
 	});
 
 	
 });
 
-function showModal() {
-	$("div.modal-div").css('display', 'block');
-}
-function connectModal() {
-	showModal();
+function connectModal(dom) {
+	dom.css('display', 'block');
+	console.log(dom);
+	console.log(dom.attr("id"));
+	var isModal = document.getElementById(dom.attr("id"));
 	var func = function() {
-		var isModal = document.getElementById("modal-content");
 		if (event.target == isModal) {
-			modal.css('display','none');
-			$("div.modal-div").off("click", this);
+			dom.css('display', 'none');
+			dom.off("click", this);
 		}
 	};
-	$("div.modal-div").on("click", func);
+	dom.on("click", func);
 }

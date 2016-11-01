@@ -40,14 +40,28 @@ footer {
 	margin : 0px;
 }
 div.div-dialog {
-	display: none;
 	position: fixed;
 	top: 40%;
 	left: 40%;
-	width: 200px;
-	height: 100px;
-	background-color: green;
+	background-color: rgb(118,214,255);
 	z-index: 5;
+	box-shadow: 10px 10px 5px #888888;
+}
+div.div-urldialog {
+	position: fixed;
+	top: 40%;
+	left: 40%;
+	width: 20%;
+	height: 20%;
+	background-color: rgb(118,214,255);
+	z-index: 5;
+	box-shadow: 10px 10px 5px #888888;
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+div.dia-urldialog span {
+	font-size: large;
 }
 /*
 	css for modal window
@@ -63,6 +77,9 @@ div.div-dialog {
 	z-index: 3;
 }
 
+/*
+	css for d3 tool
+*/
 svg {
 	background-image: url("../images/monun1.jpg");
 }
