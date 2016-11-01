@@ -86,6 +86,23 @@
 			selected = d3.select(this);
 			selectednode = d;
 			d3.select(this).classed("selected", true);
+			
+			d3.select(".selected-border").remove();
+			console.log(d);
+			d3.select(".selected").append("circle")
+	        .attr("class", "selected-border")
+	        .attr("cx", function(d) { return d.x; })
+	        .attr("cy", function(d) { return d.y; })
+	        .attr("r", function(d) { return d.values + 50; })
+	        .style("fill", "none")
+	        .style("stroke", "red")
+	        .style("stroke-opacity", 1e-6)
+	        .style("stroke-width", 3)
+	        	.transition()
+			        .duration(750)
+			        .attr("r", function(d) { return d.values; })
+			        .style("stroke-opacity", .5);
+			
 		}
 	}
 	

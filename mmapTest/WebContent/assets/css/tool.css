@@ -73,15 +73,18 @@ circle {
 }
 circle.selected {
 	fill : rgba(0,0,255,0.8) !important;
+	/*stroke : rgb(0,0,0);
+	stroke-width : 5; */
+    /* stroke-dasharray : 20,10; */
 }
 circle.dragging {
 	fill : yellow !important;
 }
 circle#circle-root {
 	fill : rgba(255,0,0,0.7);
-    stroke : rgb(0,0,0);
-    stroke-width : 10;
-    /* stroke-dasharray : 5,3; */
+    stroke : rgb(0,0,0) !important;
+    stroke-width : 10 !important;
+    stroke-dasharray : 0 !important;
 }
 line {
 	stroke : black;
