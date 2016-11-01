@@ -135,7 +135,6 @@ $(document).ready(function()
                <form id="enter_test" method="post" action="enter_test">
                   <h3 class="tagline">
                      Enter Code : <input type="text" id="move">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
-                      <input type="text" id="code" placeholder = "코드를 입력하세요"><a href="#" onclick = "document.getElementById('enter_test').submit()" class="btn btn-default btn-lg2">Submit</a><br>
                   </h3>
                </form>
 
