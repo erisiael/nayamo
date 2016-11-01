@@ -130,7 +130,7 @@ public class BroadsocketHtml{
 			if(allHtml.get(roomName_web) != null){
 				//방별로 저장된 html을 onopen이 될때 보내주는 메소드
 				System.out.println(allHtml.get(roomName_web)+"가져오는곳");
-				session.getBasicRemote().sendText(allHtml.get(roomName_web));
+				session.getBasicRemote().sendText(allHtml.get(roomName_web)+"#haha"+roomName_web);
 			}
 			System.out.println("html" + allHtml.size());
 		} catch (IOException e) {

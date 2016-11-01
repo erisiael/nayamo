@@ -289,11 +289,12 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public String newRoom(){
 		//BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(),str.getName(),str.getKeyword(),str.getCategory()));
 		System.out.println("들어오냐?");
+		System.out.println(session.get("OKS"));
 		//test
-		RandomNumberGenerator r = new RandomNumberGenerator(str.getOKS_email());
+		RandomNumberGenerator r = new RandomNumberGenerator(((OKS)session.get("OKS")).getEmail());
 		//////
 		roomName_web = r.generateEntercode();
-		email_socket = str.getOKS_email();
+		email_socket =((OKS)session.get("OKS")).getEmail();
 		String[]temp = email_socket.split("@");
 		email_socket = temp[0];
 		System.out.println(str.toString());
