@@ -2,19 +2,19 @@
 .col-md-2, .col-md-10{
     padding:0;
 }
-.container-chat {
-	position: fixed;
+/* .container-chat {
+	position: absolute;
 	top: 0px;
-	right: -70%;
-	/* background-color: aqua; */
-}
+	right: 0px;
+	width: 400px;
+} */
 .chat-window .panel{
     margin-bottom: 0px;
 }
-.chat-window{
-    bottom:0;
-    position:fixed;
-    float:right;
+.chat-window {
+    position: absolute !important;
+    top: 0px;
+    right: 0px;
     margin-left:10px;
 }
 .chat-window > div > .panel{

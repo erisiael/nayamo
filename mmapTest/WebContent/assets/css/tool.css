@@ -69,14 +69,19 @@ svg {
 circle {
 	fill : rgba(0,255,0,0.7);
 	opacity: 0.9;
-	stroke-dasharray : "10,3";
+	
+}
+circle.selected {
+	fill : rgba(0,0,255,0.8) !important;
+}
+circle.dragging {
+	fill : yellow !important;
+}
+circle#circle-root {
+	fill : rgba(255,0,0,0.7);
     stroke : rgb(0,0,0);
-}
-.dragging {
-	fill : yellow;
-}
-.selected {
-	fill : rgba(0,0,255,0.8);
+    stroke-width : 10;
+    /* stroke-dasharray : 5,3; */
 }
 line {
 	stroke : black;

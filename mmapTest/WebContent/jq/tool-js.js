@@ -48,6 +48,7 @@
 	
 	rect = g.append("circle")
 										.attr("r", function(d) { return d.values; })
+										.attr("id", function(d) { if(d.root) {return "circle-root";} })
 										.attr("cx", function(d) { return d.x; })
     									.attr("cy", function(d) { return d.y; });
 			
@@ -173,6 +174,7 @@
 		
 		rect = g.append("circle")
 											.attr("r", function(d) { return d.values; })
+											.attr("id", function(d) { if(d.root) {return "circle-root";} })
 											.attr("cx", function(d) { return d.x; })
 	    									.attr("cy", function(d) { return d.y; });
 		
