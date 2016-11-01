@@ -1,6 +1,10 @@
 /**
  * 
  */
+
+var sendMessage;
+var receiveMessage;
+
 $(document).ready(function() {
 	
 	var sent = $(".chat-templete").children(".base_sent");
@@ -44,14 +48,23 @@ $(document).ready(function() {
 			msg = sent.clone();
 		} else if (type == 'receive') {
 			msg = receive.clone();
+		} else {
+			msg = "error!";
 		}
 		$(".msg_container_base").append(msg);
+		$(".msg_container_base").scrollTop($(".msg_container_base")[0].scrollHeight);
 		msg.children().children().children("p").text(text);
-		console.log(msg.children().children().children("p"));
 	}
 	
+	sendMessage = function(text) {
+		appendMessage(text, 'sent');
+	};
+	receiveMessage = function(text) {
+		appendMessage(text, 'receive');
+	};
+	
 	$("#btn-chat").on("click", function() {
-		appendMessage("테스트용메세지", "receive");
+		send("message");
 	});
 	$("#btn-input").on('keypress', function(event) {
 		if (event.which == 13) {

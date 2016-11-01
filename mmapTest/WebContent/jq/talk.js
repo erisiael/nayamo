@@ -33,9 +33,7 @@ webSocketHtml.onmessage = function(event) {
 	console.log(div_array[0])
 	
 	if(div_array[0] == 'message'){
-		console.log(div_array[1]+":@@@@@onMessage")
-		$("#messageWindow").append("상대 : " + div_array[1] + "\n");
-	
+		receiveMessage("상대 : " + div_array[1]);
 	}else if(div_array[0] == 'html'){
 		console.log(div_array[1]+":@@@@@onHtml");
 		node = JSON.parse(div_array[1]);
@@ -59,7 +57,10 @@ function onMessage(event) {
 }*/
 function onOpen(event) {
 	if(event == "message"){
-	$("#messageWindow").append("연결 성공\n");
+		$(document).ready(function() {
+			console.log(receiveMessage);
+			receiveMessage("연결 성공");
+		});
 	}
 }
 function onError(event) {
@@ -73,11 +74,9 @@ function send(kind) {
 		webSocketHtml.send("html#haha"+JSON.stringify(node));
 	}else{//html의 경우
 		
-		$("#messageWindow").append("나 : " + $('#inputMessage').val() + "\n");
-		webSocketHtml.send("message#haha"+$('#inputMessage').val());
-		
-		$('#inputMessage').val("");
-
+		sendMessage("나 : " + $('#btn-input').val());
+		webSocketHtml.send("message#haha"+$('#btn-input').val());
+		$('#btn-input').val("");
 		
 	}
 }
