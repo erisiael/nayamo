@@ -109,8 +109,8 @@ $(document).ready(function()
             <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                <li><a href="#head" class="active">Home</a></li>
-               <li><a href="#about">About me</a></li>
-               <li><a href="#themes">Themes</a></li>
+               <li><a href="#about">About us</a></li>
+               <li><a href="#themes">How to use</a></li>
                <li><a href="#contact">Get in touch</a></li>
             </ul>
          </div>
@@ -127,14 +127,18 @@ $(document).ready(function()
                class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
 
                <!-- Site Title, your name, HELLO msg, etc. -->
-               <h1 class="title">사요나라</h1>
-               <h2 class="subtitle">BrainStorming Tool</h2>
+               <h1 class="title">BrainStorming Tool</h1>
+               <h2 class="subtitle">아이디어가 필요한 지금!?</h2>
 
                <!-- Short introductory (optional) -->
 
                <form id="enter_test" method="post" action="enter_test">
                   <h3 class="tagline">
+<<<<<<< .mine
+                     Enter Code : <input type="text" id="move">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
+=======
                       <input type="text" id="code" placeholder = "코드를 입력하세요"><a href="#" onclick = "document.getElementById('enter_test').submit()" class="btn btn-default btn-lg2">Submit</a><br>
+>>>>>>> .r39
                   </h3>
                </form>
 
@@ -341,12 +345,31 @@ $(document).ready(function()
          <h2 class="text-center title">About us</h2>
          <div class="row">
             <div class="col-sm-4 col-sm-offset-2">
-               <h5>
-                  <strong>fuck you<br></strong>
-               </h5>
-               <p>c8</p>
+               <h4><strong>조원 소개<br></strong></h4>
+               <table class="memberInfo">
+               		<thead>
+               			<tr>
+               				<th><img src="assets/images/11.png"></th>
+               				<th><img src="assets/images/22.png"></th>
+               				<th><img src="assets/images/33.png"></th>
+               				<th><img src="assets/images/44.png"></th>
+               			</tr>
+               		</thead>
+               		<tbody>
+               			<tr>
+               				<th class="memType">조장</th>
+               				<th colspan="3" class="memType">조원</th>
+               			</tr>
+               			<tr>
+               				<td class="member">이종찬</td>
+               				<td class="member">윤석기</td>
+               				<td class="member">백승훈</td>
+               				<td class="member">김동현</td>
+               			</tr>
+               		</tbody>
+               </table>
             </div>
-            <div class="col-sm-4">
+            <%-- <div class="col-sm-4">
                <h5>
                   <strong>sibal! sibal!<br></strong>
                </h5>
@@ -360,7 +383,7 @@ $(document).ready(function()
                      href="http://linkedin.com/pozhilov">링크이동3</a> / <a
                      href="https://www.facebook.com/pozhilov">링크이동4</a>
                </p>
-            </div>
+            </div> --%>
          </div>
       </div>
    </section>
@@ -369,10 +392,9 @@ $(document).ready(function()
    <section class="section" id="themes">
       <div class="container">
 
-         <h2 class="text-center title">More Themes</h2>
-         <p class="lead text-center">
-            Huge thank you to all people who publish<br> their photos at <a
-               href="http://unsplash.com">Unsplash</a>, thank you guys!
+         <h2 class="text-center title">How to use??</h2>
+         <p class="lead text-center" style="color: white;">
+            No grand idea was ever born in a conference,<br>but a lot of foolish ideas have died there.<br>
          </p>
          <div class="row">
             <div class="col-sm-4 col-sm-offset-2">
