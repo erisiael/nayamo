@@ -390,69 +390,46 @@ $(document).ready(function()
 
          <h2 class="text-center title">How to use??</h2>
          <p class="lead text-center" style="color: white;">
-            No grand idea was ever born in a conference,<br>but a lot of foolish ideas have died there.<br>
+            After Login, Make new Project or write Enter code<br>If you want new idea.. Just Sign in!!<br>
          </p>
          <div class="row">
-            <div class="col-sm-4 col-sm-offset-2">
+            <!-- <div class="col-sm-4 col-sm-offset-2"> -->
                <div class="thumbnail">
-                  <img src="assets/screenshots/sshot1.jpg" alt="">
+                  <img src="assets/screenshots/make_new2.PNG">
                   <div class="caption">
-                     <h3>Thumbnail label</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Neque doloribus enim vitae nam cupiditate eius at explicabo
-                        eaque facere iste.</p>
-                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Button</a> <a
-                           href="#" class="btn btn-default" role="button">Button</a>
-                     </p>
+                     <h3>새로 만들기</h3>
+                     <p>로그인 한 사용자는 새로운 프로젝트 생성 가능.<br>
+                     Title, Keyword, Category 입력 후 생성</p>
                   </div>
                </div>
-            </div>
-            <div class="col-sm-4">
+            <!-- </div> -->
+            <!-- <div class="col-sm-4"> -->
                <div class="thumbnail">
-                  <img src="assets/screenshots/sshot4.jpg" alt="">
+                  <img src="assets/screenshots/enter1.PNG">
                   <div class="caption">
-                     <h3>Thumbnail label</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Neque doloribus enim vitae nam cupiditate eius at explicabo
-                        eaque facere iste.</p>
-                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Button</a> <a
-                           href="#" class="btn btn-default" role="button">Button</a>
-                     </p>
+                     <h3>Guest 접속</h3>
+                     <p>로그인 하지 않은 사용자는 프로젝트를 생성한 사용자에게서<br>
+                     전송받은 Enter Code를 메인페이지에서 작성하여 접속</p>
                   </div>
                </div>
-            </div>
-            <div class="col-sm-4 col-sm-offset-2">
+            <!-- </div> -->
+            <!-- <div class="col-sm-4 col-sm-offset-2"> -->
                <div class="thumbnail">
-                  <img src="assets/screenshots/sshot5.jpg" alt="">
+                  <img src="assets/screenshots/test1.PNG">
                   <div class="caption">
-                     <h3>Thumbnail label</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Neque doloribus enim vitae nam cupiditate eius at explicabo
-                        eaque facere iste.</p>
-                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Button</a> <a
-                           href="#" class="btn btn-default" role="button">Button</a>
-                     </p>
+                     <h3>마인드맵 작성</h3>
+                     <p>추가, 수정, 삭제, 초기위치, 저장, 경매, 초대버튼으로 메뉴가 구성되어 있습니다.</p>
                   </div>
                </div>
-            </div>
-            <div class="col-sm-4">
+            <!-- </div> -->
+            <!-- <div class="col-sm-4"> -->
                <div class="thumbnail">
-                  <img src="assets/screenshots/sshot3.jpg" alt="">
+                  <img src="assets/screenshots/test2.PNG">
                   <div class="caption">
-                     <h3>Thumbnail label</h3>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Neque doloribus enim vitae nam cupiditate eius at explicabo
-                        eaque facere iste.</p>
-                     <p>
-                        <a href="#" class="btn btn-primary" role="button">Button</a> <a
-                           href="#" class="btn btn-default" role="button">Button</a>
-                     </p>
+                     <h3>활용 예시</h3>
                   </div>
                </div>
-            </div>
+            <!-- </div> -->
 
          </div>
 
