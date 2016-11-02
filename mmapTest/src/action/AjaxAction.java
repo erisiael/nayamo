@@ -1,16 +1,8 @@
 package action;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Random;
-import java.util.Map;
-
-
-
 import com.opensymphony.xwork2.ActionSupport;
 
 import vo.Ajaxuser;
-import websocket.BroadsocketHtml;
 
 public class AjaxAction extends ActionSupport {
 
@@ -18,27 +10,8 @@ public class AjaxAction extends ActionSupport {
 	private String canvas;
 	private static String saved;
 	
-
-	/////////////////������		
-
-	//ä���� ���� ���̸� -- ������
 	private static String roomName;
 	private String temp_roomName;
-	////////////////////////////////////////////////////////test�� ��
-	//private ArrayList<Session> sessionList1 = new ArrayList<>();
-	//private ArrayList<Session> sessionList2 = new ArrayList<>();
-	//private static ArrayList<Session> sessionListHtml1 = new ArrayList<>();
-	//private static ArrayList<Session> sessionListHtml2 = new ArrayList<>();
-	/////////////////////////////////////////////////////////////////////
-	//message�� ���� ��
-	//private static HashMap<String, ArrayList<Session>> rooms = new HashMap<>();
-	//html�� websocket���� ������� ������ �����ϱ����� ����
-	//private static HashMap<String, ArrayList<Session>> rooms_html = new HashMap<>();
-
-	
-	//ä���� ���� ���̸� -- ������
-	
-	
 	/*
 	 * getter setter
 	 *  */
@@ -107,28 +80,8 @@ public class AjaxAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	/*public String emailChk() throws Exception
-	{
-		OKS_DAO dao = new OKS_DAO();
-		OKS tmp = dao.selectOne(oks.getEmail());
-		if(tmp != null)
-		{
-			session.put("email", tmp.getEmail());
-			dupChk = false;
-		}
-		else
-		{
-			dupChk = true;
-		}
-		return SUCCESS;
-	}*/
-	
-	
-
-
 	@Override
 	public String execute() throws Exception {
-		System.out.println("canvas : " + canvas);
 		return SUCCESS;
 	}
 	

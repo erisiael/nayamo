@@ -3,7 +3,7 @@
  */
 //웹소켓
 //var webSocketMessage = new WebSocket('ws://localhost:8888/MagisterTest/exclude/broadcastingMessage');
-var webSocketHtml = new WebSocket('ws://203.233.194.218:8888/mmapTest/exclude/broadcastingHtml');
+var webSocketHtml = new WebSocket('ws://localhost:8888/mmapTest/exclude/broadcastingHtml');
 
 var entercode = "";
 

@@ -34,59 +34,33 @@ public class BroadsocketHtml{
 	public void onMessage(String canvas, Session session) {
 		//분기처리 canvas에 메시지 일경우와 html의 경우
 		try{
-			System.out.println(canvas);
 			//str[0] 내용처리 str[1]내용 str[3] entercode
 			String[] str = canvas.split("#haha");
 			
-			System.out.println(rooms.size()+"       onMessage size");
 			HashMap<Session, String> rom =rooms.get(roomName_web).getSession_list();//arrayList
 			//ArrayList<Session> rom = AjaxAction.getRooms().get(roomName_web);//arrayList
 			if(str[0].equals("html")){
 				////////////////////////////////html
-				System.out.println(roomName_web + "          canvas");
 				allHtml.put(roomName_web, "html#haha"+str[1]);
-				System.out.println("체크 나는 새로 방을 만든다?");
-				System.out.println(allHtml.size()+"html?");
-				//ArrayList<Session> rom = AjaxAction.getRooms_html().get(roomName_web);//arrayList
-				System.out.println(rom);
 				synchronized (rom) {
 					// Iterate over the connected sessions
 					// and broadcast the received message
 					for (Entry<Session, String> client : rom.entrySet()) {
 						
-						System.out.println("들어오냐?");
-						System.out.println(str[1]);
 						client.getKey().getBasicRemote().sendText("html#haha"+str[1]+"#haha"+roomName_web);
 					}
 				}
 			}else if(str[0].equals("message")){//message일 경우
 				////////////////////////////////message
-				System.out.println(str[1]+"else if (message)");
-				System.out.println(roomName_web+"      messageRoom");
-				//allMessage.add(message);
-				//�濡 �ִ� ����� �ҷ�����
-				//$$$�濡 �ִ� ����� �������´�
-				//ArrayList<Session> rom = AjaxAction.getRooms().get(roomName_web);//arrayList
-				//System.out.println(AjaxAction.getRooms().containsKey(roomName_web));
-				System.out.println(rom.size());
-				/*for(Session session1 : rom){
-											int i = 0;
-											System.out.println(session1+"    "+i);
-											i++;
-										}*/
 				synchronized (rom) {
 					// Iterate over the connected sessions
 					// and broadcast the received message
 					for (Entry<Session, String> client : rom.entrySet()) {
-						//�����״� ���� ����
-
 						if (!client.getKey().equals(session)) {
-							System.out.println(str[1]+"session equlals");
 							client.getKey().getBasicRemote().sendText("message#haha"+rooms.get(roomName_web).getSession_list().get(session)+"#haha"+str[1]);
 						}
 					}
 				}//synchronized
-
 			}//if
 		}catch(IOException e){
 			System.out.println("io터짐");
@@ -96,43 +70,17 @@ public class BroadsocketHtml{
 
 	@OnOpen
 	public void onOpen(Session session) {
-		System.out.println("어디가 먼저?222");
-		System.out.println(session);
-		//clients.add(session);
-
 		//메시지와 html보낼때  필요한 html키값(방이름)
 		roomName_web = StrutsAction.getRoomName_web();
-		System.out.println(roomName_web);
-
 
 			//메시지를 위한 해쉬맵에 세션넣기
 			rooms.get(roomName_web).getSession_list().put(session,StrutsAction.getEmail_socket());//session 해당 방에 넣기
-			System.out.println(rooms.get(roomName_web).getSession_list().get(session)+"@@@@@@@@@@@@@@@@@@@@@@@@@@@빠담");
-			System.out.println(StrutsAction.getEmail_socket()+"@@@@@");
-		System.out.println("객체 확인"+rooms.size());
-
-		//html을 위한 해쉬멥에 세션넣기
-		//AjaxAction.getRooms_html().get(roomName_web).add(session);
-		//종찬형
-		// 세션을 vo에 집어넣기 테스트 시작
-		// 코드 이대로 쓰면 안되고 수정 필수
-		/*if (!rooms.containsKey(roomName_web)) {
-			rooms.put("testkey", new STR());
-		}
-		rooms.get("testkey").getSession_list().add(session);
-		System.out.println("맵 내부의 어레이" + rooms.get("testkey").getSession_list());*/
-		// 세션을 vo에 집어넣기 테스트 종료
-		//
-
-
 
 		try {
 			if(allHtml.get(roomName_web) != null){
 				//방별로 저장된 html을 onopen이 될때 보내주는 메소드
-				System.out.println(allHtml.get(roomName_web)+"가져오는곳");
 				session.getBasicRemote().sendText(allHtml.get(roomName_web)+"#haha"+roomName_web);
 			}
-			System.out.println("html" + allHtml.size());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -140,10 +88,7 @@ public class BroadsocketHtml{
 	}
 	@OnClose
 	public void onClose(Session session){
-		System.out.println(session+"종료!!");
-		// Remove session from the connected sessions set
-
-		//나중에1!!!1
+		
 	}
 
 	public static HashMap<String, STR> getRooms(){
