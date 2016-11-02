@@ -203,37 +203,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	 * */	
 	//2
 	public String checkRoom(){
-		System.out.println("어디가 먼저?1111");
-		////////////////////test ���� DAO���� ��������ȴ�
-		/*ArrayList<Session> t1 = new ArrayList<>();
-		ArrayList<Session> t2 = new ArrayList<>();*/
-		//roomName = getTemp_roomName();//static���δ� ���� �޾ƿ��� ���ؼ� ����
-		//		roomName_html = getTemp_roomName()+" ";
-		//rooms.put("123", t1);
-		//rooms.put("234", t2);
-		//	rooms.put("123", sessionList1);
-		//	rooms.put("234", sessionList2);
-		//html�� �����ֱ� ���� ���� ��������� html�� ���� �浵 ���θ����
-		//
-		/*rooms_html.put("123", sessionListHtml1);
-		rooms_html.put("234", sessionListHtml2);*/
-		//////////////////////
-		//엔터 코드만 가지고 들어오는 경우도 있음
-		/*
-		String code_guest = null;
-		code_guest = str.getEnter_code();
-
-		if(code_guest == null){
-			System.out.println("코드에 맞는 방이 없음");
-			return ERROR;
-		}
-		 */
-		
-		///put session for test
-		
-		//
-		
-		
 
 		roomName_web=str.getEnter_code();
 
@@ -245,24 +214,11 @@ public class StrutsAction extends ActionSupport implements SessionAware
 			System.out.println("방이름이 존재 하지 않음");
 			return ERROR;
 		}else{
-								//시연용
-								/*	if(str.getEnter_code().equals(BroadsocketHtml.getRooms().get(str.getName()).getEnter_code())){
-					
-														return SUCCESS;
-					
-													}
-													else{
-														return ERROR;
-													}
-								 */
 			//회원일 경우와 아닐경우
 			if(session.get("OKS") == null){
 				//회원이 아닐경우
-				System.out.println("회원이 아닐경우");
 				email_socket = "GUEST"+i;
 				i++;
-
-
 			}else{
 				//회원일 경우
 				OKS clerk= (OKS)session.get("OKS");
@@ -283,8 +239,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	//방만들기
 	public String newRoom(){
 		//BroadsocketHtml.getRooms().put(str.getName(),new STR(str.getOKS_email(),str.getName(),str.getKeyword(),str.getCategory()));
-		System.out.println("들어오냐?");
-		System.out.println(session.get("OKS"));
 		//test
 		RandomNumberGenerator r = new RandomNumberGenerator(((OKS)session.get("OKS")).getEmail());
 		//////
@@ -292,8 +246,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		email_socket =((OKS)session.get("OKS")).getEmail();
 		String[]temp = email_socket.split("@");
 		email_socket = temp[0];
-		System.out.println(str.toString());
-		System.out.println(roomName_web);
 		//BroadsocketHtml.getAllClient().put(roomName_web,);
 		if(!BroadsocketHtml.getRooms().containsKey(roomName_web)){
 			//같은방 이름이 없을때
