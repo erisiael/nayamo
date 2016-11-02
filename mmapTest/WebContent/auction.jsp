@@ -72,7 +72,7 @@ function Board_List_Form()
 <body>
 <div class="header">
     <div class="wrap">
-            <div class="logo"><a href="index.html"><img src="assets/images/title.png" alt="Mind Map" /></a></div>
+            <div class="logo"><a href="index.jsp"><img src="assets/images/title.png" alt="Mind Map" /></a></div>
             <div class="headerbox">
                 <div class="login">
                     <ul>

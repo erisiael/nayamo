@@ -175,11 +175,11 @@ $('window').ready(function() {
 		if (!isSelected()) {
 			return;
 		}
-		if (selectednode.root == undefined) {
+		/*if (selectednode.root == undefined) {*/
 			deleteData();
-		} else {
+		/*} else {
 			alert("최상위 노드는 삭제할 수 없습니다.");
-		}
+		}*/
 	});
 	$('img#auction').click(function() {
 		alert("차후 구현 예정입니다");
