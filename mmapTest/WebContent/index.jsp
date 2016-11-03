@@ -6,7 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="assets/script/jquery-3.1.1.min.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
@@ -16,6 +15,7 @@
 
 <link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
+<script src="assets/script/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap itself -->
 <link
    href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
@@ -102,16 +102,16 @@
       
         <ul class="sidebar-nav" id="sidebar">     
 
-      	<li><a href="#" onclick="location.href='index.action'">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+      	<li><a href="#head" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
       <!-- 로그인시 보여줄 메뉴 분기 -->
 <s:if test="#session.OKS != null">
 		<li class="sidebar">
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
-        <li><a>참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <li><a href="#">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 </s:if>
-		<li><a>생각툴 이란<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-		<li><a>만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+		<li><a href="#about" class="a-scrolling">만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+		<li><a href="#themes" class="a-scrolling">생각툴 이란<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
         <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
         <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li> -->
 		<!-- 로그인시 보여줄 메뉴 분기 -->
@@ -390,16 +390,14 @@ $(document).ready(function() {
 
    <!-- Main (Home) section -->
    <div class="section" id="head">
-
       <div class="container">
-
          <div class="row">
             <div
                class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
 
                <!-- Site Title, your name, HELLO msg, etc. -->
-               <h1 class="title">BrainStorming Tool</h1>
-               <h2 class="subtitle">아이디어가 필요한 지금!?</h2>
+               <h1 class="title">SC-MMAP</h1>
+               <h2 class="subtitle">Want Idea?</h2>
 
                <!-- Short introductory (optional) -->
 

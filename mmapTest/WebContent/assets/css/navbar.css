@@ -153,3 +153,10 @@
 	width: 100%;
 	height: 100%;
 }
+
+#a-themes {
+	transition : all 0.2s ease-in-out;
+}
+#a-about {
+	transition : all 0.2s ease-in-out;
+}
