@@ -46,26 +46,25 @@
 		
 		
 		
-		     
-          <action name = "enter_test" class = "action.StrutsAction" method = "enter_test">
-        	<result name = "success">testtest.html</result>
-          </action>
-         
         <action name = "OKS_Login" class = "action.StrutsAction" method = "OKS_Login">
         	<!-- <result name = "success">tool.jsp</result>
         	<result name = "error">index.jsp</result> -->
-        	<result name="success">home.html</result>
+        	<result name="success">index.jsp</result>
         	<result name="error">index.jsp</result>
         </action>
         <!-- 윤석기 작업 -->
         <action name="checkRoom" class ="action.StrutsAction" method = "checkRoom">
         	<result name="error">index.jsp</result>
-        	<result>testtest.html</result>
+        	<result name="success">testtest.jsp</result>
         </action>
         
         <!-- 윤석기 방만들기 -->
     	<action name="newRoom" class ="action.StrutsAction" method="newRoom">
-        	<result>testtest.html</result>
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">checkRoom</param>
+        		<param name="roomName_web">${roomName_web}</param>
+        	</result>
+        	<result name="error">index.jsp</result>
         </action>        
         <!-- 김동현 작업 시작-->
         <action name="myPage" class="action.StrutsAction" method="OKS_myPage">

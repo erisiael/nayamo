@@ -36,9 +36,13 @@
 
 <script src="assets/js/magister.js"></script>
 <script src="assets/js/login.js"></script>
+<script src="assets/js/navbar.js"></script>
+
 <!-- Custom styles -->
 <link rel="stylesheet" href="assets/css/magister.css" type="text/css">
 <link rel="stylesheet" href="assets/css/login.css" type="text/css">
+<link rel="stylesheet" href="assets/css/navbar.css" type="text/css">
+
 
 </head>
 <script>
@@ -99,7 +103,7 @@ $(document).ready(function()
 
 <body class="theme-invert">
 
-<nav class="mainmenu">
+<%-- <nav class="mainmenu">
       <div class="container">
          <div class="dropdown">
             <button type="button" class="navbar-toggle" data-toggle="dropdown">
@@ -115,10 +119,126 @@ $(document).ready(function()
             </ul>
          </div>
       </div>
-   </nav>
+   </nav> --%>
+
+   	<script>
+   		var message = "<%= request.getAttribute("errorMessage") %>";
+   		if (message != 'null') {
+	   		$(document).ready(function() {
+		   		alert(message);
+			});
+   		}
+   	</script>
+<div id="wrapper">
+      
+      <!-- Sidebar -->
+            <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+      <ul id="sidebar_menu" class="sidebar-nav">
+      
+      <!--  로그인 관련 표시 -->
+<s:if test="#session.OKS == null">
+      	   <li><a><span>&nbsp;</span></a></li>
+      	   <li><span class="loginstring"></span></li>
+           <li><a href="#" class="btn btn-default btn-lg"
+                     onclick="document.getElementById('id01').style.display='block'">Login</a></li>
+      	   <li><a><span>&nbsp;</span></a></li>
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+</s:if>
+<s:else>
+      	   <li><a><span>&nbsp;</span></a></li>
+		   <li><span class="loginstring">안녕하세요. <s:property value="#session.OKS.nick"/>님</span></li>
+		   <li><a href="#" onclick="location.href='OKS_logout.action'">로그아웃</a></li>
+      	   <li><a><span>&nbsp;</span></a></li>
+           <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
+</s:else>
+      <!--  로그인 관련 표시 -->
+           
+      </ul>
+      
+        <ul class="sidebar-nav" id="sidebar">     
+
+      <!-- 로그인시 보여줄 메뉴 분기 -->
+<s:if test="#session.OKS == null">
+		<li><a>생각툴 이란?<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+		<li><a>만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <%-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+          <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li> --%>
+</s:if>
+<s:else>
+		<li class="sidebar">
+        <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
+        </li>
+        <li><a>참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+</s:else>
+		<!-- 로그인시 보여줄 메뉴 분기 -->
+		
+        </ul>
+        
+      </div>
+          
+		<!-- 로그인 상태에서만 사용할 modal div -->          
+<s:if test="#session.OKS != null">
+          <div class="modal" id="myModal">
+				<span onclick="document.getElementById('myModal').style.display='none'"
+            class="close" title="Close Modal">&times;</span>
+            	
+			<div class="modal-dialog">
+			      <div class="modal-content">
+			      <form action="newRoom" method = "post">
+			        <div class="modal-header">
+			          <h3 class="modal-title">새로 만들기</h3>
+			        </div>
+			        <div class="modal-body">
+					  <h5 class="text-center">Creativity can solve almost any problem. The creative act, the defeat of habit by originality, overcomes everything.<br> - George Lois -</h5>
+			          <table class="table table-striped" id="tblGrid">
+			            <tbody>
+			              <tr><td>Title</td>
+			                <td><input type="text" name = "str.name" id="title" class="form-control"></td>
+			                <!-- <td class="text-right">45001</td> -->
+			              </tr>
+			              <tr><td>Keyword</td>
+			                <td><input type="text" name ="str.keyword" id="keyword" class="form-control"></td>
+			                <!-- <td class="text-right">76455</td> -->
+			              </tr>
+			              <tr><td>Category</td>
+								<td><select name = "str.category" class="form-control">
+										<option>IT</option>
+										<option>Food</option>
+										<option>Science</option>
+										<option>Sport</option>
+										<option>Music</option>
+								</select></td>
+										<!-- <td class="text-right">39097</td> -->
+			              </tr>
+			            </tbody>
+			          </table>
+			          <div class="form-group">
+			          <!-- button submit :seokgi -->
+			            <input type="submit" class="btn btn-success btn-sm pull-right" value="생성">
+			            <div class="clearfix"></div>
+			          </div>
+					</div>
+					</form><!-- 방 만들때의 정보를 보내기 위한 from -->
+			      </div><!-- /.modal-content -->
+			    </div><!-- /.modal-dialog -->
+			  </div><!-- /.modal -->
+</s:if>
+		<!-- 로그인 상태에서만 사용할 modal div --> 
+        
+          
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+              <div class="col-md-12">
+
+
 
    <!-- Main (Home) section -->
-   <section class="section" id="head">
+   <div class="section" id="head">
 
       <div class="container">
 
@@ -132,7 +252,7 @@ $(document).ready(function()
 
                <!-- Short introductory (optional) -->
 
-               <form id="enter_test" method="post" action="checkRoom">
+               <form id="enter_test" method="get" action="checkRoom">
                   <h3 class="tagline">
                      Enter Code : <input type="text" id="move" name = "str.enter_code">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
                   </h3>
@@ -140,8 +260,7 @@ $(document).ready(function()
 
                <!-- Nice place to describe your site in a sentence or two -->
                <p>
-                  <a href="#" class="btn btn-default btn-lg"
-                     onclick="document.getElementById('id01').style.display='block'">Login</a>
+                  
                </p>
 
 
@@ -332,10 +451,10 @@ $(document).ready(function()
          </div>
          <!-- /row -->
       </div>
-   </section>
+   </div>
 
    <!-- Second (About) section -->
-   <section class="section" id="about">
+   <div class="section" id="about">
       <div class="container">
 
          <h2 class="text-center title">About us</h2>
@@ -382,10 +501,10 @@ $(document).ready(function()
             </div> --%>
          </div>
       </div>
-   </section>
+   </div>
 
    <!-- Third (Works) section -->
-   <section class="section" id="themes">
+   <div class="section" id="themes">
       <div class="container">
 
          <h2 class="text-center title">How to use??</h2>
@@ -434,48 +553,33 @@ $(document).ready(function()
          </div>
 
       </div>
-   </section>
+   </div>
 
-   <!-- Fourth (Contact) section -->
-   <section class="section" id="contact">
-      <div class="container">
 
-         <h2 class="text-center title">Get in touch</h2>
-
-         <div class="row">
-            <div class="col-sm-8 col-sm-offset-2 text-center">
-               <p class="lead"></p>
-               <p>썅 연락하라고</p>
-               <p>
-                  <b>썅@gmail.com</b><br>
-                  <br>
-               </p>
-               <ul class="list-inline list-social">
-                  <li><a href="https://twitter.com/serggg" class="btn btn-link"><i
-                        class="fa fa-twitter fa-fw"></i> 링크이동1</a></li>
-                  <li><a href="https://github.com/pozhilov"
-                     class="btn btn-link"><i class="fa fa-github fa-fw"></i> 링크이동2</a></li>
-                  <li><a href="http://linkedin/in/pozhilov"
-                     class="btn btn-link"><i class="fa fa-linkedin fa-fw"></i>
-                        링크이동3</a></li>
-               </ul>
-            </div>
-         </div>
-
-      </div>
-   </section>
-
+</div>
+</div>
+</div>
+</div>
    <!-- modal js -->
    <script>
 // Get the modal
-var modal = document.getElementById('id01');
+
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
+$(window).click(function(event) {
+	var modal = document.getElementById('id01');
     if (event.target == modal) {
         modal.style.display = "none";
     }
-}
+});
+
+
+$(window).click(function(event) {
+	var myModal = document.getElementById('myModal');
+    if (event.target == myModal) {
+        myModal.style.display = "none";
+    }
+});
 
 </script>
 

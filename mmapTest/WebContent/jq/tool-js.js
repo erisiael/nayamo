@@ -13,10 +13,12 @@
 	var selected = null;
 	var selectednode = null;
 	
-	var node = [
-	            //{text : "1번타자", parent : 1, child : [1,2,3], values: 50}
-	            {text : "루트 노드", root : true, values : 100}
-	];
+	if (node == undefined) {
+		var node = [
+		            //{text : "1번타자", parent : 1, child : [1,2,3], values: 50}
+		       {text : "루트 노드", root : true, values : 100}
+		]
+	}
 	var links = [];
 	
 	setXY();

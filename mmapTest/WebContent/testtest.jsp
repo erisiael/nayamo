@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix = "s" uri = "/struts-tags" %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +104,9 @@
 &nbsp;
 </div>
 </footer>
+
+<input type="hidden" id="entercode" value="<s:property value="roomName_web" />">
+<input type="hidden" id="username" value="<s:property value="#session.OKS.email" />">
 
 <!-- test -->
 <script type="text/javascript" src="jq/talk_design.js"></script>

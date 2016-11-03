@@ -106,9 +106,16 @@ $('window').ready(function() {
 	$('img#auction').click(function() {
 		alert("차후 구현 예정입니다");
 	});
+	
+	var url = document.location.toString().split("?roomName_web=")[0] + "?roomName_web=";
+	var urlinput = $("<input type=text readonly=readonly />");
+	
 	$('img#adduser').click(function() {
 		connectModal(urldialog.parent().parent());
 		urldialog.children("span").text("Entercode : " + entercode);
+		urldialog.append(urlinput);
+		urldialog.children("input").prop("value", url + entercode);
+		console.log("urlinput : " + document.location);
 	});
 
 	

@@ -5,7 +5,9 @@
 //var webSocketMessage = new WebSocket('ws://localhost:8888/MagisterTest/exclude/broadcastingMessage');
 var webSocketHtml = new WebSocket('ws://localhost:8888/mmapTest/exclude/broadcastingHtml');
 
-var entercode = "";
+var entercode = document.getElementById("entercode").value;
+var username = document.getElementById("username").value;
+var splicekey = "#cmamxlsk#";
 
 /*webSocketMessage.onerror = function(event) {
 	onError(event)
@@ -31,31 +33,33 @@ webSocketHtml.onmessage = function(event) {
 	console.log(typeof event.data);
 	
 	var divide = event.data;
-	var div_array = divide.split('#haha');
+	var div_array = divide.split(splicekey);
 	console.log(div_array[0]+div_array[1]+div_array[2])
-	if(div_array[0] == 'message'){
+	switch (div_array[0]) {
+	case 'message':
 		receiveMessage(div_array[1]+" : " + div_array[2]);
-	}else if(div_array[0] == 'html'){
-		console.log(div_array[1]+":@@@@@onHtml");
+		break;
+	case 'html':
 		node = JSON.parse(div_array[1]);
 		reDraw();
+		break;
+	case 'initializeServer':
+		webSocketHtml.send("initializeServer" + splicekey + entercode);
+		console.log("ini server");
+		break;
+	case 'initializeClient':
+		if (username == '') {
+			username = 'guest';
+		}
+		node = JSON.parse(div_array[1]);
+		webSocketHtml.send("initializeClient" + splicekey + username);
+		console.log("ini client");
+		break;
+	default:
+		break;
 	}
-	entercode = div_array[2];
 };
 
-/*function onHtml(event){
-	$('div#canvas').remove();
-			$('div#main').append(event.data);
-			makeMap($(load));
-	console.log(event.data);
-	node = JSON.parse(event.data);
-	reDraw();
-}
-
-function onMessage(event) {
-	console.log(event.data+"onMessage")
-	$("#messageWindow").append("상대 : " + event.data + "\n");
-}*/
 function onOpen(event) {
 	if(event == "message"){
 		$(document).ready(function() {
@@ -71,11 +75,12 @@ function onError(event) {
 function send(kind) {
 	//메시지를 받을경우 String 앞줄에 message, HTML일때는 Html을 붙여서 가져오기
 	if(kind == "html"){//메시지의 경우
-		webSocketHtml.send("html#haha"+JSON.stringify(node));
+		webSocketHtml.send("html" + splicekey +JSON.stringify(node));
 	}else{//html의 경우
 		
 		sendMessage("나 : " + $('#btn-input').val());
-		webSocketHtml.send("message#haha"+$('#btn-input').val());
+		console.log("채팅내용" + $('#btn-input').val());
+		webSocketHtml.send("message" + splicekey + $('#btn-input').val());
 		$('#btn-input').val("");
 		
 	}
@@ -88,7 +93,6 @@ function send(kind) {
 
 function disconnect(){
 	alert("종료");
-	
 	
 	webSocketHtml.close();
 	$(window).close();
