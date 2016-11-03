@@ -35,7 +35,7 @@
    rel='stylesheet' type='text/css'>
 
 <script src="assets/js/magister.js"></script>
-<script src="assets/js/login.js"></script>
+<script src="assets/js/login.js?ver=1"></script>
 <script src="assets/js/navbar.js"></script>
 
 <!-- Custom styles -->
@@ -45,62 +45,6 @@
 
 
 </head>
-<script>
-
-   function register()
-   {
-      if(document.getElementById('pw1').value == document.getElementById('pw2').value)
-      {
-         document.getElementById('register-form').submit();
-         return true;
-      }
-      else
-      {
-         alert('비밀 번호를 다시 확인해라. 사요나라');
-         document.getElementById('pw1').focus();
-         return false;
-      }
-   } 
-   
-$(document).ready(function()
-{
-	$('#emailDupChk').on('click', function(){
-		Duli();
-	});
-	function Duli()
-	{
-		var emaVal = $('#EmailDupVal').val();
-		
-		$.ajax({
-			url : 'emailChk',
-			type : 'post',
-			data : {
-				"oks.email" : emaVal
-			},
-			success : function(data)
-			{
-				if(data.dupChk == false)
-				{
-					$('#h5_id').text("중복된 이메일이 존재한다");
-				}//if
-				else
-				{
-					$('#h5_id').text("이메일 사용 가능");
-					$('#emailDupChk').text('사용하기');
-					$('#emailDupChk').on('click', function()
-					{
-						$('#email').attr('value', emaVal);
-						$('#closeBtn').trigger('click');
-						$('#emailDupChk').text('검색');
-					});	
-				}//else
-			}// success
-		});//ajax
-	}
-});   
-   
-</script>
-
 <body class="theme-invert">
 
 <%-- <nav class="mainmenu">
@@ -158,6 +102,7 @@ $(document).ready(function()
       
         <ul class="sidebar-nav" id="sidebar">     
 
+      	<li><a href="#" onclick="location.href='index.action'">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
       <!-- 로그인시 보여줄 메뉴 분기 -->
 <s:if test="#session.OKS != null">
 		<li class="sidebar">

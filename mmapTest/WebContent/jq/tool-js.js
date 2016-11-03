@@ -87,7 +87,7 @@
 			selectednode = d;
 			d3.select(this).classed("selected", true);
 			
-			d3.select(".selected-border").remove();
+			d3.selectAll(".selected-border").remove();
 			d3.select(this.parentNode).append("circle")
 	        .classed("selected-border", true)
 	        .attr("cx", function(d) { return d.x; })
@@ -98,7 +98,6 @@
 			        .attr("r", function(d) { return d.values; })
 			        .style("stroke-width", 0)
 			        .style("stroke-opacity", .2);
-			
 		}
 	}
 	
@@ -168,7 +167,6 @@
 	
 	function reDraw() {
 		var ts = g.attr("transform");
-		console.log(node);
 		
 		setXY();
 		linkNode();
@@ -229,6 +227,7 @@
 			selectednode.child = [node.length-1];
 		}
 		selectednode = undefined;
+		selected = undefined;
 		
 		reDraw();
 	}
@@ -238,8 +237,9 @@
 			return;
 		}
 		selectednode.text = text;
-		selectednode.values = values;
+		selectednode.values = parseInt(values);
 		selectednode = undefined;
+		selected = undefined;
 			
 		reDraw();
 	}

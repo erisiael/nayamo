@@ -18,7 +18,7 @@
 <script src="assets/js/jquery.ui.touch.js"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.js"></script>
-<script type="text/javascript" src="assets/js/login.js"></script>
+<script type="text/javascript" src="assets/js/login.js?ver=1"></script>
 
 	
 </head>
@@ -452,8 +452,8 @@ $(document).ready(function() {
 <script type="text/javascript" src="jq/jongchan.js?ver=1"></script>
 <!-- script for d3-lib -->
 <script type="text/javascript" src="jq/d3.v3.min.js"></script>
-<script type="text/javascript" src="jq/tool-js.js"></script>
-<script type="text/javascript" src="jq/talk.js"></script>
+<script type="text/javascript" src="jq/tool-js.js?ver=2"></script>
+<script type="text/javascript" src="jq/talk.js?ver=1"></script>
 <!-- script for image load -->
 <script type="text/javascript" src="jq/baik.js"></script>
 <!-- script for etc -->
