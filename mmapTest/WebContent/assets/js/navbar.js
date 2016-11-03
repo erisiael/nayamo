@@ -2,6 +2,7 @@
  * 
  */
 
+
 $(document).ready(function() {
 	$("#sidebar-wrapper").click(function(e) {
 	    e.preventDefault();

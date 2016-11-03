@@ -51,7 +51,11 @@ webSocketHtml.onmessage = function(event) {
 		if (username == '') {
 			username = 'guest';
 		}
-		node = JSON.parse(div_array[1]);
+		$(document).ready(function() {
+			node = JSON.parse(div_array[1]);
+			console.log("웹소켓의 노드다 :" + node);
+			reDraw();
+		});
 		webSocketHtml.send("initializeClient" + splicekey + username);
 		console.log("ini client");
 		break;

@@ -136,7 +136,7 @@ $(document).ready(function()
       <div id="sidebar-wrapper">
       <ul id="sidebar_menu" class="sidebar-nav">
       
-      <!--  로그인 관련 표시 -->
+     <!--  로그인 관련 표시 -->
 <s:if test="#session.OKS == null">
       	   <li><a><span>&nbsp;</span></a></li>
       	   <li><span class="loginstring"></span></li>
@@ -159,22 +159,20 @@ $(document).ready(function()
         <ul class="sidebar-nav" id="sidebar">     
 
       <!-- 로그인시 보여줄 메뉴 분기 -->
-<s:if test="#session.OKS == null">
-		<li><a>생각툴 이란?<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-		<li><a>만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-          <%-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-          <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li> --%>
-</s:if>
-<s:else>
+<s:if test="#session.OKS != null">
 		<li class="sidebar">
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
         <li><a>참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-</s:else>
+</s:if>
+		<li><a>생각툴 이란<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+		<li><a>만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li> -->
 		<!-- 로그인시 보여줄 메뉴 분기 -->
-		
-        </ul>
-        
+           
+      </ul>
+      
       </div>
           
 		<!-- 로그인 상태에서만 사용할 modal div -->          
@@ -225,47 +223,9 @@ $(document).ready(function()
 			  </div><!-- /.modal -->
 </s:if>
 		<!-- 로그인 상태에서만 사용할 modal div --> 
-        
-          
-          
-      <!-- Page content -->
-      <div id="page-content-wrapper">
-        <!-- Keep all page content within the page-content inset div! -->
-        <div class="page-content inset">
-          <div class="row">
-              <div class="col-md-12">
+<s:else>
 
-
-
-   <!-- Main (Home) section -->
-   <div class="section" id="head">
-
-      <div class="container">
-
-         <div class="row">
-            <div
-               class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
-
-               <!-- Site Title, your name, HELLO msg, etc. -->
-               <h1 class="title">BrainStorming Tool</h1>
-               <h2 class="subtitle">아이디어가 필요한 지금!?</h2>
-
-               <!-- Short introductory (optional) -->
-
-               <form id="enter_test" method="get" action="checkRoom">
-                  <h3 class="tagline">
-                     Enter Code : <input type="text" id="move" name = "str.enter_code">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
-                  </h3>
-               </form>
-
-               <!-- Nice place to describe your site in a sentence or two -->
-               <p>
-                  
-               </p>
-
-
-
-               <!-- The Modal -->
+<!-- The Modal -->
                <div id="id01" class="modal">
                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                   
@@ -446,6 +406,69 @@ $(document).ready(function()
                </div>
                <!-- login -->
 
+
+</s:else>        
+          
+<!-- modal js -->
+   <script>
+// Get the modal
+
+// When the user clicks anywhere outside of the modal, close it
+$(document).ready(function() {
+	$(window).click(function(event) {
+		var modal = document.getElementById('id01');
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	});
+	
+	
+	$(window).click(function(event) {
+		var myModal = document.getElementById('myModal');
+	    if (event.target == myModal) {
+	        myModal.style.display = "none";
+	    }
+	});
+});
+</script>
+          
+      <!-- Page content -->
+      <div id="page-content-wrapper">
+        <!-- Keep all page content within the page-content inset div! -->
+        <div class="page-content inset">
+          <div class="row">
+              <div class="col-md-12">
+              
+              <!-- content from here -->
+
+
+
+   <!-- Main (Home) section -->
+   <div class="section" id="head">
+
+      <div class="container">
+
+         <div class="row">
+            <div
+               class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
+
+               <!-- Site Title, your name, HELLO msg, etc. -->
+               <h1 class="title">BrainStorming Tool</h1>
+               <h2 class="subtitle">아이디어가 필요한 지금!?</h2>
+
+               <!-- Short introductory (optional) -->
+
+               <form id="enter_test" method="get" action="checkRoom">
+                  <h3 class="tagline">
+                     Enter Code : <input type="text" id="move" name = "str.enter_code">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
+                  </h3>
+               </form>
+
+               <!-- Nice place to describe your site in a sentence or two -->
+               <p>
+                  
+               </p>
+
             </div>
             <!-- /col -->
          </div>
@@ -560,28 +583,6 @@ $(document).ready(function()
 </div>
 </div>
 </div>
-   <!-- modal js -->
-   <script>
-// Get the modal
-
-
-// When the user clicks anywhere outside of the modal, close it
-$(window).click(function(event) {
-	var modal = document.getElementById('id01');
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-});
-
-
-$(window).click(function(event) {
-	var myModal = document.getElementById('myModal');
-    if (event.target == myModal) {
-        myModal.style.display = "none";
-    }
-});
-
-</script>
-
+</div>
 </body>
 </html>

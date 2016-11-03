@@ -108,14 +108,16 @@ $('window').ready(function() {
 	});
 	
 	var url = document.location.toString().split("?roomName_web=")[0] + "?roomName_web=";
-	var urlinput = $("<input type=text readonly=readonly />");
+	var urlinput = $("<br><button>URL 복사</button>");
 	
 	$('img#adduser').click(function() {
 		connectModal(urldialog.parent().parent());
 		urldialog.children("span").text("Entercode : " + entercode);
 		urldialog.append(urlinput);
-		urldialog.children("input").prop("value", url + entercode);
-		console.log("urlinput : " + document.location);
+		urldialog.children("button").on("click", function() {
+			clipboard.copy({"text/plain": url + entercode});
+			alert("복사되었습니다.");
+		});
 	});
 
 	
