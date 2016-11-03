@@ -199,6 +199,20 @@ public class OKS_DAO
 	    }
 	    return boardlist;
 	}
+	
+	public List<String> searchDB(String category) 
+	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		List<String> list = null;
+		
+		list = sqlSession.selectList("mapper.OKS_mapper.searchDB", category);
+		if(sqlSession != null)
+		{
+			sqlSession.close();
+		}
+		return list;
+	}
+
 
 	
 }

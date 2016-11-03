@@ -111,4 +111,8 @@
 		</if>
 	</select>
 	
+	<select id = "searchDB" parameterType = "String" resultType = "String">
+		select * from IT
+	</select>
+	
 </mapper>
