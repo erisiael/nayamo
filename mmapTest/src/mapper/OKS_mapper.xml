@@ -112,7 +112,7 @@
 	</select>
 	
 	<select id = "searchDB" parameterType = "String" resultType = "String">
-		select * from IT
+		select name from IT
 	</select>
 	
 </mapper>

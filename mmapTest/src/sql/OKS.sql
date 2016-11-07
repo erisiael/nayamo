@@ -9,3 +9,14 @@ create table OKS
 );
 
 create sequence OKS_SEQ;
+select * from OKS;
+
+
+create table text(
+	keyword varchar2(100)
+)
+select * from text;
+drop table text;
+select * from it;
+
+

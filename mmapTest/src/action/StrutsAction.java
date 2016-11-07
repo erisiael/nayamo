@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import javax.websocket.Session;
 
+import org.apache.ibatis.session.SqlSession;
 import org.apache.struts2.interceptor.SessionAware;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -21,6 +22,7 @@ import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.ManageDataDAO;
 import dao.OKS_DAO;
 import properties.PageNavigator;
 import properties.RandomNumberGenerator;
@@ -53,6 +55,9 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	////윤석기
 	private STR str;
 	private String roomName_web;
+	//석기, 승훈
+	private String children;
+	private String parent;
 
 	//private static String email_socket;
 	//private static int i = 0;//메시지에 회원수
@@ -69,7 +74,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		this.errorMessage = errorMessage;
 	}
 
-/*	public static String getEmail_socket() {
+	/*	public static String getEmail_socket() {
 		return email_socket;
 	}
 
@@ -80,13 +85,19 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public String OKS_Login() throws Exception
 	{
 		OKS tmp = null;
+		System.out.println("login1");
 		OKS_DAO dao = new OKS_DAO();
+		System.out.println("login2");
 		tmp = dao.selectOne(oks);
+		System.out.println("login3");
 		if(tmp != null)
 		{
+			System.out.println("login4");
 			session.put("OKS", tmp);
+			System.out.println("login5");
 			return SUCCESS;
 		}
+		System.out.println("login6");
 		session.put("l_chk", false);
 		return ERROR;		
 	}
@@ -225,7 +236,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public String checkRoom(){
 
 		//roomName_web=str.getEnter_code();
-		
+
 		System.out.println("entercode from checkRoom : " + roomName_web);
 
 		STR check = null;
@@ -244,7 +255,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 				//회원일 경우
 				OKS clerk= (OKS)session.get("OKS");
 				String name=clerk.getEmail();
-				
+
 				String[] div_email = name.split("@");
 				email_socket = div_email[0];
 			}*/
@@ -255,90 +266,69 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	//1
 	//방만들기
 	public String newRoom(){
-		
-		
+
+
 		// keyword 추천 기능 시작 // 
-				// myPage에서 입력한 keyword 값을 이용하여 db에 저장되어 있는 값들의 리스트를 가져온다
-				List<String> dic = new ArrayList<String>(); // 오라클에서 받아온 단어를 담을 리스트
-			    List<Integer> total = new ArrayList<Integer>(); // 검색해서 받아온 스트링에서 DB단어와 일치하는 개수를 담을 리스트
-			    
-			    int tmp = 0;
-			    int count = 0;
-			    String tmp_str = "";
-			    
-			    String keyword = str.getKeyword(); // myPage.html에서 입력한 keyword
-			    String category = str.getCategory(); // myPage.html에서 입력한 category. db에서 table을 선택한다
-			    OKS_DAO dao = new OKS_DAO();
-			    dic = dao.searchDB(category); // 선택한 category에 해당하는 db테이블을 찾은 후, 담겨 있는 모든 name 들을 가져온다
-			    
-			    String resSearch = Search(keyword); // myPage.html에서 입력한 keyword를 이용하여, 네이버 페이지에서 검색한 결과를 가져온다
-			    
-			    for (int j = 0; j < dic.size(); j++) {
-			         Pattern pattern = Pattern.compile(dic.get(j)); //오라클에서 받아온 단어 나중에 dic.... 변경
-			         Matcher matcher = pattern.matcher(resSearch); //검색결과
-			         while (matcher.find()) {
-			            count++; //검색결과가 오라클에서 받아온 단어와 일치하면 count증가
-			         }
-			         total.add(count);
-			         System.out.println("[" + resSearch + "] 의 " + dic.get(j) + "의 개수 : " + count);
-			         count = 0;
-			      }
+		// myPage에서 입력한 keyword 값을 이용하여 db에 저장되어 있는 값들의 리스트를 가져온다
+		List<String> dic = new ArrayList<String>(); // 오라클에서 받아온 단어를 담을 리스트
+		List<Integer> total = new ArrayList<Integer>(); // 검색해서 받아온 스트링에서 DB단어와 일치하는 개수를 담을 리스트
 
-			      for (int i = 0; i < dic.size(); i++) {
-			         int reee = total.get(i);
-			         System.out.println(dic.get(i)+"의 갯수 : " +reee);
-			         
-			         
-			      }
-			      
-			      for(int i = 0; i < total.size(); i++) 
-			      {
-			         for (int j = 0; j < total.size() - 1; j++) 
-			         {
-			            count++;
-			            if(total.get(j) < total.get(j+1)) {
-			               
-			               tmp = total.get(j);
-			               total.set(j, total.get(j+1));
-			               total.set(j+1, tmp);
-			               
-			               tmp_str = dic.get(j);
-			               dic.set(j, dic.get(j+1));
-			               dic.set(j+1, tmp_str);
-			            }
-			         }
-			      }
-			      for(int i = 0; i < 3; i++)
-			      {
-			    	  System.out.println(i + 1 + " : " + dic.get(i));
-			      }
-			   
-			    // keyword 추천 기능 끝 // 
+		//category 셋팅
+		session.put("category", str.getCategory());
 
 
+		int tmp = 0;
+		int count = 0;
+		String tmp_str = "";
 
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		String keyword = str.getKeyword(); // myPage.html에서 입력한 keyword
+		String category = str.getCategory(); // myPage.html에서 입력한 category. db에서 table을 선택한다
+		OKS_DAO dao = new OKS_DAO();
+		dic = dao.searchDB(category); // 선택한 category에 해당하는 db테이블을 찾은 후, 담겨 있는 모든 name 들을 가져온다
+
+		String resSearch = Search(keyword); // myPage.html에서 입력한 keyword를 이용하여, 네이버 페이지에서 검색한 결과를 가져온다
+
+		for (int j = 0; j < dic.size(); j++) {
+			Pattern pattern = Pattern.compile(dic.get(j)); //오라클에서 받아온 단어 나중에 dic.... 변경
+			Matcher matcher = pattern.matcher(resSearch); //검색결과
+			while (matcher.find()) {
+				count++; //검색결과가 오라클에서 받아온 단어와 일치하면 count증가
+			}
+			total.add(count);
+			//System.out.println("[" + resSearch + "] 의 " + dic.get(j) + "의 개수 : " + count);
+			count = 0;
+		}
+
+		for (int i = 0; i < dic.size(); i++) {
+			int reee = total.get(i);
+			System.out.println(dic.get(i)+"의 갯수 : " +reee);
+
+
+		}
+
+		for(int i = 0; i < total.size(); i++) 
+		{
+			for (int j = 0; j < total.size() - 1; j++) 
+			{
+				count++;
+				if(total.get(j) < total.get(j+1)) {
+
+					tmp = total.get(j);
+					total.set(j, total.get(j+1));
+					total.set(j+1, tmp);
+
+					tmp_str = dic.get(j);
+					dic.set(j, dic.get(j+1));
+					dic.set(j+1, tmp_str);
+				}
+			}
+		}
+		for(int i = 0; i < 3; i++)
+		{
+			System.out.println(i + 1 + " : " + dic.get(i));
+		}
+
+		// keyword 추천 기능 끝 // 
 		//test
 		RandomNumberGenerator r = new RandomNumberGenerator(((OKS)session.get("OKS")).getEmail());
 		//////
@@ -347,13 +337,13 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		str.setEnter_code(roomName_web);
 		ActionContext.getContext().getValueStack().setValue("roomName_web", roomName_web);
 		//
-		
+
 		System.out.println("entercode from newRoom : " + str.getEnter_code());
-		
+
 		/*String email_socket =((OKS)session.get("OKS")).getEmail();
 		String[]temp = email_socket.split("@");
 		email_socket = temp[0];*/
-		
+
 		if(!BroadsocketHtml.getRooms().containsKey(roomName_web)){
 			//같은방 이름이 없을때
 			//방에 넣기
@@ -372,30 +362,45 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	private String Search(String keyword) // 네이버 페이지에서 category로 검색한 결과를 긁어오는 함수
 	{
 		String str = ""; // 검색결과 읽어온 스트링값을 담기 위한 변수
+		String url = "";
 		try {
 			String utf8 = URLEncoder.encode(keyword, "UTF-8");// 쿼리문에들어갈 한글인코딩
-			String url = "http://search.naver.com/search.naver?" + "where=nexearch&query=" + utf8
-					+ "&display=10&start=1&target=webkr&sm=top_hty&fbm=1&ie=utf8&display=10&start=1&target=webkr";
-			Document doc = Jsoup.connect(url)
-					.header( // 헤더
-							"Accept",
-							"image/gif, image/xxbitmap, image/jpeg, image/pjpeg,application/xshockwaveflash, application/vnd.msexcel,application/vnd.mspowerpoint, application/msword, */*")
-					.get();
-
-			Elements links = doc.getElementsByTag("a"); // a태그 모두
-			Elements links1 = doc.getElementsByTag("dd"); // dd태그 모두w
-
-			for (Element link : links) {
-				str += link.text(); // a태그에 텍스트
-			}
-			for (Element link : links1) {
-				str += link.text(); // dd태그에 텍스트
-			}
+			
+				url = "http://search.naver.com/search.naver?" + "where=nexearch&query=" + utf8
+						+ "&display=10&start=1&target=webkr&sm=top_hty&fbm=1&ie=utf8&display=10&start=1&target=webkr";
+				Document doc = Jsoup.connect(url)
+						.header( // 헤더
+								"Accept",
+								"image/gif, image/xxbitmap, image/jpeg, image/pjpeg,application/xshockwaveflash, application/vnd.msexcel,application/vnd.mspowerpoint, application/msword, */*").get();
+				Elements links = doc.getElementsByTag("a"); // a태그 모두
+				Elements links1 = doc.getElementsByTag("dd"); // dd태그 모두w
+				for (Element link : links) {
+					str += link.text(); // a태그에 텍스트
+				}
+				for (Element link : links1) {
+					str += link.text(); // dd태그에 텍스트
+				}
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		//System.out.println("str : " + str);
 		return str; // 결과값 반환
 	}
+
+
+	//부모와 자식관계 테이블에 저장
+	public String relation(){
+		System.out.println("relation1");
+		String make_relation = null;
+		make_relation = parent+","+children+","+session.get("category");
+		ManageDataDAO dao = new ManageDataDAO();
+		System.out.println("relation2");
+		dao.storedData(make_relation);
+		System.out.println("relation3");
+
+		return SUCCESS;
+	}
+
 
 
 
@@ -403,7 +408,18 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	////////////////////////////////////////////////////////
 
 
-
+	public String getChildren() {
+		return children;
+	}
+	public void setChildren(String children) {
+		this.children = children;
+	}
+	public String getParent() {
+		return parent;
+	}
+	public void setParent(String parent) {
+		this.parent = parent;
+	}
 	public OKS getOks() {
 		return oks;
 	}
@@ -510,6 +526,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public void setRoomName_web(String roomName_web) {
 		this.roomName_web = roomName_web;
 	}
-	
+
 
 }

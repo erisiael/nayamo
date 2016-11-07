@@ -69,6 +69,7 @@
 											    .on("drag", dragged)
 											    .on("dragend", dragended);
 	
+	
 	var zoom = d3.behavior.zoom()
 											    .scaleExtent(zoomrate)
 											    .on("zoom", zoomed);

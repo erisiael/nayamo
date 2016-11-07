@@ -402,8 +402,6 @@ $(document).ready(function() {
 	        </div>
 	    </div>
 
-
-
 <div class="modal-div" id="modal-content">
 	<div class="div-dialogs">
 	</div>

@@ -65,7 +65,12 @@
         		<param name="roomName_web">${roomName_web}</param>
         	</result>
         	<result name="error">index.jsp</result>
-        </action>        
+        </action>     
+        <!-- 부모와 자식관계 테이블에 저장 -->
+        <action name="relation" class = "action.StrutsAction" method = "relation">
+        	<result type ="json"></result>
+        </action>
+           
         <!-- 김동현 작업 시작-->
         <action name="myPage" class="action.StrutsAction" method="OKS_myPage">
         	<result>myPage.html</result>

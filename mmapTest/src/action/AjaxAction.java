@@ -2,6 +2,7 @@ package action;
 
 import com.opensymphony.xwork2.ActionSupport;
 
+import dao.ManageDataDAO;
 import vo.Ajaxuser;
 
 public class AjaxAction extends ActionSupport {
@@ -12,6 +13,10 @@ public class AjaxAction extends ActionSupport {
 	
 	private static String roomName;
 	private String temp_roomName;
+	
+	
+	
+	
 	/*
 	 * getter setter
 	 *  */
@@ -62,9 +67,15 @@ public class AjaxAction extends ActionSupport {
 	}
 
 
+	
+	
+
 	/////////////////////////	
 
 
+
+
+	
 
 
 

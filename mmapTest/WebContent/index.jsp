@@ -99,7 +99,6 @@
       <!--  로그인 관련 표시 -->
            
       </ul>
-      
         <ul class="sidebar-nav" id="sidebar">     
 
       	<li><a href="#head" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
@@ -109,7 +108,7 @@
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
         <li><a href="#">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-</s:if>
+</s:if> 
 		<li><a href="#about" class="a-scrolling">만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 		<li><a href="#themes" class="a-scrolling">생각툴 이란<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
         <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>

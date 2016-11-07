@@ -50,6 +50,22 @@ $('window').ready(function() {
 			var values = mapdialog.children().filter('input[type=range]').val();
 			editData(text, values);
 			dialogclosebtn.trigger('click');
+
+			
+		//석기,승훈	
+			var text_parent = mapdialog.children().parent().val();
+			$.ajax({
+				url:'relation',
+				type:'post',
+				data:{
+					"children":text,
+					"parent":text_parent
+				}
+			/*succcess:function(data){
+				
+			}*/
+		});
+	///////////////////////////////////////////
 		}
 	});
 	

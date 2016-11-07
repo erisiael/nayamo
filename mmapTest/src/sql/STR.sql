@@ -13,6 +13,11 @@ create table STR
   enter_code varchar2(20) not null,--비밀번호
   regdate date default sysdate--만든날
 );
-drop table STR;
-
+drop table test;
+delete from IT;
 create sequence STR_SEQ;
+select * from it
+select count(*) from it　where name = '아이폰';
+delete from it where name = '아이폰'
+insert into it (name) values('아이폰')
+
