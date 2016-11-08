@@ -15,7 +15,7 @@ select * from OKS;
 create table text(
 	keyword varchar2(100)
 )
-select * from text;
+select * from oks;
 drop table text;
 select * from it;
 

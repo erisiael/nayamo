@@ -12,7 +12,7 @@ public class FileService {
 	private String target; 
 	private String filename;
 	private String extension;
-	private final String path = "D:/mmapData";
+	private final String path = "C:/mmapData";
 	
 	/**
 	 * Constructor for save

@@ -13,6 +13,7 @@ import dao.STR_DAO;
 import properties.FileService;
 import properties.PageNavigator;
 import properties.RandomNumberGenerator;
+import properties.Search_Keyword;
 import vo.OKS;
 import vo.SKA_LIST;
 import vo.STR;
@@ -250,10 +251,20 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		ActionContext.getContext().getValueStack().setValue("roomName_web", roomName_web);
 		//
 		
+		
+		/////keyword test     null일 경우 검색결과가 없는 경우
+		Search_Keyword ke = new Search_Keyword();
+		System.out.println(ke.Search(str.getCategory(), str.getKeyword())[0]+"병신상덕이");
+		System.out.println(str.getCategory()+"     "+str.getKeyword());
+		/////////////////////////
+		
+		
 		OKS oks = (OKS) session.get("OKS");
 		str.setOKS_email(oks.getEmail());
-		
 		STR_DAO dao = new STR_DAO();
+		
+		
+		
 		
 		if (dao.selectOneSTR(str) == null) {
 			String rootnode = "[{\"text\":\""+ str.getKeyword() +"\",\"root\":true,\"values\":100}]";

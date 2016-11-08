@@ -1,6 +1,8 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -58,5 +60,18 @@ public class STR_DAO {
 		
 		return result;
 	}
+	public List<String> searchDB(String category) 
+	   {
+	      SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+	      List<String> list = null;
+	      Map<String, String> map = new HashMap<String, String>();
+	      
+	      list = sqlSession.selectList("mapper.OKS_mapper.searchDB", map);
+	      if(sqlSession != null)
+	      {
+	         sqlSession.close();
+	      }
+	      return list;
+	   }
 	
 }

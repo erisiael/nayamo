@@ -111,8 +111,23 @@
 		</if>
 	</select>
 	
-	<select id = "searchDB" parameterType = "String" resultType = "String">
-		select name from IT
-	</select>
+	<select id = "searchDB" parameterType = "Map" resultType = "String">
+      select name from 
+      <if test = "category == 'IT'">
+         IT      
+      </if>
+      <if test = "category == 'Food'">
+         Food      
+      </if>
+      <if test = "category == 'Science'">
+         Science      
+      </if>
+      <if test = "category == 'Sports'">
+         Sports      
+      </if>
+      <if test = "category == 'Music'">
+         Music      
+      </if>
+   </select>
 	
 </mapper>
