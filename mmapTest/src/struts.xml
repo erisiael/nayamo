@@ -20,6 +20,10 @@
         	<result type="json"></result>
         </action> -->
         
+        <action name="showSTRs" class="action.AjaxSTRListAction" method="showSTRs">
+        	<result type = "json"></result>
+        </action>
+        
         <action name="load" class="action.AjaxAction" method="load">
         	<result type = "json"></result>
         </action>

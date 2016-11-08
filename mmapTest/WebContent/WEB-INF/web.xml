@@ -30,7 +30,6 @@
             <role-name>no-users</role-name>
         </auth-constraint>
     </security-constraint> -->
-
     <security-role>
         <description>Don't assign users to this role</description>
         <role-name>no-users</role-name>

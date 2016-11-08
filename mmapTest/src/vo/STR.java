@@ -1,6 +1,5 @@
 package vo;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.websocket.Session;
@@ -14,9 +13,11 @@ public class STR
 	private String keyword;
 	private String category;
 	////////////////////////////
-	private String savepath;
 	private String enter_code;
 	private String regdate;
+	
+	private String svgdata;
+	private String htmldata;
 	
 	private HashMap<Session,String> session_list = new HashMap<>();
 	
@@ -36,7 +37,6 @@ public class STR
 		STR_no = sTR_no;
 		OKS_email = oKS_email;
 		this.name = name;
-		this.savepath = savepath;
 		this.enter_code = enter_code;
 		this.regdate = regdate;
 	}
@@ -56,14 +56,13 @@ public class STR
 		this.enter_code = enter_code;
 	}
 	
-	public STR(String oKS_email, String name, String keyword, String category, String savepath,
+	public STR(String oKS_email, String name, String keyword, String category,
 			String enter_code, String regdate) {
 		super();
 		OKS_email = oKS_email;
 		this.name = name;
 		this.keyword = keyword;
 		this.category = category;
-		this.savepath = savepath;
 		this.enter_code = enter_code;
 		this.regdate = regdate;
 	}
@@ -113,14 +112,6 @@ public class STR
 		this.name = name;
 	}
 
-	public String getSavepath() {
-		return savepath;
-	}
-
-	public void setSavepath(String savepath) {
-		this.savepath = savepath;
-	}
-
 	public String getEnter_code() {
 		return enter_code;
 	}
@@ -143,11 +134,23 @@ public class STR
 	public void setSession_list(HashMap<Session,String> session_list) {
 		this.session_list = session_list;
 	}
+	public String getSvgdata() {
+		return svgdata;
+	}
+	public void setSvgdata(String svgdata) {
+		this.svgdata = svgdata;
+	}
+	public String getHtmldata() {
+		return htmldata;
+	}
+	public void setHtmldata(String htmldata) {
+		this.htmldata = htmldata;
+	}
 
 	@Override
 	public String toString() {
 		return "STR [STR_no=" + STR_no + ", OKS_email=" + OKS_email + ", name=" + name + ", keyword=" + keyword
-				+ ", category=" + category + ", savepath=" + savepath + ", enter_code=" + enter_code + ", regdate="
+				+ ", category=" + category + ", enter_code=" + enter_code + ", regdate="
 				+ regdate + "]";
 	}
 

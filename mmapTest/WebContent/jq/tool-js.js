@@ -8,6 +8,23 @@
 	console.log(w);
 	console.log(h);
 	
+	var circlefill = "rgba(118,214,255,0.7)";
+	
+	var rootfill = "rgba(255,119,142,1)",
+		rootstroke = "rgba(204,198,65,0.5) !important",
+    	rootstroke_width = "10 !important",
+    	rootstroke_dasharray = "0 !important;";
+    	
+    var	linestroke = "black",
+    	linestroke_width = "1",
+    	lineshape_rendering = "crispEdges",
+    	lineopacity = "0.1";
+    
+    var textfill = "black",
+    	textfont_size = "20px",
+		textfont_family = "맑은 고딕",
+		textfont = "bolder";
+	
 	var zoomrate = [1/8, 8];
 	
 	var selected = null;
@@ -15,7 +32,7 @@
 	
 	var node = [
 		            //{text : "1번타자", parent : 1, child : [1,2,3], values: 50}
-		       {text : "루트 노드", root : true, values : 100}
+		            {text : "루트 노드", root : true, values : 100}
 		       ]
 	var links = [];
 	
@@ -23,36 +40,36 @@
 	linkNode();
 
 	var svg = d3.select("#main").append("svg")
-					.attr("width", w)
-					.attr("height", h);
+							.attr("width", w)
+							.attr("height", h);
 					
 	var transform = d3.zoomIdentity;
 
 	var force = d3.layout.force()
-    .nodes(node)
-    .links(links)
-    .size([w,h]);
+						.nodes(node)
+					    .links(links)
+					    .size([w,h]);
 	
-	var width = svg
-							.attr("width"),
-			height = svg
+    var width = svg
+							.attr("width");
+	var	height = svg
 							.attr("height");
-	addg = svg
+	var	addg = svg
 							.selectAll("g")
 							.data(node)
 							.enter()
 								.append("g")
 								.attr("transform", "translate(0,0)");
 	
-	g = svg.selectAll("g");
+	var g = svg.selectAll("g");
 	
-	rect = g.append("circle")
+	var rect = g.append("circle")
 										.attr("r", function(d) { return d.values; })
 										.attr("id", function(d) { if(d.root) {return "circle-root";} })
 										.attr("cx", function(d) { return d.x; })
     									.attr("cy", function(d) { return d.y; });
 			
-	line = g.selectAll("line")
+	var line = g.selectAll("line")
 										.data(links)
 										.enter()
 										.append("line")
@@ -78,6 +95,7 @@
 	svg.call(zoom);
 	rect.call(drag);
     rect.on("click", clicked);
+    styleData();
 	
 	function clicked(d) {
 		if (selected != d3.select(this)) {
@@ -128,6 +146,7 @@
 	
 	
 	function setXY() {
+		console.log("setXY : " + node);
 		for (var i = 0; i < node.length; i++) {
 			if (node[i].x == undefined) {
 				node[i].x = w / 2 - (node[i].values / 2);
@@ -212,7 +231,9 @@
 		rect.call(drag);
 	    rect.on("click", clicked);
 	    
+	    styleData();
 	    tick();
+
 	}
 	
 	function addData(text) {
@@ -220,7 +241,7 @@
 			return;
 		}
 		node.push({
-			"text" : text, "parent" : node.indexOf(selectednode), "x" : (selectednode.x + 150), "y" : (selectednode.y + 150), "values" : 100
+			"text" : text, "parent" : node.indexOf(selectednode), "x" : (selectednode.x + 150), "y" : (selectednode.y + 150), "values" : 70
 		});
 		if (selectednode.child != undefined) {
 			selectednode.child.push(node.length-1); 
@@ -243,6 +264,118 @@
 		selected = undefined;
 			
 		reDraw();
+	}
+	
+	function styleData() {
+		svg.selectAll("circle:not(#circle-root)").style("fill", function(d) {
+			if (d.fill == undefined) {
+				d.fill = circlefill;
+				return circlefill;
+			} else {
+				return d.fill
+			}
+		});
+
+		svg.selectAll("circle#circle-root").style("fill", function(d) {
+			if (d.fill == undefined) {
+				d.fill = rootfill;
+				return rootfill;
+			} else {
+				return d.fill;
+			}
+		})
+		.style("stroke", function(d) {
+			if (d.stroke == undefined) {
+				d.stroke = rootstroke;
+				return rootstroke;
+			} else {
+				return d.stroke;
+			}
+		})
+		.style("stroke-width", function(d) {
+			if (d.stroke_width == undefined) {
+				d.stroke_width = rootstroke_width;
+				return rootstroke_width;
+			} else {
+				return d.stroke_width;
+			}
+		})
+		.style("stroke-dasharray", function(d) {
+			if (d.stroke_dasharray == undefined) {
+				d.stroke_dasharray = rootstroke_dasharray;
+				return rootstroke_dasharray;
+			} else {
+				return d.stroke_dasharray;
+			}
+		});
+
+		g.selectAll("line")
+		.style("stroke", function(d) {
+			if (d.stroke == undefined) {
+				d.stroke = linestroke;
+				return linestroke;
+			} else {
+				return d.stroke;
+			}
+		})
+		.style("stroke-width", function(d) {
+			if (d.stroke_width == undefined) {
+				d.stroke_width = linestroke_width;
+				return linestroke_width;
+			} else {
+				return d.stroke_width;
+			}
+		})
+		.style("shape-rendering", function(d) {
+			if (d.shape_rendering == undefined) {
+				d.shape_rendering = lineshape_rendering; 
+				return lineshape_rendering;
+			} else {
+				return d.shape;
+			}
+		})
+		.style("opacity", function(d) {
+			if (d.opacity == undefined) {
+				d.opacity = lineopacity;
+				return lineopacity;
+			} else {
+				return d.opacity;
+			}
+		});
+
+		g.append("text")
+		.style("fill", function(d) {
+			if (d.fill == undefined) {
+				d.fill = textfill;
+				return textfill;
+			} else {
+				return d.fill;
+			}
+		})
+		.style("font-size", function(d) {
+			if (d.font_size == undefined) {
+				d.font_size = textfont_size;
+				return textfont_size;
+			} else {
+				return d.font_size;
+			}
+		})
+		.style("font-family", function(d) {
+			if (d.font_family == undefined) {
+				d.font_family = textfont_family; 
+				return textfont_family;
+			} else {
+				return d.font_family;
+			}
+		})
+		.style("font", function(d) {
+			if (d.font == undefined) {
+				d.font = textfont;
+				return textfont;
+			} else {
+				return d.font;
+			}
+		});
 	}
 	
 	function getNode() {

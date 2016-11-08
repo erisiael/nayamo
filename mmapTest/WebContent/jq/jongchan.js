@@ -75,12 +75,12 @@ $('window').ready(function() {
 	modal.css('display', 'none');
 	
 	$('img#add').on('click', function() {
-		
 		addData("새로운 노드");
 	});
 	 
 	$('img#save').click(function() { // 저장 버튼의 이벤트
 		send("html");
+		send("svg");
 	});
 	
 	$('img#load').click(function() { // 불러오기 버튼의 이벤트
@@ -150,3 +150,4 @@ function connectModal(dom) {
 	};
 	dom.on("click", func);
 }
+

@@ -63,11 +63,19 @@ $(document).ready(function() {
 	};
 	
 	$("#btn-chat").on("click", function() {
-		send("message");
+		if (document.getElementById("btn-input").value == '') {
+			alert("공백은 입력할 수 없습니다.");
+		}else {
+			send("message");
+		}
 	});
 	$("#btn-input").on('keypress', function(event) {
 		if (event.which == 13) {
-			$("#btn-chat").trigger("click");
+			if (document.getElementById("btn-input").value == '') {
+				alert("공백은 입력할 수 없습니다.");
+			}else {
+				$("#btn-chat").trigger("click");
+			}
 		}
 	});
 

@@ -18,6 +18,7 @@ import javax.websocket.server.ServerEndpoint;
 
 import action.AjaxAction;
 import action.StrutsAction;
+import properties.FileService;
 import vo.STR;
 
 @ServerEndpoint("/exclude/broadcastingHtml")
@@ -29,7 +30,6 @@ public class BroadsocketHtml{
 
 	private String splicekey = "#cmamxlsk#";
 	private static int guest = 0;
-
 
 	@OnMessage
 	public void onMessage(String canvas, Session session) {
@@ -48,16 +48,36 @@ public class BroadsocketHtml{
 			//ArrayList<Session> rom = AjaxAction.getRooms().get(roomName_web);//arrayList
 			
 			switch (str[0]) {
-			case "html":
+			case "html_start":
+				rooms.get(roomName_web).setHtmldata("");
+				break;
+			case "html_end":
+				FileService fs = new FileService(rooms.get(roomName_web).getHtmldata(), roomName_web, ".json");
+				fs.saveFile();
 				synchronized (rooms) {
-					rooms.get(roomName_web).setSavepath("html" + splicekey + str[1]);
 					// Iterate over the connected sessions
 					// and broadcast the received message
 					for (Entry<Session, String> client : rom.entrySet()) {
-						
-						client.getKey().getBasicRemote().sendText("html" + splicekey +str[1]+ splicekey +roomName_web);
+						client.getKey().getBasicRemote().sendText("html" + splicekey + rooms.get(roomName_web).getHtmldata() + splicekey + roomName_web);
 					}
 				}
+				break;
+			case "html_data":
+				rooms.get(roomName_web).setHtmldata(rooms.get(roomName_web).getHtmldata() + str[1]);
+				break;
+			case "svg_start":
+				rooms.get(roomName_web).setSvgdata("");
+				break;
+			case "svg_end":
+				System.out.println("svg_end : " +rooms.get(roomName_web).getSvgdata());
+				System.out.println(rooms.get(roomName_web).getSvgdata().length());
+				
+				fs = new FileService(rooms.get(roomName_web).getSvgdata(), roomName_web, ".svg");
+				fs.saveFile();
+				break;
+			case "svg_data":
+				rooms.get(roomName_web).setSvgdata(rooms.get(roomName_web).getSvgdata() + str[1]);
+				System.out.println("svg_datas : " + rooms.get(roomName_web).getSvgdata());
 				break;
 			case "message":
 				synchronized (rom) {
@@ -72,8 +92,11 @@ public class BroadsocketHtml{
 				break;
 			case "initializeServer":
 				roomName_web = str[1];
+				fs = new FileService(roomName_web, ".json");
+				String node = fs.loadFile();
 				synchronized (rooms) {
-					session.getBasicRemote().sendText("initializeClient" + splicekey + rooms.get(roomName_web).getSavepath());
+					System.out.println("loaded node : " + node);
+					session.getBasicRemote().sendText("initializeClient" + splicekey + node);
 				}
 				break;
 			case "initializeClient":
@@ -115,18 +138,15 @@ public class BroadsocketHtml{
 	}
 	@OnClose
 	public void onClose(Session session){
-		// outer if의 조건문은 DB에 roomName_web이 있느냐? 로 차후 수정되어야 한다.
-		if (rooms.get(roomName_web).getSession_list().size() != 1) {
-			if (rooms.get(roomName_web).getSession_list().containsKey(session)) {
-				synchronized (rooms) {
-					rooms.get(roomName_web).getSession_list().remove(session);
-					System.out.println("rooms 내부 str의 세션 삭제 완");
+		synchronized (rooms) {
+			if (rooms.get(roomName_web).getSession_list().size() != 1) {
+				if (rooms.get(roomName_web).getSession_list().containsKey(session)) {
+						rooms.get(roomName_web).getSession_list().remove(session);
+						System.out.println("rooms 내부 str의 세션 삭제 완");
 				}
-			}
-		} else {
-			synchronized (rooms) {
-				rooms.remove(roomName_web);
-				System.out.println("rooms의 세션 삭제 완");
+			} else {
+					rooms.remove(roomName_web);
+					System.out.println("rooms의 세션 삭제 완");
 			}
 		}
 	}
