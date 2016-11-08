@@ -8,9 +8,7 @@ create table STR
   category varchar2(30) not null,
   
   ------------
-  savepath varchar2(50) not null,--파일이 저장될 경로 (마인드맵의 정보)
-  
-  enter_code varchar2(20) not null,--비밀번호
+  enter_code varchar2(200) not null,--비밀번호
   regdate date default sysdate--만든날
 );
 drop table test;
