@@ -7,8 +7,24 @@
 	<!-- <constant name="struts.action.excludePattern" value="^ws://.+$"/> -->
 	<constant name="struts.action.excludePattern" value="/exclude/.*?"/>
 	
-	<package name="default" namespace="/" extends="struts-default, json-default">    
+	<package name="default" namespace="/" extends="struts-default, json-default">
+		<interceptors>
+			<interceptor name="loginIntercepter" class="interceptor.LoginInterceptor" />
+		
+			<interceptor-stack name="loginStack">
+				<interceptor-ref name="loginIntercepter" />
+				<interceptor-ref name="basicStack" />
+			</interceptor-stack>
+		</interceptors>
+		
         <default-action-ref name="index"/>
+        
+        <global-results>
+        	<result name="login" type="redirectAction">
+        		<param name="actionName">index.action</param>
+        		<param name="errorMessage">${errorMessage}</param>
+        	</result>
+        </global-results>
        
         <action name = "index">
         	<result>index.jsp</result>
@@ -21,6 +37,7 @@
         </action> -->
         
         <action name="showSTRs" class="action.AjaxSTRListAction" method="showSTRs">
+        	<interceptor-ref name="loginStack" />
         	<result type = "json"></result>
         </action>
         
@@ -64,6 +81,7 @@
         
         <!-- 윤석기 방만들기 -->
     	<action name="newRoom" class ="action.StrutsAction" method="newRoom">
+    		<interceptor-ref name="loginStack" />
         	<result name="success" type="redirectAction">
         		<param name="actionName">checkRoom</param>
         		<param name="roomName_web">${roomName_web}</param>

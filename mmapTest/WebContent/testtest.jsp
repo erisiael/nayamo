@@ -77,7 +77,7 @@ setLoader(); // setting loader.js
 		<li class="sidebar">
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
-        <li><a href="#" id="strlist_carousel">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <li><a href="#" id="strlist_carousel">나의 생각툴<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 </s:if>
       	<li><a href="#" onclick="location.href='index.action'" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
         <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>

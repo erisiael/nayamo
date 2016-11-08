@@ -34,6 +34,7 @@ function showSTRs() {
 					var keyword = data.str_list[index].keyword;
 					var regdate = data.str_list[index].regdate;
 					var svgdata = data.str_list[index].svgdata;
+					var name = data.str_list[index].name;
 					
 					var carouselclone = $(".carousel-template").children("div").clone();
 					$(".carousel-inner").append(carouselclone);
@@ -45,10 +46,10 @@ function showSTRs() {
 						//carouselclone.addClass("active",true);
 					}
 					console.log(carouselclone.parent().html());
-					carouselclone.children("a").attr("href", "http://203.233.194.218:8888/mmapTest/checkRoom?roomName_web=" + enter_code);
+					carouselclone.children("a").attr("href", "checkRoom?roomName_web=" + enter_code);
 					var caption = carouselclone.children(".carousel-caption");
 					caption.children("h3").text(regdate);
-					caption.children("p").text(keyword);
+					caption.children("p").text("title : " + name + " | keyword : " + keyword);
 					
 					
 					carouselclone.children("a").children("img").attr("width", "70%");

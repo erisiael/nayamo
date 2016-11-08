@@ -55,9 +55,14 @@
 <!-- navbar start from here -->
    	<script>
    		var message = "<%= request.getAttribute("errorMessage") %>";
+   		var message2 = "<%= request.getParameter("errorMessage") %>";
    		if (message != 'null') {
 	   		$(document).ready(function() {
 		   		alert(message);
+			});
+   		} else if (message2 != 'null') {
+   			$(document).ready(function() {
+		   		alert(message2);
 			});
    		}
    	</script>
@@ -96,7 +101,7 @@
 		<li class="sidebar">
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
-        <li><a href="#" id="strlist_carousel">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+        <li><a href="#" id="strlist_carousel">나의 생각툴<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 </s:if>
       	<li><a href="#head" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 		<li><a href="#about" class="a-scrolling">만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
