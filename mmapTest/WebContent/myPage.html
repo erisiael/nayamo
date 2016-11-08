@@ -1,0 +1,184 @@
+<!--A Design by W3layouts
+Author: W3layout
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<title>MindMap-Mind</title>
+<script type="text/javascript" src="jq/jquery-3.1.1.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/modernizr.custom.72241.js"></script>
+
+<link href="assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="header">
+    <div class="wrap">
+            <div class="logo"><a href="index.jsp"><img src="assets/images/title.png" alt="Mind Map" /></a></div>
+            <div class="headerbox">
+                <div class="login">
+                    <ul>
+                        <li><a href="OKS_updateForm.action">info</a></li> |
+                        <li><a href="OKS_logout.action">logout</a></li>
+                    </ul>
+                </div>
+                <!-- <div class="search">
+                    <form>
+                        <input type="text" value="Search" onFocus="this.value = '';" onBlur="if (this.value == '') {this.value = 'Search';}">
+                        <input type="submit" value="Go" />
+                    </form>
+                </div> -->
+            </div>
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="wrap">
+    <div class="main">
+        <div class="nav">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li class="active"><a href="myPage.html">Mypage</a></li>
+            <li><a href="Go_board.action">Auction</a></li>
+            <li><a href="#">etc</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="clear"></div>
+    </div>
+        <div class="content">
+        <article>
+        <h1>My MindMap</h1>
+        <div class="myPageBox">
+        	<!-- 아직 미구현
+        	1. 스크롤 (한번에 3개 정도만 출력)
+        	2. New Project 밑에 뭔가 추가해야할듯... 너무 단조로움 
+        	3. Title 왼쪽에 체크박스 추가해서 삭제, 경매기능 추가-->
+  			<div class="row">
+    			<div class="scrollBlind">
+      				<button type="button" class="newI btn btn-primary">Test1</button>
+      				<p><input type="checkbox" name="mindMap" value="1">Title</p>
+      				<button type="button" class="newI btn btn-success">Test2</button>
+      				<p><input type="checkbox" name="mindMap" value="2">Title</p>
+      				<button type="button" class="newI btn btn-warning">Test3</button>
+      				<p><input type="checkbox" name="mindMap" value="3">Title</p>    				
+      				<button type="button" class="newI btn btn-danger">Test4</button>
+      				<p><input type="checkbox" name="mindMap" value="4">Title</p>
+      				<button type="button" class="newI btn btn-secondary">Test5</button>
+      				<p><input type="checkbox" name="mindMap" value="5">Title</p>
+      				<button type="button" class="newI btn btn-info">Test6</button>
+      				<p><input type="checkbox" name="mindMap" value="6">Title</p>
+    			</div>
+  			</div>
+		</div>
+       </article>
+        
+        </div>
+			<div class="sidebar">
+				<div class="recent">
+					<h3>About</h3>
+					<!--  <button id="openBtn" class="btn btn-default">Modal</button> -->
+					<p>
+						<a href="#" class="newP btn btn-default btn-lg"
+							onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
+					</p>
+				</div>
+			</div>
+			<div class="modal" id="myModal">
+				<span onclick="document.getElementById('myModal').style.display='none'" 
+            class="close" title="Close Modal">&times;</span> 
+			<div class="modal-dialog">
+			      <div class="modal-content">
+			      <form action="newRoom" method = "post">
+			        <div class="modal-header">
+			          <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button> -->
+			          <h3 class="modal-title">새로 만들기</h3>
+			        </div>
+			        <div class="modal-body">
+					  <h5 class="text-center">Creativity can solve almost any problem. The creative act, the defeat of habit by originality, overcomes everything.<br> - George Lois -</h5>
+			          <table class="table table-striped" id="tblGrid">
+			            <!-- <thead id="tblHead">
+			              <tr>
+			                <th>Location</th>
+			                <th>Points</th>
+			                <th class="text-right">Mean</th>
+			              </tr>
+			            </thead> -->
+			            <tbody>
+			              <tr><td>Title</td>
+			                <td><input type="text" name = "str.name" id="title" class="form-control"></td>
+			                <!-- <td class="text-right">45001</td> -->
+			              </tr>
+			              <tr><td>Keyword</td>
+			                <td><input type="text" name ="str.keyword" id="keyword" class="form-control"></td>
+			                <!-- <td class="text-right">76455</td> -->
+			              </tr>
+			              <tr><td>Category</td>
+								<td><select name = "str.category" class="form-control">
+										<option>IT</option>
+										<option>Food</option>
+										<option>Science</option>
+										<option>Sport</option>
+										<option>Music</option>
+								</select></td>
+										<!-- <td class="text-right">39097</td> -->
+			              </tr>
+			            </tbody>
+			          </table>
+			          <div class="form-group">
+			          <!-- button submit :seokgi -->
+			            <input type="submit" class="btn btn-success btn-sm pull-right" value="생성">
+			            <div class="clearfix"></div>
+			          </div>
+					</div>
+					</form><!-- 방 만들때의 정보를 보내기 위한 from -->
+			      </div><!-- /.modal-content -->
+			    </div><!-- /.modal-dialog -->
+			  </div><!-- /.modal -->
+                
+         
+     <div class="clear"></div>
+   </div>
+<div class="f-menu">
+    <ul>
+    	<h4>Our Sponcers</h4>
+        <li><a href="index.html">simply dummy text of the printing</a></li>
+        <li><a href="#">simply dummy text of the printing</a></li>
+        <li><a href="#">simply dummy text of the printing</a></li>
+    </ul>
+    <ul>
+    	<h4>Follow on</h4>
+        <li><a href="index.html">simply dummy text of the printing</a></li>
+        <li><a href="#">simply dummy text of the printing</a></li>
+        <li><a href="#">simply dummy text of the printing</a></li>
+    </ul>
+    <ul>
+    	<h4>Contact</h4>
+        <li><input type="text" value=""  /></li>
+        <li><textarea></textarea></li>
+        <li><input type="submit" value="Send" /></li>
+    </ul>
+        <div class="clear"></div>
+    <div class="copy">� 2012 All rights reserved. Designed by <a href="http://w3layouts.com">W3Layouts</a> Powered by <a href="http://bigw3.com">Bigw3</a></div>
+</div>
+</div>
+<script type="text/javascript">
+	
+	/* $(function(){
+		$('#myModal').modal().hide();
+	}) */
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function(event) {
+	    if (event.target == modal) {
+	        modal.style.display = "none";
+	    }
+	} 
+</script>
+</body>
+</html>

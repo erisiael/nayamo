@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<!-- <constant name="struts.action.excludePattern" value="^ws://.+$"/> -->
+	<constant name="struts.action.excludePattern" value="/exclude/.*?"/>
+	
+	<package name="default" namespace="/" extends="struts-default, json-default">    
+        <default-action-ref name="index"/>
+       
+        <action name = "index">
+        	<result>index.jsp</result>
+        </action>
+        
+        <!-- ajax 액션 시작 -->
+        
+       <!--  <action name="save" class="action.AjaxAction" method="save">
+        	<result type="json"></result>
+        </action> -->
+        
+        <action name="showSTRs" class="action.AjaxSTRListAction" method="showSTRs">
+        	<result type = "json"></result>
+        </action>
+        
+        <action name="load" class="action.AjaxAction" method="load">
+        	<result type = "json"></result>
+        </action>
+        
+        <action name = "emailChk" class = "action.AjaxTempAction" method = "emailChk">
+        	<result type = "json"></result>
+        </action>
+        
+        <!-- ajax 액션 끝 -->
+        
+        
+        
+        
+        <!-- 보드 관련 액션 시작 -->
+         <action name = "Go_board" class = "action.StrutsAction" method = "Go_board">
+        	<result name = "success">auction.jsp</result>
+         </action>
+         
+         <action name = "Board_List_Form" class = "action.StrutsAction" method = "Board_List_Form">
+			<result name = "success">auction.jsp</result>         
+         </action>
+         
+		<!-- 보드 관련 액션 끝 -->	   
+		
+		
+		
+        <action name = "OKS_Login" class = "action.StrutsAction" method = "OKS_Login">
+        	<!-- <result name = "success">tool.jsp</result>
+        	<result name = "error">index.jsp</result> -->
+        	<result name="success">index.jsp</result>
+        	<result name="error">index.jsp</result>
+        </action>
+        <!-- 윤석기 작업 -->
+        <action name="checkRoom" class ="action.StrutsAction" method = "checkRoom">
+        	<result name="error">index.jsp</result>
+        	<result name="success">testtest.jsp</result>
+        </action>
+        
+        <!-- 윤석기 방만들기 -->
+    	<action name="newRoom" class ="action.StrutsAction" method="newRoom">
+        	<result name="success" type="redirectAction">
+        		<param name="actionName">checkRoom</param>
+        		<param name="roomName_web">${roomName_web}</param>
+        	</result>
+        	<result name="error">index.jsp</result>
+        </action>     
+        <!-- 부모와 자식관계 테이블에 저장 -->
+        <action name="relation" class = "action.StrutsAction" method = "relation">
+        	<result type ="json"></result>
+        </action>
+           
+        <!-- 김동현 작업 시작-->
+        <action name="myPage" class="action.StrutsAction" method="OKS_myPage">
+        	<result>myPage.html</result>
+        </action>
+        
+        <action name="OKS_updateForm" class="action.StrutsAction" method="OKS_updateForm">
+        	<result>OKS_updateForm.jsp</result>
+        </action>
+        
+        <action name="OKS_update" class="action.StrutsAction" method="OKS_update">
+        	<result>home.html</result>
+        </action>
+        
+        <action name="OKS_findForm">
+        	<result>OKS_findForm.jsp</result>
+        </action>
+        
+        <action name="OKS_find" class="action.StrutsAction" method="OKS_find">
+        	<result>index.jsp</result>
+        </action>
+        
+        <action name="OKS_logout" class="action.StrutsAction" method="OKS_logout">
+        	<result>index.jsp</result>
+        </action>
+        <!-- 김동현 작업 끝 -->
+        
+        <!-- 빽 -->
+        <action name = "register" class = "action.StrutsAction" method = "register">
+        	<result name = "success">index.jsp</result>
+        </action>
+        
+        <!-- 방에 들어갈 때 체크 -->
+        <!-- <action name="room" class ="action.AjaxAction" method = "checkRoom">
+        	<result name="error">test.html</result>
+        	<result>testtest.html</result>
+        </action> -->
+        
+        
+    </package>
+
+</struts>
