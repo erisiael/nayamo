@@ -38,7 +38,7 @@
 <script src="assets/js/magister.js"></script>
 <script src="assets/js/login.js?ver=1"></script>
 <script src="assets/js/navbar.js?ver=1"></script>
-<script src="assets/js/carousel.js?ver=1"></script>
+<script src="assets/js/carousel.js?ver=2"></script>
 <script src="assets/js/loader.js?ver=1"></script>
 
 <!-- Custom styles -->
@@ -162,7 +162,7 @@
 		
 		<!-- 로그인 상태에서만 사용할 modal div (방 목록 보여주기) -->
 		<div class="carousel-template">
-				<div align="center"><a href="#"><img src="http://lorempixel.com/1920/1080/nature/" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+				<div align="center"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
                     <div class="carousel-caption">
                         <h3>Cupcake ipsum dolor sit amet</h3>
                          <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>

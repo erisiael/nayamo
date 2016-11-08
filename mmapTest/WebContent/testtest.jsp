@@ -19,10 +19,10 @@
 <script type="text/javascript" src="jq/jquery-3.1.1.js"></script>
 <script src="assets/js/jquery-ui.min.js"></script> 
 <script src="assets/js/jquery.ui.touch.js"></script>
-<script src="assets/js/loader.js?ver=1"></script>
 <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="assets/js/clipboard.js"></script>
 <script type="text/javascript" src="assets/js/login.js?ver=1"></script>
+<script type="text/javascript" src="assets/js/loader.js?ver=1"></script>
 
 	
 </head>
@@ -141,7 +141,7 @@ setLoader(); // setting loader.js
 		
 		<!-- 로그인 상태에서만 사용할 modal div (방 목록 보여주기) -->
 		<div class="carousel-template">
-				<div align="center"><a href="#"><img src="http://lorempixel.com/1920/1080/nature/" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+				<div align="center"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
                     <div class="carousel-caption">
                         <h3>Cupcake ipsum dolor sit amet</h3>
                          <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
@@ -159,7 +159,7 @@ setLoader(); // setting loader.js
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
             </div>
-            <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
+            <ol class="carousel-indicators" style="padding-bottom: 42px;">
             </ol>
             <a class="left carousel-control">‹</a>
             <a class="right carousel-control">›</a>
@@ -493,8 +493,7 @@ $(document).ready(function() {
 <script type="text/javascript" src="jq/baik.js"></script>
 <!-- script for etc -->
 <script src="assets/js/navbar.js"></script>
-<script src="assets/js/loader.js?ver=1"></script>
-<script src="assets/js/carousel.js?ver=1"></script>
+<script src="assets/js/carousel.js?ver=2"></script>
 
 <script>
 	
