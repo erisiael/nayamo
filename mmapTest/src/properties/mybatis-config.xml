@@ -26,6 +26,7 @@
 	<!-- SQL문 정의한 파일 포함 -->
 	<mappers>
 		<mapper resource="mapper/OKS_mapper.xml"/>
+		<mapper resource="mapper/STR_mapper.xml"/>
 		<mapper resource="mapper/ManageData_mapper.xml"/>
 	</mappers>
 </configuration>

@@ -38,7 +38,7 @@
 <script src="assets/js/magister.js"></script>
 <script src="assets/js/login.js?ver=1"></script>
 <script src="assets/js/navbar.js?ver=1"></script>
-<script src="assets/js/carousel.js"></script>
+<script src="assets/js/carousel.js?ver=1"></script>
 <script src="assets/js/loader.js?ver=1"></script>
 
 <!-- Custom styles -->

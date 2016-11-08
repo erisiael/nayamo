@@ -21,6 +21,8 @@ function showSTRs() {
 	$.ajax({
 		url : "showSTRs.action",
 		success : function(data) {
+			console.log(data);
+			console.log(data.str_list);
 			if (data.str_list.length) {
 				setLoader();
 				$(".carousel-indicators").children().remove();
