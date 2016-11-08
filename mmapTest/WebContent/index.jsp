@@ -16,6 +16,7 @@
 <link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
 <script src="assets/script/jquery-3.1.1.min.js"></script>
+
 <!-- Bootstrap itself -->
 <link
    href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"
@@ -36,35 +37,22 @@
 
 <script src="assets/js/magister.js"></script>
 <script src="assets/js/login.js?ver=1"></script>
-<script src="assets/js/navbar.js"></script>
+<script src="assets/js/navbar.js?ver=1"></script>
+<script src="assets/js/carousel.js"></script>
+<script src="assets/js/loader.js?ver=1"></script>
 
 <!-- Custom styles -->
 <link rel="stylesheet" href="assets/css/magister.css" type="text/css">
 <link rel="stylesheet" href="assets/css/login.css" type="text/css">
 <link rel="stylesheet" href="assets/css/navbar.css" type="text/css">
+<link rel="stylesheet" href="assets/css/carousel.css" type="text/css">
+<link rel="stylesheet" href="assets/css/loader.css" type="text/css">
 
 
 </head>
 <body class="theme-invert">
 
-<%-- <nav class="mainmenu">
-      <div class="container">
-         <div class="dropdown">
-            <button type="button" class="navbar-toggle" data-toggle="dropdown">
-               <span class="icon-bar"></span> <span class="icon-bar"></span> <span
-                  class="icon-bar"></span>
-            </button>
-            <!-- <a data-toggle="dropdown" href="#">Dropdown trigger</a> -->
-            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-               <li><a href="#head" class="active">Home</a></li>
-               <li><a href="#about">About us</a></li>
-               <li><a href="#themes">How to use</a></li>
-               <li><a href="#contact">Get in touch</a></li>
-            </ul>
-         </div>
-      </div>
-   </nav> --%>
-
+<!-- navbar start from here -->
    	<script>
    		var message = "<%= request.getAttribute("errorMessage") %>";
    		if (message != 'null') {
@@ -92,6 +80,7 @@
 <s:else>
       	   <li><a><span>&nbsp;</span></a></li>
 		   <li><span class="loginstring">안녕하세요. <s:property value="#session.OKS.nick"/>님</span></li>
+		   <li><a href="#" onclick="">정보수정</a></li>
 		   <li><a href="#" onclick="location.href='OKS_logout.action'">로그아웃</a></li>
       	   <li><a><span>&nbsp;</span></a></li>
            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
@@ -99,16 +88,17 @@
       <!--  로그인 관련 표시 -->
            
       </ul>
+      
         <ul class="sidebar-nav" id="sidebar">     
 
-      	<li><a href="#head" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
       <!-- 로그인시 보여줄 메뉴 분기 -->
 <s:if test="#session.OKS != null">
 		<li class="sidebar">
         <a href="#" onclick="document.getElementById('myModal').style.display='block'">새로만들기</a>
         </li>
-        <li><a href="#">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-</s:if> 
+        <li><a href="#" id="strlist_carousel">참여한 목록<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
+</s:if>
+      	<li><a href="#head" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 		<li><a href="#about" class="a-scrolling">만든 사람들<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 		<li><a href="#themes" class="a-scrolling">생각툴 이란<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
         <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
@@ -166,7 +156,41 @@
 			    </div><!-- /.modal-dialog -->
 			  </div><!-- /.modal -->
 </s:if>
-		<!-- 로그인 상태에서만 사용할 modal div --> 
+		<!-- 로그인 상태에서만 사용할 modal div -->
+		
+		
+		
+		<!-- 로그인 상태에서만 사용할 modal div (방 목록 보여주기) -->
+		<div class="carousel-template">
+				<div align="center"><a href="#"><img src="http://lorempixel.com/1920/1080/nature/" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+                    <div class="carousel-caption">
+                        <h3>Cupcake ipsum dolor sit amet</h3>
+                         <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
+                    </div>
+                </div>
+                <ol class="indicators-template" style="padding-bottom: 42px;">
+	                <li data-target="#myCarousel"></li>
+                </ol>
+			</div>
+		<div class="modal" id="modal-carousel">
+			<div class="modal-dialog">
+			      <div class="modal-content">
+			<div class="container">
+	<div class="row">
+		<div id="myCarousel" class="carousel slide">
+            <div class="carousel-inner">
+            </div>
+            <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
+            </ol>
+            <a class="left carousel-control">‹</a>
+            <a class="right carousel-control">›</a>
+        </div>
+	</div>
+	</div>
+	</div>
+</div>
+			
+		</div>
 <s:else>
 
 <!-- The Modal -->
@@ -211,7 +235,7 @@
                                           <div class="form-group text-center">
                                              <input type="checkbox" tabindex="3" class=""
                                                 name="remember" id="remember"><label
-                                                for="remember">기억해라. 사요나라</label>
+                                                for="remember">아이디 기억하기</label>
                                           </div>
 
 
@@ -231,7 +255,7 @@
                                                 <div class="col-lg-12">
                                                    <div class="text-center">
                                                       <a data-toggle="modal" href="#forgotPass" tabindex="5"
-                                                         class="forgot-password">비번을 몰라? 사요나라</a>
+                                                         class="forgot-password">비밀번호 찾기</a>
                                                    </div>
                                                 </div>
                                              </div>
@@ -375,7 +399,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-          
       <!-- Page content -->
       <div id="page-content-wrapper">
         <!-- Keep all page content within the page-content inset div! -->
@@ -396,13 +419,13 @@ $(document).ready(function() {
 
                <!-- Site Title, your name, HELLO msg, etc. -->
                <h1 class="title">SC-MMAP</h1>
-               <h2 class="subtitle">Want Idea?</h2>
+               <h2 class="subtitle">Need Idea?</h2>
 
                <!-- Short introductory (optional) -->
 
                <form id="enter_test" method="get" action="checkRoom">
                   <h3 class="tagline">
-                     Enter Code : <input type="text" id="move" name = "str.enter_code">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
+                     Enter Code : <input type="text" id="move" name = "roomName_web">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
                   </h3>
                </form>
 
@@ -520,11 +543,11 @@ $(document).ready(function() {
       </div>
    </div>
 
-
 </div>
 </div>
 </div>
 </div>
 </div>
+<!-- navbar end here -->
 </body>
 </html>
