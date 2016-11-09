@@ -272,7 +272,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		
 		
 		
-		if (dao.selectOneSTR(str) == null) {
+		if (dao.selectOneSTR(str) == null){
 			String rootnode = "[{\"text\":\""+ str.getKeyword() +"\",\"root\":true,\"values\":100}]";
 			FileService fs = new FileService(rootnode, str.getEnter_code(), ".json");
 			fs.saveFile();
@@ -281,7 +281,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 			errorMessage = "방 생성에 문제가 발생했습니다. 다시 시도해주세요.";
 			return ERROR;
 		}
-		
 		System.out.println("entercode from newRoom : " + str.getEnter_code());
 		
 		return SUCCESS;

@@ -7,4 +7,7 @@ create table SKA_list
   regdate date default sysdate
 );
 
+drop table ska_list;
 create sequence SKA_LIST_SEQUENCE;
+select * from ska_list;
+commit

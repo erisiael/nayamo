@@ -65,8 +65,9 @@ public class STR_DAO {
 	      SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 	      List<String> list = null;
 	      Map<String, String> map = new HashMap<String, String>();
-	      
+	      map.put("category", category);
 	      list = sqlSession.selectList("mapper.OKS_mapper.searchDB", map);
+	      System.out.println(list+"빠담");
 	      if(sqlSession != null)
 	      {
 	         sqlSession.close();

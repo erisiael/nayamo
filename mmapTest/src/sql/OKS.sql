@@ -16,7 +16,8 @@ create table text(
 	keyword varchar2(100)
 )
 select * from oks;
-drop table text;
+drop table oks;
 select * from it;
+drop table ska;
 
 

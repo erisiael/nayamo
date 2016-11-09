@@ -5,5 +5,6 @@ create table COMM
   C_MENT varchar2(500),
   regdate date default sysdate
 );
-
+select * from IT
 create sequence COMM_SEQ;
+drop table str

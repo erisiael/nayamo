@@ -6,8 +6,7 @@ create table STR
   ----------------seokgi
   keyword varchar2(30) not null,--키워드
   category varchar2(30) not null,
-  
-  ------------
+------------
   enter_code varchar2(200) not null,--비밀번호
   regdate date default sysdate--만든날
 );
