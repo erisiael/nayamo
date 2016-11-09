@@ -71,8 +71,8 @@
       <!-- Sidebar -->
             <!-- Sidebar -->
       <div id="sidebar-wrapper">
+      <img src="assets/images/logo3.png" width="90%" height="30%">
       <ul id="sidebar_menu" class="sidebar-nav">
-      
      <!--  로그인 관련 표시 -->
 <s:if test="#session.OKS == null">
       	   <li><a><span>&nbsp;</span></a></li>
@@ -184,8 +184,15 @@
 	<div class="row">
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
+            	<div align="center" class="item active"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+                    <div class="carousel-caption">
+                        <h3>Cupcake ipsum dolor sit amet</h3>
+                         <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
+                    </div>
+                </div>
             </div>
             <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
+            	<li data-target="#myCarousel" class="item0 active"></li>
             </ol>
             <a class="left carousel-control">‹</a>
             <a class="right carousel-control">›</a>
@@ -423,14 +430,14 @@ $(document).ready(function() {
                class="col-md-10 col-lg-10 col-md-offset-1 col-lg-offset-1 text-center">
 
                <!-- Site Title, your name, HELLO msg, etc. -->
-               <h1 class="title">SC-MMAP</h1>
+               <img class="img-logo" src="assets/images/logo2.png" width="30%" height="30%">
                <h2 class="subtitle">Need Idea?</h2>
 
                <!-- Short introductory (optional) -->
 
                <form id="enter_test" method="get" action="checkRoom">
                   <h3 class="tagline">
-                     Enter Code : <input type="text" id="move" name = "roomName_web">&nbsp;<button type="submit" class="btn btn-success">입장하기</button><br>
+                     Enter Code : <input type="text" id="move" name = "roomName_web">&nbsp;<button type="submit" class="btn btn-success">NAYAMU</button><br>
                   </h3>
                </form>
 

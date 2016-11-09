@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="assets/css/tool.css" rel="stylesheet" type="text/css">
+<link href="assets/css/tool.css?ver=1" rel="stylesheet" type="text/css">
 <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/navbar.css" type="text/css">
@@ -47,6 +47,7 @@ setLoader(); // setting loader.js
       <!-- Sidebar -->
             <!-- Sidebar -->
       <div id="sidebar-wrapper">
+      <img src="assets/images/logo3.png" width="90%" height="30%">
       <ul id="sidebar_menu" class="sidebar-nav">
       
      <!--  로그인 관련 표시 -->
@@ -80,8 +81,6 @@ setLoader(); // setting loader.js
         <li><a href="#" id="strlist_carousel">나의 생각툴<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
 </s:if>
       	<li><a href="#" onclick="location.href='index.action'" class="a-scrolling">메인으로<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-        <!-- <li><a>Link1<span class="sub_icon glyphicon glyphicon-link"></span></a></li>
-        <li><a>link2<span class="sub_icon glyphicon glyphicon-link"></span></a></li> -->
 		<!-- 로그인시 보여줄 메뉴 분기 -->
            
       </ul>
@@ -158,8 +157,15 @@ setLoader(); // setting loader.js
 	<div class="row">
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
+	            <div class="item active" align="center"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+	                    <div class="carousel-caption">
+	                        <h3>Cupcake ipsum dolor sit amet</h3>
+	                         <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
+	                    </div>
+	            </div>
             </div>
             <ol class="carousel-indicators" style="padding-bottom: 42px;">
+            	<li data-target="#myCarousel" data-slide-to="0" class="item0 active"></li>
             </ol>
             <a class="left carousel-control">‹</a>
             <a class="right carousel-control">›</a>
@@ -475,7 +481,6 @@ $(document).ready(function() {
 </section>
 <footer>
 <div>
-&nbsp;
 </div>
 </footer>
 
