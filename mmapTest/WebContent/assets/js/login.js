@@ -35,6 +35,10 @@ function register()
    }
 } 
 
+/*function writeLetter(){
+	$('#writeLetter').submit();
+}*/
+
 $(document).ready(function()
 {
 	$('#emailDupChk').on('click', function(){
@@ -71,3 +75,52 @@ $(document).ready(function()
 		});//ajax
 	}
 });   
+
+/*function writeLetter_clk(){
+	document.getElementById('writeLetter').submit();
+}*/ 
+
+$(document).ready(function() {
+	$('#writeLetter').on('click',function() {
+		
+		var nick = $('#nick').val();
+		var title = $('#title1').val();
+		var contents = $('#contents').val();
+		
+		$.ajax({
+			url : 'writeLetter',
+			type : 'post',
+			data : {
+				"nick" : nick,
+				"title" : title,
+				"contents" : contents
+			},
+			success : function(data) {
+				alert('전송 완료');
+			}// success
+		});//ajax
+	});
+});
+
+$(document).ready(function() {
+	$('#readLetter').on('click',function() {
+		var no = $(this).parent().parent().children().first().text();
+		$.ajax({
+			url : 'readLetterForm',
+			type : 'post',
+			data : {
+				"no" : no
+			},
+			success : function(data) {
+				alert('읽기 완료');
+					$('#letter_nick').text(data.letter.from_nick);
+					$('#letter_indate').text(data.letter.indate);
+					$('#letter_title').text(data.letter.title);
+					$('#letter_contents').text(data.letter.contents);
+			}// success
+			, error: function() {
+				alert("error");
+			}
+		});//ajax
+	});
+});

@@ -117,6 +117,14 @@
         <action name="OKS_logout" class="action.StrutsAction" method="OKS_logout">
         	<result>index.jsp</result>
         </action>
+        
+        <action name="writeLetter" class="action.AjaxTempAction" method="writeLetter">
+        	<result type="json"></result>
+        </action>
+        
+        <action name="readLetterForm" class="action.AjaxTempAction" method="readLetterForm">
+        	<result type="json"></result>
+        </action>
         <!-- 김동현 작업 끝 -->
         
         <!-- 빽 -->

@@ -130,4 +130,19 @@
       </if>
    </select>
 	
+	<select id="login_letter" parameterType="String" resultType="LETTER">
+		select * from letter where nick = #{nick}
+	</select>
+	
+	<insert id="writeLetter" parameterType="LETTER">
+		insert into letter (no, title, contents, from_nick, nick) values (letter_seq.nextval, #{title}, #{contents}, #{from_nick}, #{nick})
+	</insert>
+	
+	<select id="readLetterForm" parameterType="Integer" resultType="LETTER">
+		select * from letter where no = #{no}
+	</select>
+	
+	<update id="updateLetter" parameterType="int">
+		update letter set read='Y' where no = #{no}
+	</update>
 </mapper>

@@ -86,6 +86,7 @@
       	   <li><a><span>&nbsp;</span></a></li>
 		   <li><span class="loginstring">안녕하세요. <s:property value="#session.OKS.nick"/>님</span></li>
 		   <li><a href="#" onclick="">정보수정</a></li>
+		   <li><a href="#" onclick="document.getElementById('letterModal').style.display='block'">쪽지함<span id="main_icon" class="sub_icon glyphicon glyphicon-envelope"></span></a></li>
 		   <li><a href="#" onclick="location.href='OKS_logout.action'">로그아웃</a></li>
       	   <li><a><span>&nbsp;</span></a></li>
            <li class="sidebar-brand"><a id="menu-toggle" href="#">Menu<span id="main_icon" class="glyphicon glyphicon-align-justify"></span></a></li>
@@ -203,7 +204,173 @@
 </div>
 			
 		</div>
-<s:else>
+		
+		<!-- 로그인 상태에서만 사용할 modal div(쪽지함) -->
+		<s:if test="#session.OKS != null">
+			<div class="modal" id="letterModal">
+				<span
+					onclick="document.getElementById('letterModal').style.display='none'"
+					class="close" title="Close Modal">&times;</span>
+
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<form action="newRoom" method="post">
+							<div class="modal-header">
+								<h3 class="modal-title">쪽지 보관함</h3>
+							</div>
+							<div class="modal-body">
+								<table class="table table-striped" id="tblGrid">
+									<thead>
+										<tr>
+											<th>No</th>
+											<th>제목</th>
+											<th>보낸 사람</th>
+											<th>시간</th>
+											<th>Read</th>
+										</tr>
+									</thead>
+									<tbody>
+										<s:iterator var="list" value="letterList">
+											<tr>
+												<td><s:property value="#list.no" /></td>
+												<td><a data-toggle="modal" href="#readLetterForm" id="readLetter"><s:property value="#list.title" /></a></td>
+												<td><s:property value="#list.from_nick" /></td>
+												<td><s:property value="#list.indate" /></td>
+												<td><s:property value="#list.read" /></td>
+											</tr>
+										</s:iterator>
+									</tbody>
+								</table>
+								<div class="form-group">
+									<a data-toggle="modal" href="#writeLetterForm" tabindex="5"
+                                                class="btn btn-primary">쓰기</a>
+									<div class="clearfix"></div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<!-- /.modal-content -->
+				</div>
+				<!-- /.modal-dialog -->
+			</div>
+			<!-- /.modal -->
+
+			<!-- second modal  ,,,   '이메일 중복 확인'버튼을 눌렀을 경우 활성화되는 모달 -->
+			<div class="modal" id="writeLetterForm" aria-hidden="true"
+				style="display: none; z-index: 1060;">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">쪽지 쓰기</h4>
+						</div>
+						<div class="container"></div>
+						<div class="modal-body">
+							<div class="form-group">
+							<form action="writeLetter" method="post" id="writeLetter_form"
+                                          role="form">
+							<table>
+								<tbody>
+									<tr>
+										<th>닉네임</th>
+										<td><input type="text" id="nick" tabindex="1"
+									class="form-control" placeholder="받는 사람의 닉네임" value=""
+									required></td>
+									</tr>
+									<tr>
+										<th>제목</th>
+										<td>
+										
+										<input type="text" id="title1" tabindex="1"
+									class="form-control" placeholder="제목을 입력해주세요." value=""
+									required></td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td>
+										<pre><textarea rows="10" cols="55" id="contents" tabindex="1"
+									class="form-control" placeholder="내용을 입력해주세요." value=""
+									required></textarea></pre>
+									</tr>
+								</tbody>
+							</table>
+							<h5 style="color: red;" id = "h5_id"></h5>
+							<br> <input type="button" value="전송" class="btn btn-primary" id="writeLetter" onclick="return wirteLetter();">
+							</form>
+								
+							</div>
+
+
+							<!-- 액션 다녀온 후 결과값 출력 -->
+
+							<%--  <h5 style="color: red;"><span>중복이다</span></h5>
+                                                   <br> 
+                                                   <a data-toggle="modal" href="#myModal4"
+                                                      class="btn btn-success" id = "emailDupChk">검색</a>
+                                                   <!-- 액션 다녀온 후 결과값 출력 --> --%>
+
+						</div>
+						<div class="modal-footer">
+							<a href="#" data-dismiss="modal" class="btn btn-primary"
+								id="closeBtn">Close</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- second modal  ,,,   '이메일 중복 확인'버튼을 눌렀을 경우 활성화되는 모달 -->
+			<div class="modal" id="readLetterForm" aria-hidden="true"
+				style="display: none; z-index: 1060;">
+				<div class="modal-dialog modal-lg">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title">쪽지 읽기</h4>
+						</div>
+						<div class="container"></div>
+						<div class="modal-body">
+							<div class="form-group">
+							<table>
+								<tbody>
+									<tr>
+										<th>보낸 사람</th>
+										<td id="letter_nick"></td>
+									</tr>
+									<tr>
+										<th>시간</th>
+										<td id="letter_indate"></td>
+										
+									</tr>
+									<tr>
+										<th>제목</th>
+										<td id="letter_title"></td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td id="letter_contents"></tr>
+								</tbody>
+							</table>
+							<!-- <br> <input type="button" value="전송" class="btn btn-primary" id="writeLetter" onclick="return wirteLetter();"> -->
+							</div>
+
+
+							<!-- 액션 다녀온 후 결과값 출력 -->
+
+							<%--  <h5 style="color: red;"><span>중복이다</span></h5>
+                                                   <br> 
+                                                   <a data-toggle="modal" href="#myModal4"
+                                                      class="btn btn-success" id = "emailDupChk">검색</a>
+                                                   <!-- 액션 다녀온 후 결과값 출력 --> --%>
+
+						</div>
+						<div class="modal-footer">
+							<a href="#" data-dismiss="modal" class="btn btn-primary"
+								id="closeBtn">Close</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</s:if>
+		<!-- 로그인 상태에서만 사용할 modal div(쪽지함) -->
+		<s:else>
 
 <!-- The Modal -->
                <div id="id01" class="modal">
@@ -407,6 +574,13 @@ $(document).ready(function() {
 		var myModal = document.getElementById('myModal');
 	    if (event.target == myModal) {
 	        myModal.style.display = "none";
+	    }
+	});
+	
+	$(window).click(function(event) {
+		var letterModal = document.getElementById('letterModal');
+	    if (event.target == letterModal) {
+	    	letterModal.style.display = "none";
 	    }
 	});
 });

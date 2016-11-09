@@ -9,6 +9,7 @@
 		<typeAlias type = "vo.SKA_LIST" alias = "SKA_LIST"/>
 		<typeAlias type = "vo.SKA" alias = "SKA"/>
 		<typeAlias type = "vo.STR" alias = "STR"/>
+		<typeAlias type = "vo.LETTER" alias="LETTER"/>
 	</typeAliases>
 	<!-- DB접속 정보 셋팅 -->
 	<environments default="development">

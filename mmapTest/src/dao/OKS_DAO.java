@@ -6,37 +6,46 @@ import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+
+import vo.LETTER;
 import vo.OKS;
 import vo.SKA_LIST;
 
 public class OKS_DAO 
 {
-	SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+	//SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 	
 	public OKS selectOne(OKS oks)
 	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		OKS o = sqlSession.selectOne("mapper.OKS_mapper.selectOne", oks);
-		sqlSession.close();
+		if(sqlSession != null) sqlSession.close();
 		return o;
 	}
 	
 	//백승훈
 	public List<SKA_LIST> selectAllBoardList() 
 	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		List<SKA_LIST> list = sqlSession.selectList("mapper.OKS_mapper.selectAllBoardList");
+		if(sqlSession != null) sqlSession.close();
 		return list;
 	}
 
 	public int insertOKS(OKS oks) 
 	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		int res = sqlSession.insert("mapper.OKS_mapper.insertOKS", oks);
 		sqlSession.commit();
+		if(sqlSession != null) sqlSession.close();
 		return res;
 	}
 
 	public OKS selectOne(String email)  // 이메일 중복 체크 함수 
 	{
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		OKS o = sqlSession.selectOne("mapper.OKS_mapper.chkDuplication", email);
+		if(sqlSession != null) sqlSession.close();
 		return o;
 	}
 	//끝
@@ -44,17 +53,53 @@ public class OKS_DAO
 	
 	/*김동현 작업 시작*/
 	public int OKS_update(OKS noks){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		int result = 0;
 		System.out.println("dao : " + noks.getEmail());
 		result = sqlSession.update("mapper.OKS_mapper.oks_update", noks);
 		sqlSession.commit();
+		if(sqlSession != null) sqlSession.close();
 		return result;
 	}
 	
 	public OKS OKS_find(String email){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		OKS result = null;
 		result = sqlSession.selectOne("mapper.OKS_mapper.oks_find", email);
+		if(sqlSession != null) sqlSession.close();
 		return result;
+	}
+	
+	public List<LETTER> login_letter(String nick){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		List<LETTER> result = null;
+		result = sqlSession.selectList("mapper.OKS_mapper.login_letter", nick);
+		if(sqlSession != null) sqlSession.close();
+		return result;
+	}
+	
+	public int writeLetter(LETTER letter){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		int result = 0;
+		result = sqlSession.insert("mapper.OKS_mapper.writeLetter", letter);
+		sqlSession.commit();
+		if(sqlSession != null) sqlSession.close();
+		return result;
+	}
+	
+	public LETTER readLetterForm(int no){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		LETTER result = null;
+		result = sqlSession.selectOne("mapper.OKS_mapper.readLetterForm", no);
+		if(sqlSession != null) sqlSession.close();
+		return result;
+	}
+	
+	public void updateLetter(int no){
+		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
+		sqlSession.update("mapper.OKS_mapper.updateLetter", no);
+		sqlSession.commit();
+		if(sqlSession != null) sqlSession.close();
 	}
 	/*김동현 작업 끝*/
 

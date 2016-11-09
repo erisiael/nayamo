@@ -13,6 +13,7 @@ import dao.STR_DAO;
 import properties.FileService;
 import properties.PageNavigator;
 import properties.RandomNumberGenerator;
+import vo.LETTER;
 import properties.Search_Keyword;
 import vo.OKS;
 import vo.SKA_LIST;
@@ -49,6 +50,8 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	////
 	private String errorMessage;
 
+	private LETTER letter;
+	private List<LETTER> letterList;
 
 
 	public String getErrorMessage() {
@@ -75,6 +78,8 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		if(tmp != null)
 		{
 			session.put("OKS", tmp);
+			OKS_DAO dao2 = new OKS_DAO(); //오류로 인해 생성
+			letterList = dao2.login_letter(tmp.getNick());
 			return SUCCESS;
 		}
 		errorMessage = "로그인에 실패하였습니다.";
@@ -200,6 +205,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		session.clear();
 		return SUCCESS;
 	}
+	
 	//
 	/*김DH 작업 끝*/
 	///////////////////////////////////////////////////////////////
@@ -397,6 +403,22 @@ public class StrutsAction extends ActionSupport implements SessionAware
 	public void setRoomName_web(String roomName_web) {
 		this.roomName_web = roomName_web;
 	}
-	
 
+	public LETTER getLetter() {
+		return letter;
+	}
+
+	public void setLetter(LETTER letter) {
+		this.letter = letter;
+	}
+
+	public List<LETTER> getLetterList() {
+		return letterList;
+	}
+
+	public void setLetterList(List<LETTER> letterList) {
+		this.letterList = letterList;
+	}
+	
+	
 }
