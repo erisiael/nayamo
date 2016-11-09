@@ -319,7 +319,7 @@
 			
 			<!-- second modal  ,,,   '이메일 중복 확인'버튼을 눌렀을 경우 활성화되는 모달 -->
 			<div class="modal" id="readLetterForm" aria-hidden="true"
-				style="display: none; z-index: 1060;">
+				style="display: none; z-index: 1860;">
 				<div class="modal-dialog modal-lg">
 					<div class="modal-content">
 						<div class="modal-header">
@@ -330,22 +330,22 @@
 							<div class="form-group">
 							<table>
 								<tbody>
-									<tr>
-										<th>보낸 사람</th>
-										<td id="letter_nick"></td>
+									<tr class="letter_tr">
+										<th class="letter_th">보낸 사람</th>
+										<td id="letter_nick" class="letter_td"></td>
 									</tr>
-									<tr>
-										<th>시간</th>
-										<td id="letter_indate"></td>
+									<tr class="letter_tr">
+										<th class="letter_th">시간</th>
+										<td id="letter_indate" class="letter_td"></td>
 										
 									</tr>
-									<tr>
-										<th>제목</th>
-										<td id="letter_title"></td>
+									<tr class="letter_tr">
+										<th class="letter_th">제목</th>
+										<td id="letter_title" class="letter_td"></td>
 									</tr>
-									<tr>
-										<th>내용</th>
-										<td id="letter_contents"></tr>
+									<tr class="letter_tr">
+										<th class="letter_th">내용</th>
+										<td id="letter_contents" class="letter_td"></tr>
 								</tbody>
 							</table>
 							<!-- <br> <input type="button" value="전송" class="btn btn-primary" id="writeLetter" onclick="return wirteLetter();"> -->

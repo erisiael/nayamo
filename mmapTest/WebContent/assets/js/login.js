@@ -112,7 +112,6 @@ $(document).ready(function() {
 				"no" : no
 			},
 			success : function(data) {
-				alert('읽기 완료');
 					$('#letter_nick').text(data.letter.from_nick);
 					$('#letter_indate').text(data.letter.indate);
 					$('#letter_title').text(data.letter.title);

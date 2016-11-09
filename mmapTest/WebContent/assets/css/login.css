@@ -134,3 +134,19 @@ div.modal
 {
    box-shadow: none;
 }
+
+.letter_tr{
+	width: 100%;
+}
+
+.letter_th{
+	margin: auto;
+	padding: 3%;
+	width: 120px;
+}
+
+.letter_td{
+	margin: auto;
+	padding: 3%;
+	width: 120px;
+}

@@ -58,7 +58,6 @@ public class AjaxTempAction extends ActionSupport implements SessionAware
 		OKS_DAO dao = new OKS_DAO();
 		dao.updateLetter(no);//read 읽음으로 바꿈
 		letter = dao.readLetterForm(no);
-		System.out.println(letter);
 		return SUCCESS;
 	}
 
