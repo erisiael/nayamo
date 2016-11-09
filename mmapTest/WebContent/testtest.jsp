@@ -9,7 +9,7 @@
 <link href="assets/css/tool.css?ver=1" rel="stylesheet" type="text/css">
 <link href="assets/css/chat.css" rel="stylesheet" type="text/css">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="assets/css/navbar.css" type="text/css">
+<link rel="stylesheet" href="assets/css/navbar.css?ver=2" type="text/css">
 <link rel="stylesheet" href="assets/css/login.css" type="text/css">
 <link href="assets/css/loader.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/loader.css" type="text/css">
@@ -164,7 +164,7 @@ setLoader(); // setting loader.js
 	                    </div>
 	            </div>
             </div>
-            <ol class="carousel-indicators" style="padding-bottom: 42px;">
+            <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
             	<li data-target="#myCarousel" data-slide-to="0" class="item0 active"></li>
             </ol>
             <a class="left carousel-control">‹</a>
@@ -454,16 +454,15 @@ $(document).ready(function() {
 	</div>
 </div>
 <div id="main">
+<!-- svg  -->
 </div>
 
 <div class="nav">
 	<div class="labelbar">&nbsp;</div>
 	<img id="add" title="추가"></img>
-	<img id="update" title="수정"></img>
 	<img id="delete" title="삭제"></img>
 	<img id="move" title="초기위치로"></img>
 	<img id="save" title="저장"></img>
-	<img id="load" title="불러오기"></img>
 	<img id="auction" title="경매"></img>
 	<img id="adduser" title="초대URL"></img>
 </div>
@@ -480,8 +479,7 @@ $(document).ready(function() {
 
 </section>
 <footer>
-<div>
-</div>
+<!-- edit bar here -->
 </footer>
 
 <input type="hidden" id="entercode" value="<s:property value="roomName_web" />">
@@ -489,13 +487,13 @@ $(document).ready(function() {
 
 <!-- test -->
 <script type="text/javascript" src="jq/talk_design.js"></script>
-<script type="text/javascript" src="jq/jongchan.js?ver=2"></script>
+<script type="text/javascript" src="jq/jongchan.js?ver=4"></script>
 <!-- script for d3-lib -->
 <script type="text/javascript" src="jq/d3.v3.min.js"></script>
 <script type="text/javascript" src="jq/tool-js.js?ver=3"></script>
 <script type="text/javascript" src="jq/talk.js?ver=3"></script>
 <!-- script for image load -->
-<script type="text/javascript" src="jq/baik.js"></script>
+<script type="text/javascript" src="jq/baik.js?ver=1"></script>
 <!-- script for etc -->
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/carousel.js?ver=2"></script>

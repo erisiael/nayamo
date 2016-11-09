@@ -118,6 +118,11 @@
 			        .style("stroke-width", 0)
 			        .style("stroke-opacity", .2);
 		}
+		
+		/*
+	     * call from jongchan.js
+	     */
+	    renewFooter(getNode().text, getNode().values);
 	}
 	
 	function zoomed() {

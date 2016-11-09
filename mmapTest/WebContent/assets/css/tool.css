@@ -37,7 +37,24 @@ footer {
 	bottom: 0px;
 	left: 0%;
 	background-color: rgba(118,214,255,0.3);
+	opacity: 0.3;
 	margin : 0px;
+}
+footer:FOCUS, footer:HOVER {
+	transition: all .4s ease 0s;
+	background-color: rgba(118,214,255,0.8);
+	opacity: 0.9
+}
+footer div.div-footer {
+	padding-left: 20%;
+	padding-right: 20%;
+	padding-top: 10px;
+}
+footer div.div-footer input {
+	width: 25%;
+	display: inline;
+	margin-left: 5px;
+	margin-right: 5px;
 }
 div.div-dialog {
 	position: fixed;

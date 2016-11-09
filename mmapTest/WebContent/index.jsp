@@ -37,7 +37,7 @@
 
 <script src="assets/js/magister.js"></script>
 <script src="assets/js/login.js?ver=1"></script>
-<script src="assets/js/navbar.js?ver=1"></script>
+<script src="assets/js/navbar.js?ver=2"></script>
 <script src="assets/js/carousel.js?ver=2"></script>
 <script src="assets/js/loader.js?ver=1"></script>
 
@@ -192,7 +192,7 @@
                 </div>
             </div>
             <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
-            	<li data-target="#myCarousel" class="item0 active"></li>
+            	<li data-target="#myCarousel" data-slide-to="0" class="item0 active"></li>
             </ol>
             <a class="left carousel-control">‹</a>
             <a class="right carousel-control">›</a>

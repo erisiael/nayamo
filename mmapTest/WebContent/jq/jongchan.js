@@ -5,69 +5,25 @@ var topnum = 5;
 var leftnum = 5;
 var saved;
 
+var updatetext;
+var updaterange;
+
 /**
  * 1. 추가 버튼을 누르거나, 2. 불러오기 실행 시 실행되는 펑션
  * 1. 의 경우, 한 개의 div를 추가하고, 해당 div에 dblclick 이벤트를 걸어준다.
  * 그리고 dblclick 시 등장할 <div class=div-dialog>를 생성하고 추가한다.
  * 2. 의 경우 불러오기 완료 후 모든 <div class=div-map>에 위의 행동을 한다.
  */
-var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalue></span><input type=range><br><img class=btn-update id=btn-update title=입력></img>&nbsp;<img class=btn-close id=btn-close title=닫기></img></div>');
-var dialogclosebtn = mapdialog.children().filter('img.btn-close');
+/*var mapdialog = $('<div class=div-dialog><input type=text><br><span id=rangevalue></span><input type=range><br><img class=btn-update id=btn-update title=입력></img>&nbsp;<img class=btn-close id=btn-close title=닫기></img></div>');
+var dialogclosebtn = mapdialog.children().filter('img.btn-close');*/
 var modal = $("div.modal-div");
 
 var urldialog = $('<div class=div-urldialog><span></span></div>');
 
 $('window').ready(function() {
 
-	$('div.div-dialogs').append(mapdialog);
+	/*$('div.div-dialogs').append(mapdialog);*/
 	$('div.div-urldialogs').append(urldialog);
-	
-	var rangelistener = function() {
-		var values = mapdialog.children().filter('input[type=range]').val();
-		mapdialog.children().filter('span#rangevalue').text(values);
-	}
-	
-	mapdialog.children().filter('input[type=range]').attr('min', '10');
-	mapdialog.children().filter('input[type=range]').attr('max', '200');
-	mapdialog.children().filter('input[type=range]').on('change', rangelistener);
-	
-	dialogclosebtn.on('click', function() { // 닫기 버튼에 이벤트를 추가
-		//$(this).parent().css('display', 'none');
-		modal.css('display','none');
-		mapdialog.children().filter('input[type=text]').val('');
-	});
-	mapdialog.children().filter('input[type=text]').on('keypress', function(event) {
-		if (event.which == 13) {
-			$(this).parent().children().filter("img.btn-update").trigger("click");
-		}
-	});
-
-	mapdialog.children().filter('img.btn-update').on('click', function() { // 입력 버튼에 이벤트를 추가
-		if (isRoot()) {
-			alert("최상위 노드는 수정할 수 없습니다");
-		} else {
-			var text = mapdialog.children().filter('input[type=text]').val();
-			var values = mapdialog.children().filter('input[type=range]').val();
-			editData(text, values);
-			dialogclosebtn.trigger('click');
-
-			
-		//석기,승훈	
-			var text_parent = mapdialog.children().parent().val();
-			$.ajax({
-				url:'relation',
-				type:'post',
-				data:{
-					"children":text,
-					"parent":text_parent
-				}
-			/*succcess:function(data){
-				
-			}*/
-		});
-	///////////////////////////////////////////
-		}
-	});
 	
 	/**
 	 * modal window
@@ -81,29 +37,6 @@ $('window').ready(function() {
 	$('img#save').click(function() { // 저장 버튼의 이벤트
 		send("html");
 		send("svg");
-	});
-	
-	$('img#load').click(function() { // 불러오기 버튼의 이벤트
-		$.ajax({
-			url : 'load.action',
-			dataType: 'json',
-			success : function(data) {
-				//데이터를 불러오기, 그리고 새로 그리기 웹소켓에 그대로 들어가야함
-				node = JSON.parse(data.canvas);
-				reDraw();
-				// 여기까지 불러오기
-			}
-		});
-	});
-	
-	$('img#update').click(function() {
-		if (!isSelected()) {
-			return;
-		}
-		mapdialog.children().filter('input[type=text]').val(getNode().text);
-		mapdialog.children().filter('input[type=range]').val(getNode().values);
-		rangelistener();
-		connectModal($(mapdialog).parent().parent());
 	});
 	
 	$('img#move').click(function() {
@@ -135,7 +68,96 @@ $('window').ready(function() {
 			alert("복사되었습니다.");
 		});
 	});
+	
+	var rangelistener = function() {
+		var values = updaterange.val();
+		mapdialog.children().filter('span#rangevalue').text(values);
+	}
+	
+	var keyword = $("<span></span>");
+	updatetext = $("<input type=text>");
+	var range = $("<span></span>");
+	updaterange = $("<input type=range>");
+	var btnupdate = $("<img id=btn-update>");
+	var btnclose = $("<img id=btn-close>");
+	
+	$("footer").append("<div class=div-footer>");
+	$("footer").children("div").append(keyword);
+	$("footer").children("div").append(updatetext);
+	$("footer").children("div").append(range);
+	$("footer").children("div").append(updaterange);
+	$("footer").children("div").append(btnupdate);
+	$("footer").children("div").append(btnclose);
+	
+	keyword.text("Keyword : ");
+	range.text("Size : ");
+	updaterange.attr('min', '10');
+	updaterange.attr('max', '200');
+	
+	btnupdate.on('click', function() {
+		if (isSelected) {
+			if (isRoot()) {
+				alert("최상위 노드는 수정할 수 없습니다");
+			} else {
+				var text = updatetext.val();
+				var values = updaterange.val();
+				editData(text, values);
+			}
+		} else {
+			alert("먼저 노드를 선택해주세요.");
+		}
+	});
+	updatetext.on('keypress', function(event) {
+		if (event.which == 13) {
+			btnupdate.trigger("click");
+		}
+	});
+	btnclose.on('click', function() {
+		if (isSelected()) {
+			updatetext.val(getNode().text);
+			updaterange.val(getNode().values);
+		}
+	});
+	
+	/*
+	
+	
+	dialogclosebtn.on('click', function() { // 닫기 버튼에 이벤트를 추가
+		modal.css('display','none');
+		mapdialog.children().filter('input[type=text]').val('');
+	});
+	mapdialog.children().filter('input[type=text]').on('keypress', function(event) {
+		if (event.which == 13) {
+			$(this).parent().children().filter("img.btn-update").trigger("click");
+		}
+	});
 
+	mapdialog.children().filter('img.btn-update').on('click', function() { // 입력 버튼에 이벤트를 추가
+		if (isRoot()) {
+			alert("최상위 노드는 수정할 수 없습니다");
+		} else {
+			var text = mapdialog.children().filter('input[type=text]').val();
+			var values = mapdialog.children().filter('input[type=range]').val();
+			editData(text, values);
+			dialogclosebtn.trigger('click');
+
+			
+		//석기,승훈	
+			var text_parent = mapdialog.children().parent().val();
+			$.ajax({
+				url:'relation',
+				type:'post',
+				data:{
+					"children":text,
+					"parent":text_parent
+				}
+			succcess:function(data){
+				
+			}
+		});
+	///////////////////////////////////////////
+		}
+	});*/
 	
 });
 
@@ -151,3 +173,7 @@ function connectModal(dom) {
 	dom.on("click", func);
 }
 
+function renewFooter(text, range) {
+	updatetext.val(text);
+	updaterange.val(range);
+}

@@ -21,8 +21,6 @@ function showSTRs() {
 	$.ajax({
 		url : "showSTRs.action",
 		success : function(data) {
-			console.log(data);
-			console.log(data.str_list);
 			if (data.str_list.length) {
 				setLoader();
 				$(".carousel-indicators").children().remove();
@@ -38,14 +36,11 @@ function showSTRs() {
 					
 					var carouselclone = $(".carousel-template").children("div").clone();
 					$(".carousel-inner").append(carouselclone);
-					//carouselclone.addClass("item",true);
 					carouselclone.attr("class", "item");
 					if (index == 0) {
-						console.log("클래스 추가");
 						carouselclone.attr("class", "item active");
 						//carouselclone.addClass("active",true);
 					}
-					console.log(carouselclone.parent().html());
 					carouselclone.children("a").attr("href", "checkRoom?roomName_web=" + enter_code);
 					var caption = carouselclone.children(".carousel-caption");
 					caption.children("h3").text(regdate);
@@ -63,13 +58,10 @@ function showSTRs() {
 					$(".carousel-indicators").append(indicator);
 					indicator.attr("data-slide-to", index);
 					indicator.attr("class", "item" + index);
-					//indicator.addClass("item" + index ,true);
 					if (index == 0) {
 						indicator.attr("class", "item" + index + " active");
-						//indicator.addClass("active", true);
 					}
 				}
-					//$('.carousel').carousel();
 					$('.carousel').children("a.left").off("click");
 					$('.carousel').children("a.left").on("click", function(){
 				        $(this).parent().carousel("prev");
@@ -78,8 +70,6 @@ function showSTRs() {
 					$('.carousel').children("a.right").on("click", function(){
 				        $(this).parent().carousel("next");
 				    });
-					console.log("카로셀 레뒤");
-					console.log($(".carousel").html());
 					hideLoader();
 			} else {
 				alert("아직 만든 생각들이 없습니다!");
