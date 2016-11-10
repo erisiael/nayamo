@@ -18,6 +18,6 @@ create table text(
 select * from oks;
 drop table oks;
 select * from it;
-drop table ska;
+drop table oks cascade constraint;
 
 

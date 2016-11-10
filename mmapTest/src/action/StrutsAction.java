@@ -258,10 +258,6 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		//
 		
 		
-		/////keyword test     null일 경우 검색결과가 없는 경우
-		Search_Keyword ke = new Search_Keyword();
-		
-		/////////////////////////
 		
 		
 		OKS oks = (OKS) session.get("OKS");
