@@ -15,5 +15,6 @@ delete from IT;
 create sequence STR_SEQ;
 select * from it
 select count(*) from it　where name = '아이폰';
-delete from it where name = '아이폰'
-insert into it (name) values('아이폰')
+
+delete from it where name = '';
+insert into it (name) values('인터넷')

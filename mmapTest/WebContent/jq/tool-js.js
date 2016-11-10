@@ -39,13 +39,13 @@
 	setXY();
 	linkNode();
 
-	var svg = d3.select("#main").append("svg")
+	var svg = d3.select("#main").append("svg") //d3.select()로 선택자를 가져와서 새로운걸
 							.attr("width", w)
 							.attr("height", h);
 					
 	var transform = d3.zoomIdentity;
 
-	var force = d3.layout.force()
+	var force = d3.layout.force()//force()는 선에 대한 정보를 
 						.nodes(node)
 					    .links(links)
 					    .size([w,h]);
@@ -54,21 +54,22 @@
 							.attr("width");
 	var	height = svg
 							.attr("height");
+						//뒤에서 부터 읽어 온다.
 	var	addg = svg
-							.selectAll("g")
-							.data(node)
-							.enter()
+							.selectAll("g")//g는 그룹화 하는 태그 
+							.data(node) //node라는 변수라는 곳에 text,value...을 data()메소드가 만들어준다.
+							.enter()	//
 								.append("g")
 								.attr("transform", "translate(0,0)");
 	
 	var g = svg.selectAll("g");
 	
-	var rect = g.append("circle")
-										.attr("r", function(d) { return d.values; })
+	var rect = g.append("circle") 													//원을 만드는 변수 .attr은 실행하는것을 뜻한다. 
+										.attr("r", function(d) { return d.values; })//circle라는 속성에 r을추가 (ex.    <circle r="function(d){return d.values;}"> d는 node안에 있는 배열안에 있는 것            )
 										.attr("id", function(d) { if(d.root) {return "circle-root";} })
 										.attr("cx", function(d) { return d.x; })
     									.attr("cy", function(d) { return d.y; });
-			
+		
 	var line = g.selectAll("line")
 										.data(links)
 										.enter()
@@ -82,7 +83,7 @@
 		  				
 	var drag = d3.behavior.drag()
 											    .origin(function(d) { return d; })
-											    .on("dragstart", dragstarted)
+											    .on("dragstart", dragstarted) 
 											    .on("drag", dragged)
 											    .on("dragend", dragended);
 	
@@ -111,8 +112,8 @@
 	        .classed("selected-border", true)
 	        .attr("cx", function(d) { return d.x; })
 	        .attr("cy", function(d) { return d.y; })
-	        .attr("r", function(d) { return (d.values + 50); })
-	        	.transition()
+	        .attr("r", function(d) { return (d.values + 50); })//원래 크기보다 50크게 하면서 
+	        	.transition()								   //transition과 duration으로 딜레이를준다
 			        .duration(750)
 			        .attr("r", function(d) { return d.values; })
 			        .style("stroke-width", 0)
@@ -160,14 +161,14 @@
 		}
 	}
 	
-	function linkNode() {
+	function linkNode() { //엄마와 자식을 구분하여 
 		links = [];
 		for (var i = 0; i < node.length; i++) {
-			if (node[i].child != undefined) {
-				for (var y = 0; y < node[i].child.length; y++) {
+			if (node[i].child != undefined) {//자식이없다면 아무것도 하지말고
+				for (var y = 0; y < node[i].child.length; y++) {//자식이 있으면 자식의 수만큼 선을 그려줘라 
 					links.push({
-						source: node[i],
-		                target: node[node[i].child[y]]
+						source: node[i],//나
+		                target: node[node[i].child[y]]//자식에 대한 정보
 					});
 				}
 			};
