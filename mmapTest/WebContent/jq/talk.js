@@ -44,7 +44,6 @@ webSocketHtml.onmessage = function(event) {
 		break;
 	case 'initializeServer':
 		webSocketHtml.send("initializeServer" + splicekey + entercode);
-		console.log("ini server");
 		break;
 	case 'initializeClient':
 		if (username == '') {
@@ -53,6 +52,7 @@ webSocketHtml.onmessage = function(event) {
 		$(document).ready(function() {
 			node = JSON.parse(div_array[1]);
 			reDraw();
+			send("svg");
 		});
 		webSocketHtml.send("initializeClient" + splicekey + username);
 		hideLoader();

@@ -49,6 +49,10 @@
         	<result type = "json"></result>
         </action>
         
+        <action name = "searchKeyword" class = "action.AjaxKeywordAction" method = "searchKeyword">
+        	<result type = "json"></result>
+        </action>
+        
         <!-- ajax 액션 끝 -->
         
         

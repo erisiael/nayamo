@@ -69,15 +69,11 @@ public class BroadsocketHtml{
 				rooms.get(roomName_web).setSvgdata("");
 				break;
 			case "svg_end":
-				System.out.println("svg_end : " +rooms.get(roomName_web).getSvgdata());
-				System.out.println(rooms.get(roomName_web).getSvgdata().length());
-				
 				fs = new FileService(rooms.get(roomName_web).getSvgdata(), roomName_web, ".svg");
 				fs.saveFile();
 				break;
 			case "svg_data":
 				rooms.get(roomName_web).setSvgdata(rooms.get(roomName_web).getSvgdata() + str[1]);
-				System.out.println("svg_datas : " + rooms.get(roomName_web).getSvgdata());
 				break;
 			case "message":
 				synchronized (rom) {

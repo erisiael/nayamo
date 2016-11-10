@@ -6,14 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="assets/css/tool.css?ver=1" rel="stylesheet" type="text/css">
-<link href="assets/css/chat.css" rel="stylesheet" type="text/css">
+<link href="assets/css/tool.css?ver=2" rel="stylesheet" type="text/css">
+<link href="assets/css/chat.css?ver=1" rel="stylesheet" type="text/css">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/navbar.css?ver=2" type="text/css">
 <link rel="stylesheet" href="assets/css/login.css" type="text/css">
 <link href="assets/css/loader.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/loader.css" type="text/css">
 <link rel="stylesheet" href="assets/css/carousel.css" type="text/css">
+<link rel="stylesheet" href="assets/css/keywordbar.css?ver=1" type="text/css">
 
 
 <script type="text/javascript" src="jq/jquery-3.1.1.js"></script>
@@ -393,6 +394,27 @@ $(document).ready(function() {
               
               <!-- content from here -->
 
+<div class="open">
+    <span class="cls"></span>
+    <span>
+        <ul class="sub-menu">
+            <li>
+                <a href="#" title="about">Sobre / About</a>
+            </li>
+            <li>
+                <a href="#" title="skills">Habilidades / Skills</a>
+            </li>
+            <li>
+                <a href="#" title="jobs">Trabalhos / Jobs</a>
+            </li>
+            <li>
+                <a href="#" title="contact">Contato / Contact</a>
+            </li>
+        </ul>
+    </span>
+    <span class="cls"></span>
+</div>
+
 <div class="chat-templete">
 			<div class="row msg_container base_sent">
 	                        <div class="col-xs-10 col-md-10">
@@ -464,6 +486,7 @@ $(document).ready(function() {
 	<img id="move" title="초기위치로"></img>
 	<img id="save" title="저장"></img>
 	<img id="auction" title="경매"></img>
+	<img id="keyword" title="키워드추천"></img>
 	<img id="adduser" title="초대URL"></img>
 </div>
 
@@ -490,13 +513,14 @@ $(document).ready(function() {
 <script type="text/javascript" src="jq/jongchan.js?ver=4"></script>
 <!-- script for d3-lib -->
 <script type="text/javascript" src="jq/d3.v3.min.js"></script>
-<script type="text/javascript" src="jq/tool-js.js?ver=3"></script>
+<script type="text/javascript" src="jq/tool-js.js?ver=4"></script>
 <script type="text/javascript" src="jq/talk.js?ver=3"></script>
 <!-- script for image load -->
-<script type="text/javascript" src="jq/baik.js?ver=1"></script>
+<script type="text/javascript" src="jq/baik.js?ver=2"></script>
 <!-- script for etc -->
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/carousel.js?ver=2"></script>
+<script src="assets/js/keywordbar.js?ver=1"></script>
 
 <script>
 	

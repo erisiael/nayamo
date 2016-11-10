@@ -14,7 +14,7 @@
 .chat-window {
     position: absolute !important;
     top: 0px;
-    right: 0px;
+    left: 0px;
     margin-left:10px;
 }
 .chat-window > div > .panel{

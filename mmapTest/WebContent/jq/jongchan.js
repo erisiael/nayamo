@@ -55,6 +55,36 @@ $('window').ready(function() {
 	$('img#auction').click(function() {
 		alert("차후 구현 예정입니다");
 	});
+	$('img#keyword').click(function() {
+		if (!isSelected()) {
+			return;
+		}
+		$.ajax({
+			url : "searchKeyword.action",
+			data : {
+				keyword : getNode().text
+			},
+			success : function(data) {
+				
+				var keyword = "from... " + data.keyword;
+				var word1 = "#1 -> " + data.result[0];
+				var word2 = "#2 -> " + data.result[1];
+				var word3 = "#3 -> " + data.result[2];
+				var datas = [keyword, word1, word2, word3];
+				
+				$('.sub-menu').children().children('a').each(function(index, data) {
+					if (index == 0) {
+						$(data).attr('href', '#');
+					} else {
+						$(data).attr('href', 'javascript:addData("'+ datas[index] +'");');
+					}
+					$(this).text(datas[index]);
+				});
+				
+				$('.open').trigger('click');
+			}
+		});
+	});
 	
 	var url = document.location.toString().split("?roomName_web=")[0] + "?roomName_web=";
 	var urlinput = $("<br><button>URL 복사</button>");
@@ -106,6 +136,12 @@ $('window').ready(function() {
 		} else {
 			alert("먼저 노드를 선택해주세요.");
 		}
+	});
+	updatetext.on('focusin', function() {
+		$(this).parent().parent().css('opacity', '1.0');
+	});
+	updatetext.on('focusout', function() {
+		$(this).parent().parent().css('opacity', '0.3');
 	});
 	updatetext.on('keypress', function(event) {
 		if (event.which == 13) {

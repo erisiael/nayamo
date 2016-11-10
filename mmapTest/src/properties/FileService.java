@@ -37,6 +37,12 @@ public class FileService {
 	
 	public boolean saveFile() {
 		boolean result = false;
+
+		File dirpath = new File(path);
+		if (!dirpath.exists()) {
+			dirpath.mkdir();
+			System.out.println(path + " 를 생성했습니다.");
+		}
 		
 		File dir = new File(path + "/" + filename);
 		if (!dir.exists()) {

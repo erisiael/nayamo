@@ -12,10 +12,8 @@ import java.net.URLEncoder;
 
 import dao.STR_DAO;
 
-	public class Search_Keyword
-	{
-		
-		
+
+	public class Search_Keyword{
 		public String[] Search(String category, String keyword) // 네이버 페이지에서 category로 검색한 결과를 긁어오는 함수
 		{
 			System.out.println("searcy_keyword");
@@ -24,8 +22,8 @@ import dao.STR_DAO;
 			List<Integer> total_count = new ArrayList<>();
 			
 			STR_DAO dao = new STR_DAO();
-			System.out.println(category);
 			dic = dao.searchDB(category);
+			
 			
 			
 			String str = ""; // 검색결과 읽어온 스트링값을 담기 위한 변수
@@ -64,8 +62,7 @@ import dao.STR_DAO;
 //					str = str.replaceAll(" ", "");
 					int count=0;
 					for (int j = 0; j < dic.size(); j++) {
-						if(dic.get(j).equals(keyword)){
-							dic.remove(j);
+						if (dic.get(j) == null) {
 							continue;
 						}
 						Pattern pattern = Pattern.compile(dic.get(j)); //오라클에서 받아온 단어 나중에 dic.... 변경
@@ -102,12 +99,10 @@ import dao.STR_DAO;
 								dic.set(j, dic.get(j+1));
 								dic.set(j+1, tmp_str);
 							}
-							}
+						}
 					}
 		
-				int best3 = best.length;
-				
-				for(int index = 0 ; index < best3; index++){
+				for(int index = 0 ; index<3; index++){
 					best[index] = dic.get(index);
 					System.out.println(best[index]+"          for문");
 				}
@@ -116,4 +111,10 @@ import dao.STR_DAO;
 			}
 			return best; // 결과값 반환
 		}
-	}
+
+		public static void main(String[] args) {
+			Search_Keyword sk = new Search_Keyword();
+			sk.Search("IT", "홈페이지");
+		}
+
+}

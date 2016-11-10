@@ -22,6 +22,9 @@ $(document).ready(function(){
 	var filepath_btnclose_leave = "assets/images/toxic-cross1.png";
 	var filepath_btnupdate_enter = "assets/images/right-tick2.png";
 	var filepath_btnupdate_leave = "assets/images/right-tick1.png";
+
+	var filepath_idea_icon_enter = "assets/images/idea_icon2.png";
+	var filepath_idea_icon_leave = "assets/images/idea_icon1.png";
 	
 	var filepath_enters = [];
 	var filepath_leaves = [];
@@ -36,6 +39,7 @@ $(document).ready(function(){
 	filepath_enters.push(filepath_adduser_enter);
 	filepath_enters.push(filepath_btnclose_enter);
 	filepath_enters.push(filepath_btnupdate_enter);
+	filepath_enters.push(filepath_idea_icon_enter);
 	
 	filepath_leaves.push(filepath_add_leave);
 	filepath_leaves.push(filepath_move_leave);
@@ -46,6 +50,7 @@ $(document).ready(function(){
 	filepath_leaves.push(filepath_adduser_leave);
 	filepath_leaves.push(filepath_btnclose_leave);
 	filepath_leaves.push(filepath_btnupdate_leave);
+	filepath_leaves.push(filepath_idea_icon_leave);
 	
 	buttons.push('#add');
 	buttons.push('#move');
@@ -56,6 +61,7 @@ $(document).ready(function(){
 	buttons.push('#adduser');
 	buttons.push('#btn-close');
 	buttons.push('#btn-update');
+	buttons.push('#keyword');
 	
 	var setButtons = function(index) {
 		$(buttons[index]).attr("src", filepath_leaves[index]);
