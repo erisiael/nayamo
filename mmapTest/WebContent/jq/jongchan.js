@@ -67,18 +67,19 @@ $('window').ready(function() {
 			success : function(data) {
 				
 				var keyword = "from... " + data.keyword;
-				var word1 = "#1 -> " + data.result[0];
-				var word2 = "#2 -> " + data.result[1];
-				var word3 = "#3 -> " + data.result[2];
+				var word1 = data.result[0];
+				var word2 = data.result[1];
+				var word3 = data.result[2];
 				var datas = [keyword, word1, word2, word3];
 				
 				$('.sub-menu').children().children('a').each(function(index, data) {
 					if (index == 0) {
 						$(data).attr('href', '#');
+						$(this).text(datas[index]);
 					} else {
 						$(data).attr('href', 'javascript:addData("'+ datas[index] +'");');
+						$(this).text("#"+ index +" -> " + datas[index]);
 					}
-					$(this).text(datas[index]);
 				});
 				
 				$('.open').trigger('click');
