@@ -12,8 +12,8 @@ import java.net.URLEncoder;
 
 import dao.STR_DAO;
 
-
-	public class Search_Keyword{
+	public class Search_Keyword
+	{
 		
 		
 		public String[] Search(String category, String keyword) // 네이버 페이지에서 category로 검색한 결과를 긁어오는 함수
@@ -105,9 +105,9 @@ import dao.STR_DAO;
 							}
 					}
 		
-					int best3 = best.length;
-					System.out.println("twtewt");
-				for(int index = 1 ; index<=best3; index++){
+				int best3 = best.length;
+				
+				for(int index = 0 ; index < best3; index++){
 					best[index] = dic.get(index);
 					System.out.println(best[index]+"          for문");
 				}
@@ -116,7 +116,4 @@ import dao.STR_DAO;
 			}
 			return best; // 결과값 반환
 		}
-
-
-
-}
+	}

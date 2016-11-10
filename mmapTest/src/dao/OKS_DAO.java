@@ -245,7 +245,7 @@ public class OKS_DAO
 	    return boardlist;
 	}
 	
-	public List<String> searchDB(String category) 
+/*	public List<String> searchDB(String category) 
 	{
 		SqlSession sqlSession = MybatisConfig.getSqlSessionFactory().openSession();
 		List<String> list = null;
@@ -256,8 +256,5 @@ public class OKS_DAO
 			sqlSession.close();
 		}
 		return list;
-	}
-
-
-	
+	}*/
 }

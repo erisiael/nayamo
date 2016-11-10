@@ -252,7 +252,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		RandomNumberGenerator r = new RandomNumberGenerator(((OKS)session.get("OKS")).getEmail());
 		//////
 		roomName_web = r.generateEntercode();
-		//
+		//m
 		str.setEnter_code(roomName_web);
 		ActionContext.getContext().getValueStack().setValue("roomName_web", roomName_web);
 		//
@@ -260,8 +260,7 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		
 		/////keyword test     null일 경우 검색결과가 없는 경우
 		Search_Keyword ke = new Search_Keyword();
-		System.out.println(ke.Search(str.getCategory(), str.getKeyword())[0]+"병신상덕이");
-		System.out.println(str.getCategory()+"     "+str.getKeyword());
+		
 		/////////////////////////
 		
 		

@@ -411,11 +411,6 @@
                                                 tabindex="2" class="form-control" placeholder="Password"
                                                 required>
                                           </div>
-                                          <div class="form-group text-center">
-                                             <input type="checkbox" tabindex="3" class=""
-                                                name="remember" id="remember"><label
-                                                for="remember">아이디 기억하기</label>
-                                          </div>
 
 
                                           <div class="form-group">
