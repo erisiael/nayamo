@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="assets/css/tool.css?ver=2" rel="stylesheet" type="text/css">
+<link href="assets/css/tool.css?ver=3" rel="stylesheet" type="text/css">
 <link href="assets/css/chat.css?ver=1" rel="stylesheet" type="text/css">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/navbar.css?ver=2" type="text/css">
@@ -481,13 +481,13 @@ $(document).ready(function() {
 
 <div class="nav">
 	<div class="labelbar">&nbsp;</div>
-	<img id="add" title="추가"></img>
-	<img id="delete" title="삭제"></img>
-	<img id="move" title="초기위치로"></img>
-	<img id="save" title="저장"></img>
-	<img id="auction" title="경매"></img>
-	<img id="keyword" title="키워드추천"></img>
-	<img id="adduser" title="초대URL"></img>
+	<img id="img-add" title="추가"></img>
+	<img id="img-delete" title="삭제"></img>
+	<img id="img-move" title="초기위치로"></img>
+	<img id="img-save" title="저장"></img>
+	<img id="img-auction" title="경매"></img>
+	<img id="img-adduser" title="초대URL"></img>
+	<img id="img-keyword" title="키워드추천"></img>
 </div>
 
 <!-- content end here -->
@@ -516,11 +516,11 @@ $(document).ready(function() {
 <script type="text/javascript" src="jq/tool-js.js?ver=4"></script>
 <script type="text/javascript" src="jq/talk.js?ver=3"></script>
 <!-- script for image load -->
-<script type="text/javascript" src="jq/baik.js?ver=2"></script>
+<script type="text/javascript" src="jq/baik.js?ver=3"></script>
 <!-- script for etc -->
 <script src="assets/js/navbar.js"></script>
 <script src="assets/js/carousel.js?ver=2"></script>
-<script src="assets/js/keywordbar.js?ver=1"></script>
+<script src="assets/js/keywordbar.js?ver=2"></script>
 
 <script>
 	

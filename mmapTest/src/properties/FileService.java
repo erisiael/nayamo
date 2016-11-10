@@ -56,8 +56,6 @@ public class FileService {
 			pw.print(target);
 			pw.flush();
 			result = true;
-			System.out.println(result);
-			System.out.println("파일시스템 target : " + target);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

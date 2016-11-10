@@ -159,7 +159,6 @@
 	
 	
 	function setXY() {
-		console.log("setXY : " + node);
 		for (var i = 0; i < node.length; i++) {
 			if (node[i].x == undefined) {
 				node[i].x = w / 2 - (node[i].values / 2);

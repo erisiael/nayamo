@@ -52,16 +52,16 @@ $(document).ready(function(){
 	filepath_leaves.push(filepath_btnupdate_leave);
 	filepath_leaves.push(filepath_idea_icon_leave);
 	
-	buttons.push('#add');
-	buttons.push('#move');
-	buttons.push('#update');
-	buttons.push('#delete');
-	buttons.push('#save');
-	buttons.push('#auction');
-	buttons.push('#adduser');
+	buttons.push('#img-add');
+	buttons.push('#img-move');
+	buttons.push('#img-update');
+	buttons.push('#img-delete');
+	buttons.push('#img-save');
+	buttons.push('#img-auction');
+	buttons.push('#img-adduser');
 	buttons.push('#btn-close');
 	buttons.push('#btn-update');
-	buttons.push('#keyword');
+	buttons.push('#img-keyword');
 	
 	var setButtons = function(index) {
 		$(buttons[index]).attr("src", filepath_leaves[index]);

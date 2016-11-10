@@ -30,19 +30,19 @@ $('window').ready(function() {
 	 */
 	modal.css('display', 'none');
 	
-	$('img#add').on('click', function() {
+	$('img#img-add').on('click', function() {
 		addData("새로운 노드");
 	});
 	 
-	$('img#save').click(function() { // 저장 버튼의 이벤트
+	$('img#img-save').click(function() { // 저장 버튼의 이벤트
 		send("html");
 		send("svg");
 	});
 	
-	$('img#move').click(function() {
+	$('img#img-move').click(function() {
 		setViewpoint();
 	});
-	$('img#delete').click(function() {
+	$('img#img-delete').click(function() {
 		if (!isSelected()) {
 			return;
 		}
@@ -52,11 +52,12 @@ $('window').ready(function() {
 			alert("최상위 노드는 삭제할 수 없습니다.");
 		}
 	});
-	$('img#auction').click(function() {
+	$('img#img-auction').click(function() {
 		alert("차후 구현 예정입니다");
 	});
-	$('img#keyword').click(function() {
+	$('img#img-keyword').click(function() {
 		if (!isSelected()) {
+			alert("먼저 노드를 선택해주세요.");
 			return;
 		}
 		$.ajax({
@@ -90,7 +91,7 @@ $('window').ready(function() {
 	var url = document.location.toString().split("?roomName_web=")[0] + "?roomName_web=";
 	var urlinput = $("<br><button>URL 복사</button>");
 	
-	$('img#adduser').click(function() {
+	$('img#img-adduser').click(function() {
 		connectModal(urldialog.parent().parent());
 		urldialog.children("span").text("Entercode : " + entercode);
 		urldialog.append(urlinput);
@@ -138,11 +139,21 @@ $('window').ready(function() {
 			alert("먼저 노드를 선택해주세요.");
 		}
 	});
-	updatetext.on('focusin', function() {
-		$(this).parent().parent().css('opacity', '1.0');
+	var isFocused;
+	$("footer").hover(function() {
+		$(this).addClass('in');
+	}, function() {
+		if (!isFocused) {
+			$(this).removeClass('in');
+		}
+	});
+	updatetext.focusin(function() {
+		isFocused = true;
+		$(this).parent().parent().addClass('in');
 	});
 	updatetext.on('focusout', function() {
-		$(this).parent().parent().css('opacity', '0.3');
+		isFocused = false;
+		$(this).parent().parent().removeClass('in');
 	});
 	updatetext.on('keypress', function(event) {
 		if (event.which == 13) {
@@ -155,47 +166,6 @@ $('window').ready(function() {
 			updaterange.val(getNode().values);
 		}
 	});
-	
-	/*
-	
-	
-	dialogclosebtn.on('click', function() { // 닫기 버튼에 이벤트를 추가
-		modal.css('display','none');
-		mapdialog.children().filter('input[type=text]').val('');
-	});
-	mapdialog.children().filter('input[type=text]').on('keypress', function(event) {
-		if (event.which == 13) {
-			$(this).parent().children().filter("img.btn-update").trigger("click");
-		}
-	});
-
-	mapdialog.children().filter('img.btn-update').on('click', function() { // 입력 버튼에 이벤트를 추가
-		if (isRoot()) {
-			alert("최상위 노드는 수정할 수 없습니다");
-		} else {
-			var text = mapdialog.children().filter('input[type=text]').val();
-			var values = mapdialog.children().filter('input[type=range]').val();
-			editData(text, values);
-			dialogclosebtn.trigger('click');
-
-			
-		//석기,승훈	
-			var text_parent = mapdialog.children().parent().val();
-			$.ajax({
-				url:'relation',
-				type:'post',
-				data:{
-					"children":text,
-					"parent":text_parent
-				}
-			succcess:function(data){
-				
-			}
-		});
-	///////////////////////////////////////////
-		}
-	});*/
-	
 });
 
 function connectModal(dom) {

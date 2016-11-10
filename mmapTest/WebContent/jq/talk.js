@@ -77,7 +77,6 @@ function onError(event) {
 //메시지를 위한 
 function send(kind) {
 	//메시지를 받을경우 String 앞줄에 message, HTML일때는 Html을 붙여서 가져오기
-	console.log("샌드" + kind);
 	switch (kind) {
 	case "html":
 		sendBuffer(JSON.stringify(node), "html");
@@ -103,11 +102,10 @@ function send(kind) {
 function sendBuffer(data, key) {
 	webSocketHtml.send(key + "_start" + splicekey + "#start of "+ key +"#");
 	var buffer;
-	console.log("sendBuffer");
+	console.log("sendBuffer about " + key);
 	do {
 		buffer = data.substr(0, 2048);
 		data = data.substring(2048, data.length);
-		console.log("while : " + buffer.length);
 		webSocketHtml.send(key + "_data" + splicekey + buffer);
 	} while (buffer.length == 2048);
 	webSocketHtml.send(key + "_end" + splicekey + "#end of "+ key + "#");

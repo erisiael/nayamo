@@ -4,14 +4,12 @@
 
 $(document).ready(function() {
     $('.open').on('click', function(event){
-        $(this).addClass('oppenned');
+        //$(this).addClass('oppenned');
+        $(this).toggleClass('oppenned');
         event.stopPropagation();
     })
-    /*$('body').on('click', function(event) {
-        $('.open').removeClass('oppenned');
-    })*/
-    $('.cls').on('click', function(event){
+    /*$('.cls').on('click', function(event){
         $('.open').removeClass('oppenned');
         event.stopPropagation();
-    });
+    });*/
 });
