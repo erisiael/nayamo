@@ -3,8 +3,10 @@
  */
 	//var w = 900;
 	//var h = 600;
-	var w = window.outerWidth;
-	var h = window.outerHeight;
+	var w = screen.width;
+	var h = screen.height;
+	/*var w = window.outerWidth;
+	var h = window.outerHeight;*/
 	console.log(w);
 	console.log(h);
 	

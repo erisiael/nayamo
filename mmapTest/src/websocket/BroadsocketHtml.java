@@ -34,7 +34,6 @@ public class BroadsocketHtml{
 	@OnMessage
 	public void onMessage(String canvas, Session session) {
 		//분기처리 canvas에 메시지 일경우와 html의 경우
-		System.out.println("canvas : " + canvas);
 		try{
 			//str[0] 내용처리 str[1]내용 str[3] entercode
 			String[] str = canvas.split(splicekey);
@@ -91,7 +90,6 @@ public class BroadsocketHtml{
 				fs = new FileService(roomName_web, ".json");
 				String node = fs.loadFile();
 				synchronized (rooms) {
-					System.out.println("loaded node : " + node);
 					session.getBasicRemote().sendText("initializeClient" + splicekey + node);
 				}
 				break;
@@ -111,7 +109,7 @@ public class BroadsocketHtml{
 				break;
 			}
 		}catch(IOException e){
-			
+			e.printStackTrace();
 		}
 
 	}

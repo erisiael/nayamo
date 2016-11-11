@@ -257,15 +257,9 @@ public class StrutsAction extends ActionSupport implements SessionAware
 		ActionContext.getContext().getValueStack().setValue("roomName_web", roomName_web);
 		//
 		
-		
-		
-		
 		OKS oks = (OKS) session.get("OKS");
 		str.setOKS_email(oks.getEmail());
 		STR_DAO dao = new STR_DAO();
-		
-		
-		
 		
 		if (dao.selectOneSTR(str) == null){
 			String rootnode = "[{\"text\":\""+ str.getKeyword() +"\",\"root\":true,\"values\":100}]";
