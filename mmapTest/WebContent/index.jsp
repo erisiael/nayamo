@@ -11,7 +11,7 @@
 <meta name="description" content="">
 <meta name="author" content="Sergey Pozhilov (GetTemplate.com)">
 
-<title>Magister - Free html5 template by GetTemplate</title>
+<title>NAYAMO MAIN</title>
 
 <link rel="shortcut icon" href="assets/images/gt_favicon.png">
 
@@ -161,7 +161,6 @@
 			      </div><!-- /.modal-content -->
 			    </div><!-- /.modal-dialog -->
 			  </div><!-- /.modal -->
-</s:if>
 		<!-- 로그인 상태에서만 사용할 modal div -->
 		
 		
@@ -177,20 +176,20 @@
                 <ol class="indicators-template" style="padding-bottom: 42px;">
 	                <li data-target="#myCarousel"></li>
                 </ol>
-			</div>
+		</div>
 		<div class="modal" id="modal-carousel">
 			<div class="modal-dialog">
 			      <div class="modal-content">
 			<div class="container">
-	<div class="row">
+		<div class="row">
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
-            	<div align="center" class="item active"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
-                    <div class="carousel-caption">
-                        <h3>Cupcake ipsum dolor sit amet</h3>
-                         <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
-                    </div>
-                </div>
+	            <div class="item active" align="center"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
+	                    <div class="carousel-caption">
+	                        <h3>Cupcake ipsum dolor sit amet</h3>
+	                         <p>Pudding fruitcake chocolate pastry caramels dessert powder cupcake. Marzipan sweet roll jelly macaroon brownie.</p>
+	                    </div>
+	            </div>
             </div>
             <ol class="carousel-indicators hidden-xs hidden-sm" style="padding-bottom: 42px;">
             	<li data-target="#myCarousel" data-slide-to="0" class="item0 active"></li>
@@ -204,7 +203,7 @@
 </div>
 			
 		</div>
-		
+</s:if>
 		<!-- 로그인 상태에서만 사용할 modal div(쪽지함) -->
 		<s:if test="#session.OKS != null">
 			<div class="modal" id="letterModal">

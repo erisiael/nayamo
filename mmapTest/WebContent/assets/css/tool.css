@@ -70,15 +70,12 @@ div.div-urldialog {
 	left: 40%;
 	width: 20%;
 	height: 20%;
-	background-color: rgb(118,214,255);
+	background-color: rgba(118,214,255, 0.7);
 	z-index: 5;
 	box-shadow: 10px 10px 5px #888888;
-	text-align: center;
-	margin-top: auto;
-	margin-bottom: auto;
+	padding: 30px;
 }
-div.dia-urldialog * {
-	font-size: xx-large;
+div.dia-urldialog a {
 }
 /*
 	css for modal window

@@ -8,10 +8,10 @@ $(document).ready(function() {
    $(".carousel-inner").swipeleft(function() {
        $(this).parent().carousel('next');
    });*/
+	showSTRs(modal_carousel);
 	$(".carousel").carousel();
    var modal_carousel = $("#modal-carousel");
    $("#strlist_carousel").on("click", function() {
-	   showSTRs(modal_carousel);
 	   modal_carousel.modal();
    });
    
@@ -64,10 +64,12 @@ function showSTRs() {
 				}
 					$('.carousel').children("a.left").off("click");
 					$('.carousel').children("a.left").on("click", function(){
+						console.log("야호");
 				        $(this).parent().carousel("prev");
 				    });
 					$('.carousel').children("a.right").off("click");
 					$('.carousel').children("a.right").on("click", function(){
+						console.log("호야");
 				        $(this).parent().carousel("next");
 				    });
 					hideLoader();

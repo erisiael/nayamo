@@ -18,12 +18,9 @@ var updaterange;
 var dialogclosebtn = mapdialog.children().filter('img.btn-close');*/
 var modal = $("div.modal-div");
 
-var urldialog = $('<div class=div-urldialog><span></span></div>');
-
 $('window').ready(function() {
 
 	/*$('div.div-dialogs').append(mapdialog);*/
-	$('div.div-urldialogs').append(urldialog);
 	
 	/**
 	 * modal window
@@ -89,13 +86,16 @@ $('window').ready(function() {
 	});
 	
 	var url = document.location.toString().split("?roomName_web=")[0] + "?roomName_web=";
-	var urlinput = $("<br><button>URL 복사</button>");
 	
 	$('img#img-adduser').click(function() {
+		var urldialog = $(".div-urldialog");
 		connectModal(urldialog.parent().parent());
-		urldialog.children("span").text("Entercode : " + entercode);
-		urldialog.append(urlinput);
-		urldialog.children("button").on("click", function() {
+		urldialog.children().children("span#span-entercode").text(entercode);
+		urldialog.children("a#a-entercode").on("click", function() {
+			clipboard.copy(entercode);
+			alert("복사되었습니다.");
+		});
+		urldialog.children("a#a-enterurl").on("click", function() {
 			clipboard.copy({"text/plain": url + entercode});
 			alert("복사되었습니다.");
 		});
@@ -135,8 +135,6 @@ $('window').ready(function() {
 				var values = updaterange.val();
 				editData(text, values);
 			}
-		} else {
-			alert("먼저 노드를 선택해주세요.");
 		}
 	});
 	var isFocused;

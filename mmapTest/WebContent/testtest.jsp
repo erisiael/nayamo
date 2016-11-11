@@ -5,8 +5,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="assets/css/tool.css?ver=3" rel="stylesheet" type="text/css">
+<title>NAYAMO TOOL</title>
+<link href="assets/css/tool.css?ver=4" rel="stylesheet" type="text/css">
 <link href="assets/css/chat.css?ver=1" rel="stylesheet" type="text/css">
 <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="assets/css/navbar.css?ver=2" type="text/css">
@@ -150,12 +150,12 @@ setLoader(); // setting loader.js
                 <ol class="indicators-template" style="padding-bottom: 42px;">
 	                <li data-target="#myCarousel"></li>
                 </ol>
-			</div>
+		</div>
 		<div class="modal" id="modal-carousel">
 			<div class="modal-dialog">
 			      <div class="modal-content">
 			<div class="container">
-	<div class="row">
+		<div class="row">
 		<div id="myCarousel" class="carousel slide">
             <div class="carousel-inner">
 	            <div class="item active" align="center"><a href="#"><img src="assets/images/nothereimage.jpg" class="img-rounded" alt="Blu-ray Lens reparatie"></a>
@@ -399,16 +399,16 @@ $(document).ready(function() {
     <span>
         <ul class="sub-menu">
             <li>
-                <a href="#" title="about">Sobre / About</a>
+                <a href="#" title="about">검색 결과가</a>
             </li>
             <li>
-                <a href="#" title="skills">Habilidades / Skills</a>
+                <a href="#" title="skills">여기에</a>
             </li>
             <li>
-                <a href="#" title="jobs">Trabalhos / Jobs</a>
+                <a href="#" title="jobs">표시됩니다</a>
             </li>
             <li>
-                <a href="#" title="contact">Contato / Contact</a>
+                <a href="#" title="contact">!! </a>
             </li>
         </ul>
     </span>
@@ -473,6 +473,11 @@ $(document).ready(function() {
 </div>
 <div class="modal-div" id="modal-content2">
 	<div class="div-urldialogs">
+		<div class="div-urldialog">
+			<a href="#" id="a-entercode" class="btn btn-primary">Entercode<span id="span-entercode" class="badge"></span></a><br>
+			<br>
+			<a href="#" id="a-enterurl"><span class="btn btn-default glyphicon glyphicon-hand-up"> URL 복사</span></a>
+		</div>
 	</div>
 </div>
 <div id="main">
@@ -510,7 +515,7 @@ $(document).ready(function() {
 
 <!-- test -->
 <script type="text/javascript" src="jq/talk_design.js"></script>
-<script type="text/javascript" src="jq/jongchan.js?ver=4"></script>
+<script type="text/javascript" src="jq/jongchan.js?ver=5"></script>
 <!-- script for d3-lib -->
 <script type="text/javascript" src="jq/d3.v3.min.js"></script>
 <script type="text/javascript" src="jq/tool-js.js?ver=4"></script>
